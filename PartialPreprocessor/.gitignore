@@ -1,7 +1,0 @@
-/tokenstream.txt
-/macroDebug.txt
-/jcpp.log*
-*.lck
-bin
-*.class
-/debugsource.txt
