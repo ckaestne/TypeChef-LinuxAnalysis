@@ -3,6 +3,7 @@ package de.fosd.typechef.linux
 import de.fosd.typechef.featureexpr._
 import de.fosd.typechef.featureexpr.FeatureExpr
 import de.fosd.typechef.featureexpr.FeatureExpr._
+import featuremodel.LinuxDimacsModel
 
 
 /**
@@ -22,7 +23,7 @@ object LinuxDependencyAnalysis {
         val features = featureNames.map(d(_))
 
 
-        val fm = LinuxFeatureModel.featureModel
+        val fm = new LinuxDimacsModel().createFeatureModel
 
         //        println(LinuxFeatureModel.featureModelApprox)
         //        val v1 = d("CONFIG_PARAVIRT")
