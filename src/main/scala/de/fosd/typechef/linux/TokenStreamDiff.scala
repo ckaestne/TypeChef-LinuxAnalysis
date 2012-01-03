@@ -1,5 +1,6 @@
 package de.fosd.typechef.linux
 
+import featuremodel.LinuxExclDeadModel
 import java.io.File
 import de.fosd.typechef.lexer.{PartialPPLexer, Token}
 import scala.collection.JavaConversions._
@@ -18,7 +19,7 @@ import de.fosd.typechef.featureexpr.{FeatureExpr, NoFeatureModel}
 
 object TokenStreamDiff {
 
-    val fm = LinuxFeatureModel.featureModelExcludingDead.and(FeatureExpr.createDefinedExternal("CONFIG_OPTIMIZE_INLINING").not)
+    val fm = new LinuxExclDeadModel().createFeatureModel.and(FeatureExpr.createDefinedExternal("CONFIG_OPTIMIZE_INLINING").not)
 
     def main(args: Array[String]): Unit = {
         if (args.length != 2)
@@ -73,9 +74,9 @@ object TokenStreamDiff {
 
                 if (mismatch) {
                     println("token mismatch: \n" +
-                            "\t" + a.getText + " (line " + a.getLine + ")  " + a.getFeature + "\n" +
-                            "\t" + b.getText + " (line " + b.getLine + ")  " + b.getFeature + "\n" +
-                            "\tprevious: " + last.take(30).reverse.map(_.getText).mkString(" "))
+                        "\t" + a.getText + " (line " + a.getLine + ")  " + a.getFeature + "\n" +
+                        "\t" + b.getText + " (line " + b.getLine + ")  " + b.getFeature + "\n" +
+                        "\tprevious: " + last.take(30).reverse.map(_.getText).mkString(" "))
                     assert(false, "stoping on mismatch")
                 }
                 last = a :: last
@@ -91,6 +92,7 @@ object TokenStreamDiff {
 
 
     def parse(file: String): Seq[Token] = new PartialPPLexer().parseFile(file, file, NoFeatureModel)
+
     def removeDead(l: Seq[Token]): Seq[Token] =
         l.filter(t => {
             val dead = t.getFeature.isContradiction(fm)
