@@ -20,8 +20,8 @@ TaskKey[File]("mkrun") <<= (baseDirectory, fullClasspath in Runtime, mainClass i
   val template = """#!/bin/sh
 java -ea -Xmx2G -Xms128m -Xss10m -classpath "%s" %s "$@"
 """
-  val contents = template.format(cp.files.absString, "de.fosd.typechef.frontend.Frontend")
-  val out = base / "../typechefLinux.sh"
+  val contents = template.format(cp.files.absString, "de.fosd.typechef.Frontend")
+  val out = base / "typechefLinux.sh"
   IO.write(out, contents)
   out.setExecutable(true)
   out
