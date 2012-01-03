@@ -8,6 +8,7 @@ package de.fosd.typechef.linux
  */
 
 import de.fosd.typechef.featureexpr.FeatureExpr._
+import featuremodel.LinuxFullModel
 import java.io._
 
 /**
@@ -24,7 +25,7 @@ object CompletePartialConfiguration {
         new File(outPath).mkdir()
 
 
-        val featureModel = LinuxFeatureModel.featureModelFull
+        val featureModel = new LinuxFullModel().createFeatureModel
 
         val completedConf = new FileWriter(outPath + File.separator + "completedConf.h")
         val openFeatures = new FileWriter(outPath + File.separator + "openFeaturesList.txt")
@@ -40,22 +41,22 @@ object CompletePartialConfiguration {
             if (featureMandatory) {
                 println("#define " + feature)
                 completedConf.write("#define " + feature + "\n")
-                completedConf.flush
+                completedConf.flush()
             } else if (featureDead) {
                 println("#undef " + feature)
                 completedConf.write("#undef " + feature + "\n")
-                completedConf.flush
+                completedConf.flush()
             } else {
                 println("Open feature: " + feature)
                 openFeatures.write(feature + "\n")
-                openFeatures.flush
+                openFeatures.flush()
             }
             // println(feature + ": "+featureMandatory+" "+featureDead )
         }
 
         print("done.\n\n")
-        completedConf.close
-        openFeatures.close
+        completedConf.close()
+        openFeatures.close()
     }
 
 
