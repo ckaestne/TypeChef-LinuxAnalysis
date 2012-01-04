@@ -17,13 +17,15 @@ object LinuxDependencyAnalysis {
 
     def main(args: Array[String]): Unit = {
         val featureNames = List(
-            "CONFIG_PARAVIRT", "CONFIG_X86_PAE"
+            "CONFIG_HOTPLUG_PC_ACPI", "CONFIG_ACPI"
         );
         val d: String => DefinedExternal = FeatureExpr.createDefinedExternal(_)
         val features = featureNames.map(d(_))
 
 
         val fm = new LinuxDimacsModel().createFeatureModel
+        
+        for (fn<-featureNames) if (!fm.variables.contains(fn)) println("Unknown variable "+fn)
 
         //        println(LinuxFeatureModel.featureModelApprox)
         //        val v1 = d("CONFIG_PARAVIRT")
