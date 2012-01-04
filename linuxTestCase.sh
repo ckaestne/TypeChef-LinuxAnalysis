@@ -1,7 +1,7 @@
 #!/bin/bash
 #!/bin/bash -vxe
 
-java -jar sbt-launch-0.7.4.jar  compile
+#java -jar sbt-launch-0.7.4.jar  compile
 
 . linuxFileList.inc
 
@@ -13,8 +13,10 @@ java -jar sbt-launch-0.7.4.jar  compile
 
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
-partialPreprocFlags="-c linux-$system.properties -x CONFIG_ -U __INTEL_COMPILER \
-  -U __ASSEMBLY__ --include completedConf.h --include partialConf.h --openFeat openFeaturesList.txt -U CONFIG_SPARC"
+partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
+  --include completedConf.h --include partialConf.h --openFeat openFeaturesList.txt \
+  --featureModelClass de.fosd.typechef.linux.featuremodel.LinuxApproxModel \
+  --parse --writePI --recordTiming"
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
 # XXX: These options workaround bugs triggered by these macros.
@@ -105,27 +107,19 @@ export outCSV=linux.csv
 ##################################################################
 filesToProcess|while read i; do
   extraFlags="$(flags "$i")"
-  if [ ! -f "$srcPath/$i.i" ]; then
-    echo "=="
-    echo "==Preprocess source"
-    echo "=="
-    gcc -Wp,-P -U __weak $gccOpts -E $srcPath/$i.c $extraFlags > "$srcPath/$i.i" || true
-  fi
-  if [ ! -f $srcPath/$i.pi ]; then
-    touch $srcPath/$i.pi
+#  if [ ! -f "$srcPath/$i.i" ]; then
+#    echo "=="
+#    echo "==Preprocess source"
+#    echo "=="
+#    gcc -Wp,-P -U __weak $gccOpts -E $srcPath/$i.c $extraFlags > "$srcPath/$i.i" || true
+#  fi
+  if [ ! -f $srcPath/$i.dbg ]; then
+    touch $srcPath/$i.dbg
     . ./jcpp.sh $srcPath/$i.c $extraFlags
-    . ./postProcess.sh $srcPath/$i.c $extraFlags
+#    . ./postProcess.sh $srcPath/$i.c $extraFlags
   else
-    #echo ./jcpp.sh $srcPath/$i.c $extraFlags
-    #exit 0
     echo "Skipping $srcPath/$i.c"
   fi
-#  for j in $listToParse; do
-#    if [ "$i" = "$j" ]; then
-#      ./parseTypecheck.sh $srcPath/$i.pi
-#      break
-#    fi
-#  done
 done
 
 # The original invocation of the compiler:
