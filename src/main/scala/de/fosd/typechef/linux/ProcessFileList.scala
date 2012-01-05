@@ -6,7 +6,7 @@ import java.io._
 import de.fosd.typechef.featureexpr.{False, True, FeatureExpr}
 
 /**
- * processes thorstens file list (passed as parameter) and creates corresponding .pi.pc files
+ * processes thorstens file list (passed as parameter) and creates corresponding .pc files
  *
  * (presence conditions for files, in contrast to .pi.fm which represents a local feature model for dependencies)
  *
@@ -95,7 +95,7 @@ object ProcessFileList extends RegexParsers {
                         println(fullFilename + " " + cond)
 
                         if (!cond.isTautology()) {
-                            val pcFile = new PrintWriter(new File(fullFilenameNoExt + ".pi.pc"))
+                            val pcFile = new PrintWriter(new File(fullFilenameNoExt + ".pc"))
                             cond.print(pcFile)
                             pcFile.close
                         }
