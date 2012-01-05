@@ -53,3 +53,5 @@ oneOf(defined(CONFIG_FLATMEM), defined(CONFIG_DISCONTIGMEM), defined(CONFIG_SPAR
 (defined(CONFIG_IRQSOFF_TRACER) => defined(CONFIG_TRACE_IRQFLAGS)) //from FM
 atLeastOne(defined(CONFIG_M586), defined(CONFIG_M586TSC), defined(CONFIG_M586MMX),                  defined(CONFIG_M686), defined(CONFIG_MPENTIUMII), defined(CONFIG_MPENTIUMIII), defined(CONFIG_MPENTIUMM), defined(CONFIG_MPENTIUM4),                defined(CONFIG_MK6), defined(CONFIG_MK7), defined(CONFIG_MK8), defined(CONFIG_MCRUSOE), defined(CONFIG_MEFFICEON), defined(CONFIG_MWINCHIPC6),                defined(CONFIG_MWINCHIP3D), defined(CONFIG_MGEODEGX1), defined(CONFIG_MGEODE_LX), defined(CONFIG_MCYRIXIII), defined(CONFIG_MVIAC3_2),                defined(CONFIG_MVIAC7), defined(CONFIG_MCORE2), defined(CONFIG_MATOM))
 (defined(CONFIG_HUGETLBFS) <=> defined(CONFIG_HUGETLB_PAGE)) //from FM
+defined(CONFIG_HOTPLUG_PCI_ACPI) => defined(CONFIG_ACPI)
+defined(CONFIG_X86_32_SMP) => defined(CONFIG_SMP)
