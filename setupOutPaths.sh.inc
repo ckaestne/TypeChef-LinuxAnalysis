@@ -11,7 +11,7 @@ outBase="$(dirname $inp)/$(basename $inp .c)"
 
 # Setup derived output paths
 outDbg="$outBase.dbg"
-outPartialPreproc="$outBase.pi"
+outPartialPreproc="$outBase"
 outPreproc="$outBase.i"
 outPartialPreprocThenPreproc="$outBase.pi.i"
 # Interesting outputs

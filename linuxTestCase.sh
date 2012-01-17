@@ -15,8 +15,8 @@
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
 partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
   --include completedConf.h --include partialConf.h --openFeat openFeaturesList.txt \
-  --featureModelClass de.fosd.typechef.linux.featuremodel.LinuxApproxModel \
-  --parse --writePI --recordTiming"
+  --featureModelFExpr approx.fm \
+  --parse --writePI --recordTiming --parserstatistics --lexdebug"
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
 # XXX: These options workaround bugs triggered by these macros.

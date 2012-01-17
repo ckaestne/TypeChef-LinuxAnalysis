@@ -45,7 +45,7 @@ echo $partialPreprocFlags
 bash -c "time ./typechefLinux.sh -ea $javaOpts \
   $mainClass \
   $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
-  '$inp' -o '$outPartialPreproc' 2> '$outErr' |tee '$outDbg'" \
+  '$inp' 2> '$outErr' |tee '$outDbg'" \
   2> "$outTime" || true
 #bash -c "time java -ea $javaOpts -jar $sbtPath 'project PreprocessorFrontend' \
 #  \"run $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
