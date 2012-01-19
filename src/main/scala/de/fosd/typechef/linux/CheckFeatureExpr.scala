@@ -8,68 +8,69 @@ import de.fosd.typechef.featureexpr.{NoFeatureModel, FeatureModel, FeatureExpr, 
 
 
 object CheckFeatureExpr extends App {
-    //    if (args.size != 1 && !new File("formula").exists()) {
-    //        println("expected feature expression as parameter")
-    //        System.exit(0)
-    //    }
-    //
-    //
-    //    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
-    //
-    //    val fmApprox = new LinuxApproxModel().createFeatureModel
-    //    val fmDimacs = new LinuxDimacsModel().createFeatureModel
-    //
-    //    for (fexprStr <- fexprStrs; if (!fexprStr.trim.isEmpty)) {
-    //        println("\n" + fexprStr.take(100) + "...")
-    //
-    //        val fexpr = new FeatureExprParser().parse(fexprStr.replaceAll("def\\(", "defined(").replaceAll("\\|", "||").replaceAll("&", "&&"))
-    //
-    //
-    //        def status(fexpr: FeatureExpr, fm: FeatureModel): String =
-    //            (if (fexpr.isSatisfiable(fm)) "SAT" else "!SAT") + ", " + (if (fexpr.isTautology(fm)) "TAU" else "!TAU")
-    //
-    //        println("Plain: " + status(fexpr, null))
-    //
-    //        println("Approx.fm: " + status(fexpr, fmApprox))
-    //
-    //        println("Dimacs: " + status(fexpr, fmDimacs))
-    //
-    //        val undertakerFMgen = new UndertakerFMParser("x86.model")
-    //        val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
-    //        assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
-    //        //        val undertakerFM=NoFeatureModel.and(slicedFExpr)
-    //        println("Undertaker: " + status(slicedFExpr implies fexpr, null))
-    //
-    //
-    //        val features = fexpr.collectDistinctFeatures
-    //        for (f <- features) {
-    //            val expr = f
-    //
-    //            val slicedFExpr = undertakerFMgen.sliceModel(expr)
-    //
-    //            assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
-    //
-    //        }
-    //
-    //        for (ts <- features.tails; j <- ts; if (ts.head != j)) {
-    //            val expr = ts.head and j
-    //
-    //            val slicedFExpr = undertakerFMgen.sliceModel(expr)
-    //
-    //            assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
-    //
-    //        }
-    //    }
+    if (args.size != 1 && !new File("formula").exists()) {
+        println("expected feature expression as parameter")
+        System.exit(0)
+    }
 
-    //    for (i<- 1 until 207)
-    //        new UndertakerFMParser("x86.model",i)
-    new UndertakerFMParser("x86.model", 25)
+
+    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
+
+    val fmApprox = new LinuxApproxModel().createFeatureModel
+    val fmDimacs = new LinuxDimacsModel().createFeatureModel
+
+    for (fexprStr <- fexprStrs; if (!fexprStr.trim.isEmpty)) {
+
+        val fexpr = new FeatureExprParser().parse(fexprStr)
+        println("\n" + fexpr.toString.take(400) + "...")
+
+
+        def status(fexpr: FeatureExpr, fm: FeatureModel): String =
+            (if (fexpr.isSatisfiable(fm)) "SAT" else "!SAT") + ", " + (if (fexpr.isTautology(fm)) "TAU" else "!TAU")
+
+        println("Plain: " + status(fexpr, null))
+
+        println("Approx.fm: " + status(fexpr, fmApprox))
+
+        println("Dimacs: " + status(fexpr, fmDimacs))
+
+        val undertakerFMgen = new UndertakerFMParser("x86.model")
+        val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
+        assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
+        println("Undertaker: " + status(slicedFExpr and fexpr, null))
+        //
+        //
+        //            val features = fexpr.collectDistinctFeatures
+        //            for (f <- features) {
+        //                val expr = f
+        //
+        //                val slicedFExpr = undertakerFMgen.sliceModel(expr)
+        //
+        //                assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
+        //
+        //            }
+        //
+        //            for (ts <- features.tails; j <- ts; if (ts.head != j)) {
+        //                val expr = ts.head and j
+        //
+        //                val slicedFExpr = undertakerFMgen.sliceModel(expr)
+        //
+        //                assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
+        //
+        //            }
+    }
+
+    //    //    for (i<- 1 until 207)
+    //    //        new UndertakerFMParser("x86.model",i)
+    //    new UndertakerFMParser("x86.model", 25)
 }
 
 
-class UndertakerFMParser(filename: String, num: Int) {
+class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
 
     //    val data: (FeatureExpr, Map[String, String],Set[String]) = readModelFile(filename)
+
+    def d(s: String) = FeatureExpr.createDefinedExternal(s)
 
     val parser = new SimpleFExprParser()
 
@@ -83,16 +84,58 @@ class UndertakerFMParser(filename: String, num: Int) {
             (line -> "")
     }).toMap
 
-    val alwaysOn = lines.drop(3).head.split(" ").drop(2).map(_.drop(1).dropRight(1)).take(num).toSet
+    //    val alwaysOn = lines.drop(3).head.split(" ").drop(2).map(_.drop(1).dropRight(1)).take(num).toSet
+
+
+    var clauses: List[FeatureExpr] = Nil
+
+    //    for (f <- alwaysOn) {
+    //        clauses = FeatureExpr.createDefinedExternal(f) :: clauses
+    //        clauses = lookupFExpr(f) :: clauses
+    //
+    //        println(f+" && "+lookupFExpr(f))
+    //
+    //        assert(clauses.reduce(_ and _).isSatisfiable())
+    //    }
+    var knownFeatures: Set[String] = Set() //alwaysOn
+    var openFeatures = List() // clauses.reduce(_ and _).collectDistinctFeatures.map(_.feature) -- knownFeatures
+
+    //    while (!openFeatures.isEmpty) {
+    //        val feature = openFeatures.head
+    ////        println(feature)
+    //        openFeatures = openFeatures - feature
+    //        knownFeatures = knownFeatures + feature
+    //
+    //        val fresult = lookupFExpr(feature)
+    //        println(feature+" => "+fresult)
+    //        val newFeatures = fresult.collectDistinctFeatures.map(_.feature)
+    //        openFeatures = openFeatures ++ (newFeatures -- knownFeatures)
+    //
+    //        clauses=  (d(feature) implies fresult) :: clauses
+    //        if(!clauses.reduce(_ and _).isSatisfiable()) {
+    //            val bigform=  clauses.tail.reduce(_ and _)
+    //            val f=  FeatureExpr.createDefinedExternal(feature)
+    ////
+    ////            for (f<-"CONFIG_M68K,CONFIG_ISA,CONFIG_M32R,CONFIG_AVR32,CONFIG_BLACKFIN,CONFIG_FRV,CONFIG_PARPORT_PC,CONFIG_MN10300,CONFIG_MODULES,CONFIG_SPARC32,CONFIG_SPARC64,CONFIG_PCI".split(",")) {
+    ////                println(f+": "+(bigform and d(f).not).isSatisfiable() + " "+ (bigform and d(f).not).isTautology())
+    ////            }
+    //
+    //            println(""+bigform+f)
+    //            assert(false)
+    //        }
+    //    }
+    //    println(knownFeatures.size)
+
+
     var alwaysExpr = FeatureExpr.base
-    alwaysExpr = alwaysOn.map(FeatureExpr.createDefinedExternal(_)).reduce[FeatureExpr](_ and _) and
-        sliceModel(alwaysOn, Set())
-    assert(alwaysExpr.isSatisfiable(), "closure of always_on " + num + " is not satisfiable: " + alwaysExpr)
+    //    alwaysExpr = alwaysOn.map(FeatureExpr.createDefinedExternal(_)).reduce[FeatureExpr](_ and _) and
+    //        sliceModel(alwaysOn, Set())
+    //    assert(alwaysExpr.isSatisfiable(), "closure of always_on " + num + " is not satisfiable: " + alwaysExpr)
 
 
     def sliceModel(fexpr: FeatureExpr): FeatureExpr =
         alwaysExpr and
-            sliceModel(fexpr.collectDistinctFeatures.map(_.feature), alwaysOn)
+            sliceModel(fexpr.collectDistinctFeatures.map(_.feature), Set() /*alwaysOn*/)
 
     private def sliceModel(features: Set[String], initallyKnown: Set[String]): FeatureExpr = {
         var result = FeatureExpr.base
@@ -101,19 +144,19 @@ class UndertakerFMParser(filename: String, num: Int) {
         var knownFeatures: Set[String] = initallyKnown
         while (!openFeatures.isEmpty) {
             val feature = openFeatures.head
-            println(feature)
             openFeatures = openFeatures - feature
             knownFeatures = knownFeatures + feature
 
             val fresult = lookupFExpr(feature)
+            println(feature + " -> " + fresult)
             val newFeatures = fresult.collectDistinctFeatures.map(_.feature)
             openFeatures = openFeatures ++ (newFeatures -- knownFeatures)
 
-            if (!(result and fresult).isSatisfiable())
+            val newResult = result and (FeatureExpr.createDefinedExternal(feature) implies fresult)
+            if (!newResult.isSatisfiable())
                 println(result + " and " + fresult)
-            result = result and (FeatureExpr.createDefinedExternal(feature) implies fresult)
+            result = newResult
         }
-        println(knownFeatures.size)
 
         result
     }
