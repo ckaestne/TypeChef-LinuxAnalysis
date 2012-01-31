@@ -55,3 +55,5 @@ atLeastOne(defined(CONFIG_M586), defined(CONFIG_M586TSC), defined(CONFIG_M586MMX
 (defined(CONFIG_HUGETLBFS) <=> defined(CONFIG_HUGETLB_PAGE)) //from FM
 defined(CONFIG_HOTPLUG_PCI_ACPI) => defined(CONFIG_ACPI)
 defined(CONFIG_X86_32_SMP) => defined(CONFIG_SMP)
+oneOf(defined(CONFIG_SLUB),defined(CONFIG_SLOB),defined(CONFIG_SLAB))//for type checking, temporarily
+oneOf(defined(CONFIG_TREE_RCU),defined(CONFIG_TREE_PREEMT_RCU),defined(CONFIG_TINY_RCU))//for type checking, temporarily
