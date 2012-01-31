@@ -42,8 +42,7 @@ fi
 echo "==Partially preprocessing $inp"
 echo $partialPreprocFlags
 
-bash -c "time ./typechefLinux.sh -ea $javaOpts \
-  $mainClass \
+bash -c "time ../TypeChef/typechef.sh \
   $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
   '$inp' 2> '$outErr' |tee '$outDbg'" \
   2> "$outTime" || true

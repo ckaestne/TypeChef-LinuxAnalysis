@@ -16,7 +16,8 @@
 partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
   --include completedConf.h --include partialConf.h --openFeat openFeaturesList.txt \
   --featureModelFExpr approx.fm \
-  --parse --writePI --recordTiming --parserstatistics --lexdebug"
+  --writePI --recordTiming --parserstatistics --lexdebug"
+
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
 # XXX: These options workaround bugs triggered by these macros.
