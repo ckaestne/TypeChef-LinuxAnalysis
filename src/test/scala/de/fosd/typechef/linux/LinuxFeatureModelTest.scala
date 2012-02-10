@@ -18,7 +18,7 @@ import de.fosd.typechef.featureexpr._
 
 class LinuxFeatureModelTest {
 
-    val featureModel = LinuxFeatureModel.featureModel
+    val featureModel = new featuremodel.LinuxFullModel().createFeatureModel
 
     @Test
     def testSatisfiability {
@@ -31,6 +31,7 @@ class LinuxFeatureModelTest {
         println(FeatureExpr.createDefinedExternal("CONFIG_X86").isTautology(featureModel))
 
     }
+
     @Test
     def testSatisfiability2 {
         val CONFIG_LBDAF = FeatureExpr.createDefinedExternal("unknown")
@@ -51,6 +52,19 @@ class LinuxFeatureModelTest {
     }
 
     @Test
+    def testContradictions {
+        val slab = FeatureExpr.createDefinedExternal("CONFIG_SLAB")
+        val slub = FeatureExpr.createDefinedExternal("CONFIG_SLUB")
+        val slob = FeatureExpr.createDefinedExternal("CONFIG_SLOB")
+
+        assertTrue((slab or slub).isSatisfiable(featureModel))
+        assertTrue((slab.not and slub).isSatisfiable(featureModel))
+        assertFalse((slab and slub).isSatisfiable(featureModel))
+        assertTrue((slab.not and slub.not).isSatisfiable(featureModel))
+        assertFalse((slab.not and slub.not and slob.not).isSatisfiable(featureModel))
+    }
+
+    @Test
     def testCorrectness {
         val allocators = List("SLAB", "SLOB", "SLUB")
         println(allocators.reduceLeft(_ + "|" + _) + ": " + allocators.map(x => createDefinedExternal("CONFIG_" + x)).foldRight(FeatureExpr.base)(_ or _).isTautology(featureModel))
@@ -62,8 +76,9 @@ class LinuxFeatureModelTest {
         println("CONFIG_DEFAULT_SECURITY implies CONFIG_SECURITY: " + (createDefinedExternal("CONFIG_DEFAULT_SECURITY") implies createDefinedExternal("CONFIG_SECURITY")).isTautology(featureModel))
         println("!CONFIG_X86_EXTENDED_PLATFORM: " + (!createDefinedExternal("CONFIG_X86_EXTENDED_PLATFORM")).isTautology(featureModel))
     }
+
     @Test
-    @Ignore
+    //    @Ignore
     def testIsModelSatisfiable {
         val solver = SolverFactory.newDefault();
         solver.setTimeoutMs(1000);

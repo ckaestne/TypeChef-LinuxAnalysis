@@ -19,7 +19,7 @@ object LinuxDependencyAnalysis {
         val featureNames = List(
             "CONFIG_X86_32_SMP", "CONFIG_X86_LOCAL_APIC", "CONFIG_NEED_MULTIPLE_NODES", "CONFIG_SMP", "CONFIG_X86_32_SMP"
         );
-        val d: String => DefinedExternal = FeatureExpr.createDefinedExternal(_)
+        val d: String => FeatureExpr = FeatureExpr.createDefinedExternal(_)
         val features = featureNames.map(d(_))
 
 
@@ -53,7 +53,7 @@ object LinuxDependencyAnalysis {
         for (f1 <- features; f2 <- features if f1 != f2) {
             if ((f1 implies f2).isTautology(fm)) {
                 println(f1 + " => " + f2)
-                println("""Add to LinuxFeatureModel.featureModelApprox: d("%s") implies d("%s")""".format(f1.feature, f2.feature))
+                println("""Add to LinuxFeatureModel.featureModelApprox: d("%s") implies d("%s")""".format(f1, f2))
             }
             if ((f1 mex f2).isTautology(fm))
                 println(f1 + " mex " + f2)

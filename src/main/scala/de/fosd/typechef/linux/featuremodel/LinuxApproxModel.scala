@@ -77,17 +77,18 @@ class LinuxApproxModel extends FeatureModelFactory {
 
 
     /**
-         * creates (A or B or ... or X) and (A mex B) and (A mex X) and (B mex X) ...
-         */
-        def oneOf(featuresNames: List[String]): FeatureExpr = {
-            val features = featuresNames.map(FeatureExpr.createDefinedExternal(_))
-            features.foldLeft(FeatureExpr.dead)(_ or _) and (
-                    (for (f1 <- features; f2 <- features; if (f1.feature.compareTo(f2.feature)) > 0) yield f1 mex f2).
-                            foldLeft(FeatureExpr.base)(_ and _)
-                    )
-        }
-        def atLeastOne(featuresNames: List[String]): FeatureExpr =
-            featuresNames.map(FeatureExpr.createDefinedExternal(_)).foldLeft(FeatureExpr.dead)(_ or _)
+     * creates (A or B or ... or X) and (A mex B) and (A mex X) and (B mex X) ...
+     */
+    def oneOf(featuresNames: List[String]): FeatureExpr = {
+        def d(x: String): FeatureExpr = FeatureExpr.createDefinedExternal(x)
+        featuresNames.map(d).foldLeft(FeatureExpr.dead)(_ or _) and (
+            (for (f1 <- featuresNames; f2 <- featuresNames; if (f1.compareTo(f2)) > 0) yield d(f1) mex d(f2)).
+                foldLeft(FeatureExpr.base)(_ and _)
+            )
+    }
+
+    def atLeastOne(featuresNames: List[String]): FeatureExpr =
+        featuresNames.map(FeatureExpr.createDefinedExternal(_)).foldLeft(FeatureExpr.dead)(_ or _)
 
 
 }
