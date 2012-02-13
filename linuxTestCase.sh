@@ -14,9 +14,10 @@
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
 partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
-  --include completedConf.h --include partialConf.h --openFeat openFeaturesList.txt \
-  --featureModelFExpr approx.fm \
-  --writePI --recordTiming --parserstatistics --lexdebug"
+  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
+  --include=partialConf.h --openFeat openFeaturesList.txt \
+  --partialConfiguration=completedConf.h \
+  --writePI --recordTiming --lexdebug "
 
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
