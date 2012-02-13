@@ -13,6 +13,10 @@
 
 #define CONFIG_X86
 
+#ifdef CONFIG_NODES_SHIFT
+	#define CONFIG_NODES_SHIFT 3
+#endif
+
 //Defines a 'if' macro, which triggers a bug: The preprocessor incorrectly
 //expands this macro within "#if".
 #undef CONFIG_TRACE_BRANCH_PROFILING
