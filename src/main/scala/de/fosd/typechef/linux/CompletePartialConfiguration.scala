@@ -30,7 +30,7 @@ object CompletePartialConfiguration {
         val completedConf = new FileWriter(outPath + File.separator + "completedConf.h")
         val openFeatures = new FileWriter(outPath + File.separator + "openFeaturesList.txt")
 
-        for (feature <- featureModel.variables.keys if (!feature.startsWith("CONFIG__X") && !feature.endsWith("_2"))) {
+        for (feature <- featureModel.variables.keys if (!feature.startsWith("CONFIG__X") && !feature.endsWith("_m"))) {
             print("Testing feature: " + feature + "...")
             val start = System.currentTimeMillis
             val featureMandatory = createDefinedExternal(feature).isTautology(featureModel)
