@@ -15,6 +15,8 @@
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
 partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
   --featureModelFExpr approx.fm \
+  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
+  --partialConfiguration=completedConf.h \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug"
 
