@@ -3,21 +3,32 @@
 
 #java -jar sbt-launch-0.7.4.jar  compile
 
-. linuxFileList.inc
+##################################################################
+# Location of the Linux kernel.
+##################################################################
+#srcPath=linux-2.6.33.3
+# XXX:$PWD/ makes the path absolute, it is needed for some stupid bug!
+srcPath=$PWD/linux-2.6.33.3
 
 ##################################################################
-# Preprocessing flags
+# List of files to preprocess
 ##################################################################
-# Hack to change and remove options just for the partial preprocessor.
-. jcpp.conf
+filesToProcess() {
+  local listFile=linux_files.lst
+  cat $listFile
+  #awk -F: '$1 ~ /.c$/ {print gensub(/\.c$/, "", "", $1)}' < linux_2.6.33.3_pcs.txt
+}
 
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
-partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
+partialPreprocFlags="-x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug"
+
+system=redhat
+partialPreprocFlags="-c $system.properties $partialPreprocFlags"
 
 #  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
@@ -34,7 +45,7 @@ partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
 # Flags which I left out from Christian configuration - they are not useful.
 # partialPreprocFlags="$partialPreprocFlags -D PAGETABLE_LEVELS=4"
 
-gccOpts="$gccOpts -m32 -nostdinc -isystem $(gcc -print-file-name=include) -include $srcPath/include/generated/autoconf.h"
+#gccOpts="$gccOpts -m32 -nostdinc -isystem $(gcc -print-file-name=include) -include $srcPath/include/generated/autoconf.h"
 
 flags() {
   name="$1"
@@ -110,16 +121,9 @@ export outCSV=linux.csv
 ##################################################################
 filesToProcess|while read i; do
   extraFlags="$(flags "$i")"
-#  if [ ! -f "$srcPath/$i.i" ]; then
-#    echo "=="
-#    echo "==Preprocess source"
-#    echo "=="
-#    gcc -Wp,-P -U __weak $gccOpts -E $srcPath/$i.c $extraFlags > "$srcPath/$i.i" || true
-#  fi
   if [ ! -f $srcPath/$i.dbg ]; then
     touch $srcPath/$i.dbg
     . ./jcpp.sh $srcPath/$i.c $extraFlags
-#    . ./postProcess.sh $srcPath/$i.c $extraFlags
   else
     echo "Skipping $srcPath/$i.c"
   fi
