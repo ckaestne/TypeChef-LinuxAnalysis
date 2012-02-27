@@ -16,7 +16,6 @@
 partialPreprocFlags="-c linux-$system.properties -x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
-  --partialConfiguration=completedConf.h \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug"
 
