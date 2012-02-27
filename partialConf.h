@@ -17,6 +17,12 @@
 	#define CONFIG_NODES_SHIFT 3
 #endif
 
+//from scripts/Makefile.lib 
+#ifdef CONFIG_DYNAMIC_DEBUG
+	#define DEBUG_HASH 1
+	#define DEBUG_HASH2 2
+#endif
+
 //Defines a 'if' macro, which triggers a bug: The preprocessor incorrectly
 //expands this macro within "#if".
 #undef CONFIG_TRACE_BRANCH_PROFILING
