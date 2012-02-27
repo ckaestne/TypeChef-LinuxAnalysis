@@ -1,3 +1,4 @@
+oneOf(defined(CONFIG_X86_32),defined(CONFIG_64BIT))
 !defined(CONFIG_SYMBOL_PREFIX)
 oneOf(defined(CONFIG_FLATMEM), defined(CONFIG_DISCONTIGMEM), defined(CONFIG_SPARSEMEM)) //not all in FM!
 (defined(CONFIG_DISCONTIGMEM) => defined(CONFIG_NEED_MULTIPLE_NODES)) //from FM
