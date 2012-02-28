@@ -23,6 +23,11 @@
 	#define DEBUG_HASH2 2
 #endif
 
+#ifdef CONFIG_MTRR_SANITIZER
+	#define CONFIG_MTRR_SANITIZER_ENABLE_DEFAULT 0
+	#define CONFIG_MTRR_SANITIZER_SPARE_REG_NR_DEFAULT 1
+#endif
+
 //Defines a 'if' macro, which triggers a bug: The preprocessor incorrectly
 //expands this macro within "#if".
 #undef CONFIG_TRACE_BRANCH_PROFILING
