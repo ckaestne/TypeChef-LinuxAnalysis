@@ -28,6 +28,21 @@
 	#define CONFIG_MTRR_SANITIZER_SPARE_REG_NR_DEFAULT 1
 #endif
 
+#ifdef CONFIG_CONFIG_CMDLINE
+	#define CONFIG_CMDLINE ""
+#endif
+
+#define OBJTREE="";
+#define SRCTREE="";
+
+#ifdef CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE
+	#ifdef CONFIG_BOOTPARAM_HUNG_TASK_PANIC	
+		#define CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE 1
+	#else
+		#define CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE 0
+	#endif
+#endif
+
 //Defines a 'if' macro, which triggers a bug: The preprocessor incorrectly
 //expands this macro within "#if".
 #undef CONFIG_TRACE_BRANCH_PROFILING
