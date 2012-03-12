@@ -27,7 +27,7 @@ partialPreprocFlags="-x CONFIG_ \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug"
 
-system=redhat
+system=linux-redhat
 partialPreprocFlags="-c $system.properties $partialPreprocFlags"
 
 #  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
