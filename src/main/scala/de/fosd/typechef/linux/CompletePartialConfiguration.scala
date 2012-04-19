@@ -7,9 +7,12 @@ package de.fosd.typechef.linux
  * Time: 14:57
  */
 
-import de.fosd.typechef.featureexpr.FeatureExpr._
 import featuremodel.LinuxFullModel
 import java.io._
+import de.fosd.typechef.featureexpr.bdd.BDDFeatureModel
+import de.fosd.typechef.featureexpr.sat.SATFeatureModel
+import de.fosd.typechef.featureexpr.FeatureExprFactory._
+import de.fosd.typechef.featureexpr.FeatureModel
 
 /**
  * completes a partial configuration
@@ -20,6 +23,12 @@ import java.io._
  *
  */
 object CompletePartialConfiguration {
+
+    def getVars(fm: FeatureModel) =
+        if (fm.isInstanceOf[BDDFeatureModel]) fm.asInstanceOf[BDDFeatureModel].variables
+        else fm.asInstanceOf[SATFeatureModel].variables
+
+
     def main(args: Array[String]) {
         val outPath = args(0)
         new File(outPath).mkdir()
@@ -30,7 +39,8 @@ object CompletePartialConfiguration {
         val completedConf = new FileWriter(outPath + File.separator + "completedConf.h")
         val openFeatures = new FileWriter(outPath + File.separator + "openFeaturesList.txt")
 
-        for (feature <- featureModel.variables.keys if (!feature.startsWith("CONFIG__X") && !feature.endsWith("_2"))) {
+
+        for (feature <- getVars(featureModel).keys if (!feature.startsWith("CONFIG__X") && !feature.endsWith("_2"))) {
             print("Testing feature: " + feature + "...")
             val start = System.currentTimeMillis
             val featureMandatory = createDefinedExternal(feature).isTautology(featureModel)

@@ -1,18 +1,18 @@
 package de.fosd.typechef.linux.featuremodel
 
-import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureModelFactory, FeatureModel}
+import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureExpr, FeatureModelFactory, FeatureModel}
 
 
 /**
  * small feature model, used during parsing
  */
-class LinuxApproxModel extends FeatureModelFactory {
+class LinuxApproxModel {
 
     def createFeatureModel: FeatureModel = {
-        import FeatureExpr._
+        import de.fosd.typechef.featureexpr.FeatureExprFactory._
         def d(f: String) = createDefinedExternal(f)
 
-        FeatureModel.create(
+        default.featureModelFactory.create(
             (d("CONFIG_SYMBOL_PREFIX").not())
                 and oneOf(List("CONFIG_FLATMEM", "CONFIG_DISCONTIGMEM", "CONFIG_SPARSEMEM")) //not all in FM!
                 and (d("CONFIG_DISCONTIGMEM") implies d("CONFIG_NEED_MULTIPLE_NODES")) //from FM
@@ -80,15 +80,15 @@ class LinuxApproxModel extends FeatureModelFactory {
      * creates (A or B or ... or X) and (A mex B) and (A mex X) and (B mex X) ...
      */
     def oneOf(featuresNames: List[String]): FeatureExpr = {
-        def d(x: String): FeatureExpr = FeatureExpr.createDefinedExternal(x)
-        featuresNames.map(d).foldLeft(FeatureExpr.dead)(_ or _) and (
+        def d(x: String): FeatureExpr = FeatureExprFactory.createDefinedExternal(x)
+        featuresNames.map(d).foldLeft(FeatureExprFactory.False)(_ or _) and (
             (for (f1 <- featuresNames; f2 <- featuresNames; if (f1.compareTo(f2)) > 0) yield d(f1) mex d(f2)).
-                foldLeft(FeatureExpr.base)(_ and _)
+                foldLeft(FeatureExprFactory.True)(_ and _)
             )
     }
 
     def atLeastOne(featuresNames: List[String]): FeatureExpr =
-        featuresNames.map(FeatureExpr.createDefinedExternal(_)).foldLeft(FeatureExpr.dead)(_ or _)
+        featuresNames.map(FeatureExprFactory.createDefinedExternal(_)).foldLeft(FeatureExprFactory.False)(_ or _)
 
 
 }

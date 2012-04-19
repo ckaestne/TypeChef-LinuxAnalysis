@@ -84,7 +84,7 @@ class LinuxFragmentsTest {
 
     def intType = TypeName(lo(IntSpecifier()), None)
 
-    def o[T](x: T) = Opt(FeatureExpr.base, x)
+    def o[T](x: T) = Opt(FeatureExprFactory.True, x)
 
     def lo[T](x: T) = List(o(x))
 
@@ -92,7 +92,7 @@ class LinuxFragmentsTest {
 
     def lo[T](x: T, y: T, z: T) = List(o(x), o(y), o(z))
 
-    def fa = FeatureExpr.createDefinedExternal("a")
+    def fa = FeatureExprFactory.createDefinedExternal("a")
 
 
     //    def testLinux_aes_glue = assertParseable(

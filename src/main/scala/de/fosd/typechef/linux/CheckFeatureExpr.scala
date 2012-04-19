@@ -2,9 +2,8 @@ package de.fosd.typechef.linux
 
 import featuremodel.{LinuxDimacsModel, LinuxApproxModel}
 import java.io.File
-import util.parsing.combinator.RegexParsers
 import util.parsing.combinator._
-import de.fosd.typechef.featureexpr.{NoFeatureModel, FeatureModel, FeatureExpr, FeatureExprParser}
+import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureModel, FeatureExpr, FeatureExprParser}
 
 
 object CheckFeatureExpr extends App {
@@ -13,6 +12,7 @@ object CheckFeatureExpr extends App {
         System.exit(0)
     }
 
+    val NoFeatureModel = FeatureExprFactory.default.featureModelFactory.empty
 
     val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
 
@@ -70,7 +70,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
 
     //    val data: (FeatureExpr, Map[String, String],Set[String]) = readModelFile(filename)
 
-    def d(s: String) = FeatureExpr.createDefinedExternal(s)
+    def d(s: String) = FeatureExprFactory.createDefinedExternal(s)
 
     val parser = new SimpleFExprParser()
 
@@ -90,7 +90,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
     var clauses: List[FeatureExpr] = Nil
 
     for (f <- alwaysOn) {
-        clauses = FeatureExpr.createDefinedExternal(f) :: clauses
+        clauses = FeatureExprFactory.createDefinedExternal(f) :: clauses
         clauses = lookupFExpr(f) :: clauses
 
         //        println(f + " && " + lookupFExpr(f))
@@ -114,7 +114,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
         clauses = (d(feature) implies fresult) :: clauses
         if (!clauses.reduce(_ and _).isSatisfiable()) {
             val bigform = clauses.tail.reduce(_ and _)
-            val f = FeatureExpr.createDefinedExternal(feature)
+            val f = FeatureExprFactory.createDefinedExternal(feature)
             //
             //            for (f<-"CONFIG_M68K,CONFIG_ISA,CONFIG_M32R,CONFIG_AVR32,CONFIG_BLACKFIN,CONFIG_FRV,CONFIG_PARPORT_PC,CONFIG_MN10300,CONFIG_MODULES,CONFIG_SPARC32,CONFIG_SPARC64,CONFIG_PCI".split(",")) {
             //                println(f+": "+(bigform and d(f).not).isSatisfiable() + " "+ (bigform and d(f).not).isTautology())
@@ -127,8 +127,8 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
     //    println(knownFeatures.size)
 
 
-    var alwaysExpr = FeatureExpr.base
-    alwaysExpr = alwaysOn.map(FeatureExpr.createDefinedExternal(_)).reduce[FeatureExpr](_ and _) and
+    var alwaysExpr = FeatureExprFactory.True
+    alwaysExpr = alwaysOn.map(FeatureExprFactory.createDefinedExternal(_)).reduce[FeatureExpr](_ and _) and
         sliceModel(alwaysOn, Set())
     assert(alwaysExpr.isSatisfiable(), "closure of always_on " + num + " is not satisfiable: " + alwaysExpr)
 
@@ -138,7 +138,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
             sliceModel(fexpr.collectDistinctFeatures, Set() /*alwaysOn*/)
 
     private def sliceModel(features: Set[String], initallyKnown: Set[String]): FeatureExpr = {
-        var result = FeatureExpr.base
+        var result = FeatureExprFactory.True
 
         var openFeatures = features -- initallyKnown
         var knownFeatures: Set[String] = initallyKnown
@@ -152,7 +152,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
             val newFeatures = fresult.collectDistinctFeatures
             openFeatures = openFeatures ++ (newFeatures -- knownFeatures)
 
-            val newResult = result and (FeatureExpr.createDefinedExternal(feature) implies fresult)
+            val newResult = result and (FeatureExprFactory.createDefinedExternal(feature) implies fresult)
             if (!newResult.isSatisfiable())
                 println(result + " and " + fresult)
             result = newResult
@@ -163,7 +163,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
 
     def lookupFExpr(feature: String): FeatureExpr = {
         val exprStr = map.getOrElse(feature, "")
-        if (exprStr.trim().isEmpty) FeatureExpr.base
+        if (exprStr.trim().isEmpty) FeatureExprFactory.True
         else parser.parse(exprStr)
     }
 
@@ -171,7 +171,7 @@ class UndertakerFMParser(filename: String, num: Int = Int.MaxValue) {
 
 class SimpleFExprParser extends RegexParsers {
 
-    def toFeature(name: String) = FeatureExpr.createDefinedExternal(name)
+    def toFeature(name: String) = FeatureExprFactory.createDefinedExternal(name)
 
 
     //implications

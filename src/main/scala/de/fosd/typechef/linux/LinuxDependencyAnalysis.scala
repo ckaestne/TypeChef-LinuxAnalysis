@@ -1,8 +1,7 @@
 package de.fosd.typechef.linux
 
-import de.fosd.typechef.featureexpr._
 import de.fosd.typechef.featureexpr.FeatureExpr
-import de.fosd.typechef.featureexpr.FeatureExpr._
+import de.fosd.typechef.featureexpr.FeatureExprFactory._
 import featuremodel.LinuxDimacsModel
 
 
@@ -19,13 +18,13 @@ object LinuxDependencyAnalysis {
         val featureNames = List(
             "CONFIG_X86_32_SMP", "CONFIG_X86_LOCAL_APIC", "CONFIG_NEED_MULTIPLE_NODES", "CONFIG_SMP", "CONFIG_X86_32_SMP"
         );
-        val d: String => FeatureExpr = FeatureExpr.createDefinedExternal(_)
+        val d: String => FeatureExpr = createDefinedExternal(_)
         val features = featureNames.map(d(_))
 
 
         val fm = new LinuxDimacsModel().createFeatureModel
 
-        for (fn <- featureNames) if (!fm.variables.contains(fn)) println("Unknown variable " + fn)
+        for (fn <- featureNames) if (!CompletePartialConfiguration.getVars(fm).contains(fn)) println("Unknown variable " + fn)
 
         //        println(LinuxFeatureModel.featureModelApprox)
         //        val v1 = d("CONFIG_PARAVIRT")

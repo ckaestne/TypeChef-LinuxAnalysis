@@ -1,8 +1,9 @@
 package de.fosd.typechef.linux.featuremodel
 
-import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureModel}
 import de.fosd.typechef.linux.LinuxSettings
 import io.Source
+import de.fosd.typechef.featureexpr.sat.SATFeatureModel
+import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureExpr, FeatureModel}
 
 
 /**
@@ -25,10 +26,10 @@ class LinuxExclDeadModel extends LinuxFullModel {
      * feature dead that is not in that list
      */
     private def getDeadFeatures(fm: FeatureModel): FeatureExpr = {
-        import FeatureExpr._
-        var result: FeatureExpr = base
+        import FeatureExprFactory.sat._
+        var result: FeatureExpr = True
         val openFeatures = Source.fromFile(LinuxSettings.openFeatureList).getLines.toList
-        for (feature <- fm.variables.keys if (feature.startsWith("CONFIG_") && !feature.startsWith("CONFIG__X") && !feature.endsWith("_2")))
+        for (feature <- fm.asInstanceOf[SATFeatureModel].variables.keys if (feature.startsWith("CONFIG_") && !feature.startsWith("CONFIG__X") && !feature.endsWith("_2")))
             if (!openFeatures.contains(feature))
                 result = result andNot createDefinedExternal(feature)
         result
