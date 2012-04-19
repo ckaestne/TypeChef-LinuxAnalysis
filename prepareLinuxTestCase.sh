@@ -20,5 +20,5 @@ make prepare ARCH=x86
 make SUBDIRS=init ARCH=x86 &> /dev/null
 
 
-
-./typechefLinux.sh de.fosd.typechef.linux.ProcessFileList linux_2.6.33.3_pcs.txt l/
+sbt compile 
+./run.sh de.fosd.typechef.linux.ProcessFileList linux_2.6.33.3_pcs.txt l/
