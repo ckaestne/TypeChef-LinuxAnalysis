@@ -1,6 +1,6 @@
 name := "TypeChef-LinuxAnalysis"
 
-version := "0.3"
+version := "0.3.2"
 
 organization := "de.fosd.typechef"
 
