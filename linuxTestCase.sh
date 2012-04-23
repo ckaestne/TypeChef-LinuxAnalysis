@@ -21,7 +21,7 @@ filesToProcess() {
 
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
-partialPreprocFlags="-x CONFIG_ \
+partialPreprocFlags="--bdd -x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
