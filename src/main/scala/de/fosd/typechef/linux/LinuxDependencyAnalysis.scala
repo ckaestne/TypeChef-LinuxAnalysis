@@ -1,8 +1,7 @@
 package de.fosd.typechef.linux
 
-import de.fosd.typechef.featureexpr._
 import de.fosd.typechef.featureexpr.FeatureExpr
-import de.fosd.typechef.featureexpr.FeatureExpr._
+import de.fosd.typechef.featureexpr.FeatureExprFactory._
 import featuremodel.LinuxDimacsModel
 
 
@@ -19,13 +18,13 @@ object LinuxDependencyAnalysis {
         val featureNames = List(
             "CONFIG_X86_32_SMP", "CONFIG_X86_LOCAL_APIC", "CONFIG_NEED_MULTIPLE_NODES", "CONFIG_SMP", "CONFIG_X86_32_SMP"
         );
-        val d: String => DefinedExternal = FeatureExpr.createDefinedExternal(_)
+        val d: String => FeatureExpr = createDefinedExternal(_)
         val features = featureNames.map(d(_))
 
 
         val fm = new LinuxDimacsModel().createFeatureModel
 
-        for (fn <- featureNames) if (!fm.variables.contains(fn)) println("Unknown variable " + fn)
+        for (fn <- featureNames) if (!CompletePartialConfiguration.getVars(fm).contains(fn)) println("Unknown variable " + fn)
 
         //        println(LinuxFeatureModel.featureModelApprox)
         //        val v1 = d("CONFIG_PARAVIRT")
@@ -53,7 +52,7 @@ object LinuxDependencyAnalysis {
         for (f1 <- features; f2 <- features if f1 != f2) {
             if ((f1 implies f2).isTautology(fm)) {
                 println(f1 + " => " + f2)
-                println("""Add to LinuxFeatureModel.featureModelApprox: d("%s") implies d("%s")""".format(f1.feature, f2.feature))
+                println("""Add to LinuxFeatureModel.featureModelApprox: d("%s") implies d("%s")""".format(f1, f2))
             }
             if ((f1 mex f2).isTautology(fm))
                 println(f1 + " mex " + f2)

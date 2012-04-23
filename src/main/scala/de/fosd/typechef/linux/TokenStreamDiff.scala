@@ -4,7 +4,7 @@ import featuremodel.LinuxExclDeadModel
 import java.io.File
 import de.fosd.typechef.lexer.{PartialPPLexer, Token}
 import scala.collection.JavaConversions._
-import de.fosd.typechef.featureexpr.{FeatureExpr, NoFeatureModel}
+import de.fosd.typechef.featureexpr.FeatureExprFactory
 
 /**
  * compares two parially preprocessed files if they have equivalent token streams.
@@ -19,7 +19,7 @@ import de.fosd.typechef.featureexpr.{FeatureExpr, NoFeatureModel}
 
 object TokenStreamDiff {
 
-    val fm = new LinuxExclDeadModel().createFeatureModel.and(FeatureExpr.createDefinedExternal("CONFIG_OPTIMIZE_INLINING").not)
+    val fm = new LinuxExclDeadModel().createFeatureModel.and(FeatureExprFactory.createDefinedExternal("CONFIG_OPTIMIZE_INLINING").not)
 
     def main(args: Array[String]): Unit = {
         if (args.length != 2)
@@ -91,7 +91,7 @@ object TokenStreamDiff {
     }
 
 
-    def parse(file: String): Seq[Token] = new PartialPPLexer().parseFile(file, file, NoFeatureModel)
+    def parse(file: String): Seq[Token] = new PartialPPLexer().parseFile(file, file, FeatureExprFactory.default.featureModelFactory.empty)
 
     def removeDead(l: Seq[Token]): Seq[Token] =
         l.filter(t => {

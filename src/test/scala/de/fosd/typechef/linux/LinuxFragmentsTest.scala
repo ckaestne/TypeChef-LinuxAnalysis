@@ -6,9 +6,10 @@ import de.fosd.typechef.featureexpr._
 import de.fosd.typechef.parser._
 import de.fosd.typechef.parser.c._
 import de.fosd.typechef.conditional.Opt
+import featuremodel.LinuxApproxModel
 
 class LinuxFragmentsTest {
-    val p = new CParser(LinuxFeatureModel.featureModelApprox)
+    val p = new CParser(new LinuxApproxModel().createFeatureModel)
 
     def assertParseResult(expected: AST, code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]) {
         val actual = p.parse(code.stripMargin, mainProduction).expectOneResult
@@ -22,6 +23,7 @@ class LinuxFragmentsTest {
                 fail(msg + " at " + unparsed + " " + inner)
         }
     }
+
     def assertParseResult(expected: AST, code: String, productions: List[(TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]]) {
         for (production <- productions)
             assertParseResult(expected, code, production)
@@ -39,6 +41,7 @@ class LinuxFragmentsTest {
                 fail(msg + " at " + unparsed + " " + inner)
         }
     }
+
     def assertParseAnyResult(expected: Any, code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
         val actual = p.parseAny(code.stripMargin, mainProduction)
         System.out.println(actual)
@@ -51,6 +54,7 @@ class LinuxFragmentsTest {
                 fail(msg + " at " + unparsed + " " + inner)
         }
     }
+
     def assertParseError(code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any], expectErrorMsg: Boolean = false) {
         val actual = p.parseAny(code.stripMargin, mainProduction)
         System.out.println(actual)
@@ -62,23 +66,33 @@ class LinuxFragmentsTest {
             case p.NoSuccess(msg, unparsed, inner) =>;
         }
     }
+
     def assertParseError(code: String, productions: List[(TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]]) {
         for (production <- productions)
             assertParseError(code, production)
     }
 
     def a = Id("a");
+
     def b = Id("b");
+
     def c = Id("c");
+
     def d = Id("d");
+
     def x = Id("x");
+
     def intType = TypeName(lo(IntSpecifier()), None)
-    def o[T](x: T) = Opt(FeatureExpr.base, x)
+
+    def o[T](x: T) = Opt(FeatureExprFactory.True, x)
+
     def lo[T](x: T) = List(o(x))
+
     def lo[T](x: T, y: T) = List(o(x), o(y))
+
     def lo[T](x: T, y: T, z: T) = List(o(x), o(y), o(z))
 
-    def fa = FeatureExpr.createDefinedExternal("a")
+    def fa = FeatureExprFactory.createDefinedExternal("a")
 
 
     //    def testLinux_aes_glue = assertParseable(

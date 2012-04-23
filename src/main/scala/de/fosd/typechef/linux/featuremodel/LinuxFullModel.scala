@@ -1,9 +1,7 @@
 package de.fosd.typechef.linux.featuremodel
 
 import de.fosd.typechef.linux.LinuxSettings
-import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureModel, FeatureModelFactory}
 import io.Source
-import de.fosd.typechef.featureexpr.FeatureExpr._
 
 
 /**
@@ -15,7 +13,7 @@ class LinuxFullModel extends LinuxDimacsModel {
 
 
     private def partialConfiguration = {
-        import FeatureExpr._
+        import de.fosd.typechef.featureexpr.FeatureExprFactory._
         val DEF = "#define"
         val UNDEF = "#undef"
 
@@ -28,6 +26,6 @@ class LinuxFullModel extends LinuxDimacsModel {
 
         (booleanDefs.map(createDefinedExternal(_)) ++
             undefs.map(createDefinedExternal(_).not())).
-            foldRight(base)(_ and _)
+            foldRight(True)(_ and _)
     }
 }

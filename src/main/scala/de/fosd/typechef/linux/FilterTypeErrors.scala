@@ -2,7 +2,7 @@ package de.fosd.typechef.linux
 
 import featuremodel.LinuxDimacsModel
 import java.io.File
-import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureExprParser}
+import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureExprParser}
 
 /**
  * this class parses a .dbg file and filters type errors with satisfiable conditions according to the
@@ -20,24 +20,29 @@ object FilterTypeErrors extends App {
 
 
     val lines = scala.io.Source.fromFile(args(0)).getLines()
+
+    var errors = 0
+    var realerrors = 0
+    val start = System.currentTimeMillis()
     while (lines.hasNext) {
         val line: String = lines.next
 
         if (line.startsWith("  -")) {
+            errors += 1
             val formula = line.substring(7, line.indexOf(']'))
 
-            val fexpr = if (formula=="True") FeatureExpr.base else new FeatureExprParser().parse(formula)
+            val fexpr = if (formula == "True") FeatureExprFactory.True else new FeatureExprParser().parse(formula)
 
             if (fexpr.isSatisfiable(fmDimacs)) {
+                realerrors += 1
                 println(fexpr)
-                println(line.substring(line.indexOf(']')+1))
+                println(line.substring(line.indexOf(']') + 1))
                 println(lines.next)
                 println()
             }
         }
-
-
     }
+    println("found " + realerrors + " type errors (out of " + errors + ") in " + (System.currentTimeMillis() - start) + " ms")
 
 
 }
