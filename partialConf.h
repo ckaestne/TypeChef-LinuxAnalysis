@@ -83,6 +83,9 @@
 
 //Non-boolean features
 #define AUTOCONF_INCLUDED
+
+#define CONFIG_CMDLINE ""
+
 #define CONFIG_FRAME_WARN 1024
 #define CONFIG_ARCH_DEFCONFIG "arch/x86/configs/i386_defconfig"
 #define CONFIG_RCU_FANOUT 32

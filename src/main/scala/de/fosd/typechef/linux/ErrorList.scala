@@ -23,7 +23,7 @@ object ErrorList {
 
         val out = new BufferedWriter(new FileWriter(outStats, appendToOutput))
         if (!appendToOutput)
-            out.write("file;numAnyError;numSyntaxError;numReferenceError;totalTypeError;comment\n")
+            out.write("file;numAnyError;numSyntaxError;numReferenceError;criticalErrors;totalTypeError;comment\n")
 
         def append(s: String) {
             print(s)
@@ -35,7 +35,7 @@ object ErrorList {
             val fullFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".c.xml"
 
             if (!new File(fullFilePath).exists)
-                append(indent(file) + ";;;;;.c.xml file not found\n")
+                append(indent(file) + ";;;;;;.c.xml file not found\n")
             else {
                 append(indent(file) + ";")
 
@@ -48,6 +48,10 @@ object ErrorList {
                 //reference errors
                 append((errorXml \ "typeerror").filter(n =>
                     Set("Type-Lookup Error", "Id-Lookup Error", "Field-Lookup Error", "Error") contains (n \ "severity").text.trim).
+                    size + ";")
+                //critical errors
+		append((errorXml \ "typeerror").filter(n =>
+                    "Critical" == (n \ "severity").text.trim).
                     size + ";")
                 //other errors
                 append((errorXml \ "typeerror").size + ";")
