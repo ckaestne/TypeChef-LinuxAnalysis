@@ -33,6 +33,7 @@ object ErrorList {
 
         for (file <- files) {
             val fullFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".c.xml"
+            val commentFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".comment"
 
             if (!new File(fullFilePath).exists)
                 append(indent(file) + ";;;;;;.c.xml file not found\n")
@@ -55,6 +56,10 @@ object ErrorList {
                     size + ";")
                 //other errors
                 append((errorXml \ "typeerror").size + ";")
+
+		if (new File(commentFilePath).exists) {
+			append(scala.io.Source.fromFile(commentFilePath).getLines().next.trim)
+		}
 
                 append("\n")
             }
