@@ -5,6 +5,7 @@ import scala.util.control.Breaks
 import java.io._
 import de.fosd.typechef.featureexpr.FeatureExprFactory.{False, True, createDefinedExternal}
 import de.fosd.typechef.featureexpr.FeatureExpr
+import io.Source
 
 /**
  * processes thorstens file list (passed as parameter) and creates corresponding .pc files
@@ -13,7 +14,7 @@ import de.fosd.typechef.featureexpr.FeatureExpr
  *
  * call with file created by thorsten as parameter
  */
-object ProcessFileList extends RegexParsers {
+object ProcessFileList extends com.github.paulp.optional.Application with RegexParsers {
 
     def toFeature(name: String, isModule: Boolean) =
     //ChK: deactivate modules for now. not interested and messes with the sat solver
@@ -71,19 +72,26 @@ object ProcessFileList extends RegexParsers {
 
     def featVal = ("\"" ~> "(y|m)".r <~ "\"") ^^ (_ == "m")
 
-    def main(args: Array[String]) {
-        if (args.isEmpty) {
-            println("expected parameter: file with presence conditions\nsecond parameter for working directory (optional)")
-            sys.exit()
-        }
 
-        val pcList = args(0)
-        val workingDir = if (args.size >= 2) args(1) else ""
+    def main(workingDir: Option[java.io.File], openFeatureList: Option[java.io.File], arg1: java.io.File) {
+        val pcList = arg1
 
         val lines = io.Source.fromFile(pcList).getLines
         val mybreaks = new Breaks
         val stderr = new PrintWriter(System.err, true)
 
+        val openFeatures: Option[Set[String]] =
+            openFeatureList map (Source.fromFile(_).getLines().toSet)
+
+        //if a list of open expressions is given, all features not on this list are deselected
+        def filterOpenExpr(featureExpr: FeatureExpr): FeatureExpr =
+            if (!openFeatures.isDefined) featureExpr
+            else {
+                val deadFeatures = for (f <- featureExpr.collectDistinctFeatures
+                                        if !(openFeatures.get contains f)
+                ) yield f
+                deadFeatures.map(createDefinedExternal(_).not).fold(featureExpr)(_ and _)
+            }
 
         import mybreaks.{break, breakable}
         breakable {
@@ -94,20 +102,24 @@ object ProcessFileList extends RegexParsers {
                     case _ => false
                 }
                 )) {
-                val fullFilenameNoExt = workingDir + fullFilename.dropRight(2)
+                val fullFilenameNoExt = workingDir.map(_.getPath).getOrElse("") + fullFilename.dropRight(2)
                 val filename = fullFilename.substring(fullFilename.lastIndexOf("/") + 1).dropRight(2)
 
                 val pcExpr = parseAll(expr, fields(1))
+
                 pcExpr match {
-                    case Success(cond, _) =>
+                    case Success(_cond, _) =>
+                        val cond=filterOpenExpr(_cond)
                         //file should be parsed
                         println(fullFilename + " " + cond)
 
+                        val pcFile = new File(fullFilenameNoExt + ".pc")
                         if (!cond.isTautology()) {
-                            val pcFile = new PrintWriter(new File(fullFilenameNoExt + ".pc"))
-                            cond.print(pcFile)
-                            pcFile.close
-                        }
+                            val pcWriter = new PrintWriter(pcFile)
+                            cond.print(pcWriter)
+                            pcWriter.close
+                        } else
+                        if (pcFile.exists()) pcFile.delete()
 
                     case NoSuccess(msg, _) =>
                         stderr.println(fullFilename + " " + pcExpr)
