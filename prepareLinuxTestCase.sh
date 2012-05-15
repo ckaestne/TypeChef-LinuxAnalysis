@@ -21,4 +21,4 @@ make SUBDIRS=init ARCH=x86 &> /dev/null
 
 
 sbt compile 
-./run.sh de.fosd.typechef.linux.ProcessFileList linux_2.6.33.3_pcs.txt --workingDir l/ --openFeatureList=openFeaturesList.txt
+./run.sh de.fosd.typechef.linux.ProcessFileList linux_2.6.33.3_pcs.txt --workingDir l/ --openFeatureList openFeaturesList.txt
