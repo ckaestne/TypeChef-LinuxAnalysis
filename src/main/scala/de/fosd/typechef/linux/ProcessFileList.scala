@@ -102,7 +102,7 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
                     case _ => false
                 }
                 )) {
-                val fullFilenameNoExt = workingDir.map(_.getPath).getOrElse("") + fullFilename.dropRight(2)
+                val fullFilenameNoExt = workingDir.map(_.getPath+"/").getOrElse("") + fullFilename.dropRight(2)
                 val filename = fullFilename.substring(fullFilename.lastIndexOf("/") + 1).dropRight(2)
 
                 val pcExpr = parseAll(expr, fields(1))
