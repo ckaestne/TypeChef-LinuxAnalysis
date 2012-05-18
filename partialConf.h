@@ -258,3 +258,28 @@
   #define CONFIG_SCSI_MESH_RESET_DELAY_MS 4000
 #endif
 
+#if defined(CONFIG_SMB_NLS_DEFAULT)
+  #define CONFIG_SMB_NLS_REMOTE "cp437"
+#endif
+
+#if defined(CONFIG_SQUASHFS)
+  #define CONFIG_SQUASHFS_FRAGMENT_CACHE_SIZE 3
+#endif
+
+#define CONFIG_IP_VS_TAB_BITS 12
+
+#if defined(CONFIG_WIMAX)
+  #define CONFIG_WIMAX_DEBUG_LEVEL 8
+#endif
+
+#if defined(CONFIG_SND_AC97_POWER_SAVE)
+  #define CONFIG_SND_AC97_POWER_SAVE_DEFAULT 0
+#endif
+
+#if defined(CONFIG_SND_HDA_INPUT_BEEP)
+  #define CONFIG_SND_HDA_INPUT_BEEP_MODE 1
+#endif
+#if defined(CONFIG_SND_HDA_POWER_SAVE)
+  #define CONFIG_SND_HDA_POWER_SAVE_DEFAULT 0
+#endif
+
