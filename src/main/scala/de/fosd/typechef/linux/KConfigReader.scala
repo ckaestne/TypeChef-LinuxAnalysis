@@ -33,9 +33,10 @@ object KConfigReader extends com.github.paulp.optional.Application {
 
         def processConfig() {
             if (flag == "") return;
-            if ((flagType == "int" || flagType == "string") && defaultVar != "") {
-                println(flag + " => " + defaultVar + " if " + flagDep)
+            if ((flagType == "int" || flagType=="hex"|| flagType == "string") && defaultVar != "") {
+//                println(flag + " => " + defaultVar + " if " + flagDep)
                 if (flagType == "int") defaultVar = defaultVar.replaceAll("\"", "")
+                if (flagType == "hex") defaultVar ="0x"+ defaultVar.replaceAll("\"", "")
                 //
                 //
                 //                outHeader += "#ifdef CONFIG_" + flag + "\n" +
@@ -49,7 +50,7 @@ object KConfigReader extends com.github.paulp.optional.Application {
                 //                    "#endif\n\n"
                 //
                 if (!flagDep.trim.isEmpty)
-                    outFeatureModel += "#if " + flagDep.replaceAll("\\w+", "defined(CONFIG_$0)") + "\n  "
+                    outFeatureModel += "#if " + flagDep.replaceAll("=y","").replaceAll("\\w+", "defined(CONFIG_$0)") + "\n  "
                 outFeatureModel += "#define CONFIG_" + flag + " " + defaultVar + "\n"
                 if (!flagDep.trim.isEmpty)
                     outFeatureModel += "#endif\n"
@@ -123,6 +124,8 @@ object KConfigReader extends com.github.paulp.optional.Application {
                 flagType = "bool"
             if (!skip && !skipHelp && flag != "" && line.trim().startsWith("int"))
                 flagType = "int"
+            if (!skip && !skipHelp && flag != "" && line.trim().startsWith("hex"))
+                flagType = "hex"
             if (!skip && !skipHelp && flag != "" && line.trim().startsWith("string"))
                 flagType = "string"
 
