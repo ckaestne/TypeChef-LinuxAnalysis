@@ -13,7 +13,7 @@
 
 #define CONFIG_X86
 
-#ifdef CONFIG_NODES_SHIFT
+#ifdef CONFIG_NEED_MULTIPLE_NODES
 	#define CONFIG_NODES_SHIFT 3
 #endif
 
@@ -144,3 +144,76 @@
 #ifdef CONFIG_CDROM_PKTCDVD
 	#define CONFIG_CDROM_PKTCDVD_BUFFERS 8
 #endif
+#ifdef CONFIG_LEGACY_PTYS
+	#define CONFIG_LEGACY_PTY_COUNT 256
+#endif
+#ifdef CONFIG_RAW_DRIVER
+	#define CONFIG_MAX_RAW_DEVS 256
+#endif
+#if defined(CONFIG_I2C_BLACKFIN_TWI)
+  #define CONFIG_I2C_BLACKFIN_TWI_CLK_KHZ 50
+#endif
+#if defined(CONFIG_SCx200_I2C)
+  #define CONFIG_SCx200_I2C_SCL 12
+#endif
+#if defined(CONFIG_SCx200_I2C)
+  #define CONFIG_SCx200_I2C_SDA 13
+#endif
+
+#define CONFIG_HISAX_MAX_CARDS 8
+
+#if defined(CONFIG_RADIO_RTRACK)
+  #define CONFIG_RADIO_RTRACK_PORT 0x20f
+#endif
+#if defined(CONFIG_RADIO_RTRACK2)
+  #define CONFIG_RADIO_RTRACK2_PORT 0x30c
+#endif
+#if defined(CONFIG_RADIO_AZTECH)
+  #define CONFIG_RADIO_AZTECH_PORT 0x350
+#endif
+#if defined(CONFIG_RADIO_GEMTEK)
+  #define CONFIG_RADIO_GEMTEK_PORT 0x34c
+#endif
+#if defined(CONFIG_RADIO_TERRATEC)
+  #define CONFIG_RADIO_TERRATEC_PORT 0x590
+#endif
+#if defined(CONFIG_RADIO_TRUST)
+  #define CONFIG_RADIO_TRUST_PORT 0x350
+#endif
+#if defined(CONFIG_RADIO_TYPHOON)
+  #define CONFIG_RADIO_TYPHOON_PORT 0x316
+#endif
+#if defined(CONFIG_RADIO_TYPHOON)
+  #define CONFIG_RADIO_TYPHOON_MUTEFREQ 87500
+#endif
+#if defined(CONFIG_RADIO_ZOLTRIX)
+  #define CONFIG_RADIO_ZOLTRIX_PORT 0x20c
+#endif
+
+#if defined(CONFIG_MTD_DEBUG)
+  #define CONFIG_MTD_DEBUG_VERBOSE 0
+#endif
+#if defined(CONFIG_MTD_REDBOOT_PARTS)
+  #define CONFIG_MTD_REDBOOT_DIRECTORY_BLOCK -1
+#endif
+
+#if defined(CONFIG_BFIN_MAC)
+  #define CONFIG_BFIN_TX_DESC_NUM 10
+#endif
+#if defined(CONFIG_BFIN_MAC)
+  #define CONFIG_BFIN_RX_DESC_NUM 20
+#endif
+#if defined(CONFIG_DM9000)
+  #define CONFIG_DM9000_DEBUGLEVEL 4
+#endif
+#if defined(CONFIG_RIONET)
+  #define CONFIG_RIONET_TX_SIZE 128
+#endif
+#if defined(CONFIG_RIONET)
+  #define CONFIG_RIONET_RX_SIZE 128
+#endif
+
+#if defined(CONFIG_WIMAX_I2400M)
+  #define CONFIG_WIMAX_I2400M_DEBUG_LEVEL 8
+#endif
+
