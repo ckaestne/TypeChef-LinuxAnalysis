@@ -217,7 +217,7 @@
   #define CONFIG_WIMAX_I2400M_DEBUG_LEVEL 8
 #endif
 
-#if defined(CONFIG_RTC_HCTOSYS) = defined(CONFIG_y)
+#if defined(CONFIG_RTC_HCTOSYS) 
   #define CONFIG_RTC_HCTOSYS_DEVICE "rtc0"
 #endif
 #if defined(CONFIG_RTC_DRV_AT91SAM9)
