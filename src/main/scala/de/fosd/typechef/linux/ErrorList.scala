@@ -47,8 +47,9 @@ object ErrorList {
                 //parser errors
                 append((errorXml \ "parsererror").size + ";")
                 //reference errors
-                append((errorXml \ "typeerror").filter(n =>
-                    Set("Type-Lookup Error", "Id-Lookup Error", "Field-Lookup Error", "Error") contains (n \ "severity").text.trim).
+                append((errorXml \ "typeerror").
+                    filter(n => Set("Type-Lookup Error", "Id-Lookup Error", "Field-Lookup Error", "Error") contains (n \ "severity").text.trim).
+                    filterNot(n => n.text.contains("incompatible types") && n.text.contains("==")).
                     size + ";")
                 //critical errors
 		append((errorXml \ "typeerror").filter(n =>
