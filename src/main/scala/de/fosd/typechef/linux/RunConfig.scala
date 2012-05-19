@@ -63,8 +63,12 @@ object RunConfig extends com.github.paulp.optional.Application {
                 Process("./cleanconfig.sh", linuxDir) ! logger
                 out("\n\n\n\n")
 
-                out("make " + file + "\n")
-                Process("make " + file, linuxDir) ! logger
+                out("make " + file + ".o\n")
+                Process("make " + file+".o", linuxDir) ! logger
+                out("\n\n\n\n")
+
+                out("make " + file + ".i\n")
+                Process("make " + file+".i", linuxDir) ! logger
                 out("\n\n\n\n")
 
                 logWriter.close
