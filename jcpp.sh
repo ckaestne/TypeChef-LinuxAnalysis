@@ -44,7 +44,7 @@ echo $partialPreprocFlags
 
 bash -c "time ../TypeChef/typechef.sh \
   $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
-  --errorXML $inp.xml '$inp' 2> '$outErr' |tee '$outDbg'" \
+  '$inp' 2> '$outErr' |tee '$outDbg'" \
   2> "$outTime" || true
 
 cat "$outErr" 1>&2

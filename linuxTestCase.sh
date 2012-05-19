@@ -25,7 +25,7 @@ partialPreprocFlags="--bdd -x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
-  --writePI --recordTiming --lexdebug"
+  --writePI --recordTiming --lexdebug --errorXML"
 
 system=linux-redhat
 partialPreprocFlags="-c $system.properties $partialPreprocFlags"
