@@ -15,7 +15,7 @@ import java.io.{FileWriter, File}
  */
 
 object RunConfig extends com.github.paulp.optional.Application {
-    def main(rootDir: Option[File], clear: Option[Boolean]) {
+    def main(rootDir: Option[File], clean: Boolean = false) {
         val root = rootDir.getOrElse(new File("."))
         val configDir = new File(root, "runconfig")
         val tasksFile = new File(configDir, "tasks")
@@ -34,14 +34,15 @@ object RunConfig extends com.github.paulp.optional.Application {
             val file = c(2)
             val logFile = new File(configDir, id + ".log")
 
-            if (clear.getOrElse(false) && logFile.exists())
+            if (clean && logFile.exists())
                 logFile.delete()
 
             if (!logFile.exists()) {
                 //run analysis
                 val logWriter = new FileWriter(logFile)
                 def out(s: String) {
-                    logWriter.write(s); print(s)
+                    logWriter.write(s);
+                    print(s)
                 }
                 out("checking " + id + " (" + file + " --  " + fexpr + ")\n\n\n")
 
@@ -49,14 +50,22 @@ object RunConfig extends com.github.paulp.optional.Application {
 
                 val vamosCommand = Seq("ssh", "vamos1.informatik.uni-erlangen.de", "undertaker", "-j", "checkexpr", "-m", "linux-stable-3e7ad8e/models/x86.model", "\"" + fExprVamos + "\"")
                 out(vamosCommand.mkString(" ") + "\n\n")
-                val logger = ProcessLogger(System.err.println(_))
+                val logger = ProcessLogger(s => out(s + "\n"), s => out("[E] " + s + "\n"))
                 val config = vamosCommand !! logger
 
-                out(".config\n" + config + "\n\n\n\n")
+                out(".config\n" + config.drop(2) + "\n\n\n\n")
 
                 val configWriter = new FileWriter(new File(linuxDir, ".config"))
                 configWriter.write(config)
                 configWriter.close
+
+                out("clean .config\n")
+                Process("./cleanconfig.sh", linuxDir) ! logger
+                out("\n\n\n\n")
+
+                out("make " + file + "\n")
+                Process("make " + file, linuxDir) ! logger
+                out("\n\n\n\n")
 
                 logWriter.close
 
