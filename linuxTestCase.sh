@@ -70,6 +70,8 @@ flags() {
     extraFlag="-I $srcPath/drivers/scsi"
   elif grep -q "drivers/scsi/cxgb3i/" <<< "$name"; then
     extraFlag="-I $srcPath/drivers/net/cxgb3"
+  elif grep -q "drivers/isdn/hisax" <<< "$name"; then
+    extraFlag="-DHISAX_MAX_CARDS=8"
   elif grep -q "drivers/infiniband/hw/cxgb3/" <<< "$name"; then
     extraFlag="-I $srcPath/drivers/net/cxgb3"
   elif grep -q "drivers/net/skfp/" <<< "$name"; then
