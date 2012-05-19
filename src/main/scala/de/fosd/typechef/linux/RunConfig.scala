@@ -1,0 +1,73 @@
+package de.fosd.typechef.linux
+
+import io.Source
+import de.fosd.typechef.featureexpr._
+import scala.sys.process._
+import java.io.{FileWriter, File}
+
+/**
+ * simple script to run one or more configurations of linux
+ *
+ * reads the "tasks" file from the "runconfig" directory
+ * and creates log files there.
+ *
+ * runs make in the "l" directory
+ */
+
+object RunConfig extends com.github.paulp.optional.Application {
+    def main(rootDir: Option[File], clear: Option[Boolean]) {
+        val root = rootDir.getOrElse(new File("."))
+        val configDir = new File(root, "runconfig")
+        val tasksFile = new File(configDir, "tasks")
+        val linuxDir = new File(root, "l")
+        assert(configDir.exists(), "expected runconfig directory")
+        assert(tasksFile.exists(), "expected tasks file")
+        assert(linuxDir.exists(), "expected l directory")
+
+        val tasks = Source.fromFile(tasksFile).getLines().toList
+
+        for (task <- tasks) {
+            val c = task.split(";")
+            assert(c.length == 3, "illegal task format " + task)
+            val id = c(0)
+            val fexpr = new FeatureExprParser().parse(c(1))
+            val file = c(2)
+            val logFile = new File(configDir, id + ".log")
+
+            if (clear.getOrElse(false) && logFile.exists())
+                logFile.delete()
+
+            if (!logFile.exists()) {
+                //run analysis
+                val logWriter = new FileWriter(logFile)
+                def out(s: String) {
+                    logWriter.write(s); print(s)
+                }
+                out("checking " + id + " (" + file + " --  " + fexpr + ")\n\n\n")
+
+                val fExprVamos = fexpr.toTextExpr.replaceAll("definedEx", "")
+
+                val vamosCommand = Seq("ssh", "vamos1.informatik.uni-erlangen.de", "undertaker", "-j", "checkexpr", "-m", "linux-stable-3e7ad8e/models/x86.model", "\"" + fExprVamos + "\"")
+                out(vamosCommand.mkString(" ") + "\n\n")
+                val logger = ProcessLogger(System.err.println(_))
+                val config = vamosCommand !! logger
+
+                out(".config\n" + config + "\n\n\n\n")
+
+                val configWriter = new FileWriter(new File(linuxDir, ".config"))
+                configWriter.write(config)
+                configWriter.close
+
+                logWriter.close
+
+            } else {
+                println("skipping " + id)
+            }
+
+
+        }
+
+    }
+
+}
+
