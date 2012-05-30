@@ -283,7 +283,7 @@
   #define CONFIG_SND_HDA_POWER_SAVE_DEFAULT 0
 #endif
 
-#if defined(CONFIG_RADIO_GEMTEK) && !defined(CONFIG_RADIO_GEMTEK_PROBE)
+#if defined(CONFIG_RADIO_GEMTEK)
 	#define CONFIG_RADIO_GEMTEK_PROBE 1
 #endif
 #if defined(CONFIG_ATMEL_TCB_CLKSRC)
@@ -291,5 +291,103 @@
 #endif
 #if defined(CONFIG_CS5535_MFGPT)
   #define CONFIG_CS5535_MFGPT_DEFAULT_IRQ 7
+#endif
+
+#if defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSNDCLAS_INIT_FILE "/etc/sound/msndinit.bin"
+#endif
+#if defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSNDCLAS_PERM_FILE "/etc/sound/msndperm.bin"
+#endif
+#if defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSNDCLAS_IRQ 5
+#endif
+#if defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSNDCLAS_MEM 0xD0000
+#endif
+#if defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSNDCLAS_IO 0x290
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN)
+  #define CONFIG_MSNDPIN_INIT_FILE "/etc/sound/pndspini.bin"
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN)
+  #define CONFIG_MSNDPIN_PERM_FILE "/etc/sound/pndsperm.bin"
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN)
+  #define CONFIG_MSNDPIN_IRQ 5
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN)
+  #define CONFIG_MSNDPIN_MEM 0xD0000
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN)
+  #define CONFIG_MSNDPIN_IO 0x290
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_CFG 0x250
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_MPU_IO 0x0
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_MPU_IRQ 0
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_IDE_IO0 0x0
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_IDE_IO1 0x0
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_IDE_IRQ 0
+#endif
+#if defined(CONFIG_MSNDPIN_NONPNP)
+  #define CONFIG_MSNDPIN_JOYSTICK_IO 0x0
+#endif
+#if defined(CONFIG_SOUND_MSNDPIN) || defined(CONFIG_SOUND_MSNDCLAS)
+  #define CONFIG_MSND_FIFOSIZE 128
+#endif
+#if defined(CONFIG_TRIX_HAVE_BOOT)
+  #define CONFIG_TRIX_BOOT_FILE "/etc/sound/trxpro.hex"
+#endif
+#if defined(CONFIG_PSS_HAVE_BOOT)
+  #define CONFIG_PSS_BOOT_FILE "/etc/sound/dsp001.ld"
+#endif
+#if defined(CONFIG_SC6600)
+  #define CONFIG_SC6600_CDROM 4
+#endif
+#if defined(CONFIG_SC6600)
+  #define CONFIG_SC6600_CDROMBASE 0x0
+#endif
+#if defined(CONFIG_SOUND_SH_DAC_AUDIO)
+  #define CONFIG_SOUND_SH_DAC_AUDIO_CHANNEL 1
+#endif
+
+#if defined(CONFIG_KGDB_TESTS_ON_BOOT)
+  #define CONFIG_KGDB_TESTS_BOOT_STRING "V1F100"
+#endif
+
+#if defined(CONFIG_MTD_MTDRAM)
+  #define CONFIG_MTDRAM_TOTAL_SIZE 4096
+#endif
+#if defined(CONFIG_MTD_MTDRAM)
+  #define CONFIG_MTDRAM_ERASE_SIZE 128
+#endif
+#if defined(CONFIG_MTD_MTDRAM)
+  #define CONFIG_MTDRAM_ABS_POS 0x0
+#endif
+#if defined(CONFIG_MTD_DOCPROBE)
+  #define CONFIG_MTD_DOCPROBE_ADDRESS 0x0 
+#endif
+
+#if defined(CONFIG_MTD_NAND_DISKONCHIP)
+  #define CONFIG_MTD_NAND_DISKONCHIP_PROBE_ADDRESS 0x0
+#endif
+
+#if defined(CONFIG_MTD_UBI)
+  #define CONFIG_MTD_UBI_WL_THRESHOLD 4096
+#endif
+#if defined(CONFIG_MTD_UBI)
+  #define CONFIG_MTD_UBI_BEB_RESERVE 1
 #endif
 
