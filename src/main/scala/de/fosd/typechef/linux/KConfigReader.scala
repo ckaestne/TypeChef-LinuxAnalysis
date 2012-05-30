@@ -68,8 +68,6 @@ object KConfigReader extends com.github.paulp.optional.Application {
         }
 
         def processChoice() {
-            if (choiceAlternatives.isEmpty) return;
-            outFeatureModel += choiceAlternatives.map("defined(CONFIG_" + _ + ")").mkString("oneOf(", ",", ")\n")
         }
 
         var dir = ""
