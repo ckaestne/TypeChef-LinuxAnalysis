@@ -391,3 +391,63 @@
   #define CONFIG_MTD_UBI_BEB_RESERVE 1
 #endif
 
+//lib/KConfig.debug
+#ifdef CONFIG_DEBUG_OBJECTS
+  #define CONFIG_DEBUG_OBJECTS_ENABLE_DEFAULT 1
+#endif
+#if defined(CONFIG_DEBUG_KMEMLEAK)
+  #define CONFIG_DEBUG_KMEMLEAK_EARLY_LOG_SIZE 400
+#endif
+
+//mm/KConfig
+#define CONFIG_SPLIT_PTLOCK_CPUS 4
+#define CONFIG_ZONE_DMA_FLAG 1
+#if defined(CONFIG_QUICKLIST)
+  #define CONFIG_NR_QUICK 1
+#endif
+#if defined(CONFIG_MMU)
+  #define CONFIG_DEFAULT_MMAP_MIN_ADDR 4096
+#endif
+#if !defined(CONFIG_MMU)
+  #define CONFIG_NOMMU_INITIAL_TRIM_EXCESS 1
+#endif
+
+//[kaestner@kananga linux]$ ./run.sh de.fosd.typechef.linux.KConfigReader l/net/dccp/ccids/Kconfig
+#if defined(CONFIG_IP_DCCP_CCID3) && defined(CONFIG_EXPERIMENTAL)
+  #define CONFIG_IP_DCCP_CCID3_RTO 100
+#endif
+
+#define CONFIG_DEFAULT_TCP_CONG "cubic"
+#define CONFIG_MAC80211_RC_DEFAULT ""
+
+#if defined(CONFIG_NET_EMATCH)
+  #define CONFIG_NET_EMATCH_STACK 32
+#endif
+
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_ZONES 3
+#endif
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_CLUSTERS 1
+#endif
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_NODES 255
+#endif
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_SLAVE_NODES 0
+#endif
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_PORTS 8191
+#endif
+#if defined(CONFIG_TIPC_ADVANCED)
+  #define CONFIG_TIPC_LOG 0
+#endif
+#if defined(CONFIG_SC6600)
+  #define CONFIG_SC6600_CDROM 4
+#endif
+#if defined(CONFIG_SC6600)
+  #define CONFIG_SC6600_CDROMBASE 0x0
+#endif
+#if defined(CONFIG_SC6600_JOY)
+  #define CONFIG_SC6600_JOY 1
+#endif
