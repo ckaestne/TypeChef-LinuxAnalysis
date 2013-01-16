@@ -56,7 +56,6 @@ arch/x86/kernel/cpu/mtrr/generic
 arch/x86/kernel/cpu/mtrr/if
 arch/x86/kernel/cpu/mtrr/main
 arch/x86/kernel/cpu/mtrr/state
-arch/x86/kernel/cpu/perf_event
 arch/x86/kernel/cpu/perfctr-watchdog
 arch/x86/kernel/cpu/powerflags
 arch/x86/kernel/cpu/proc
