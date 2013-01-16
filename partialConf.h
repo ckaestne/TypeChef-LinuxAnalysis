@@ -451,3 +451,130 @@
 #if defined(CONFIG_SC6600_JOY)
   #define CONFIG_SC6600_JOY 1
 #endif
+#if defined(CONFIG_MSDOS_FS) || defined(CONFIG_VFAT_FS)
+  #define CONFIG_FAT_DEFAULT_CODEPAGE 437
+#endif
+#if defined(CONFIG_VFAT_FS)
+  #define CONFIG_FAT_DEFAULT_IOCHARSET "iso8859-1"
+#endif
+#ifdef CONFIG_VGACON_SOFT_SCROLLBACK
+  #define CONFIG_VGACON_SOFT_SCROLLBACK_SIZE 64
+#endif
+#ifdef CONFIG_NLS
+  #define CONFIG_NLS_DEFAULT  "iso8859-1"
+#endif
+
+//assumed to be 1 or not defined
+#ifdef CONFIG_BUG
+  #define CONFIG_BUG 1
+#endif
+#ifdef CONFIG_USB_SERIAL_SAFE_PADDED
+  #define CONFIG_USB_SERIAL_SAFE_PADDED 1
+#endif
+#define CONFIG_USB_GADGET_VBUS_DRAW 2
+
+#if defined(CONFIG_PANEL)
+  #define CONFIG_PANEL_PARPORT 0
+#endif
+#if defined(CONFIG_PANEL)
+  #define CONFIG_PANEL_PROFILE 5
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)"
+  #define CONFIG_PANEL_KEYPAD 0
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD 0
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_HEIGHT 2
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_WIDTH 40
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_BWIDTH 40
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_HWIDTH 64
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_CHARSET 0
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_PROTO 0
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD_PIN_E 14
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD_PIN_RS 17
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD_PIN_RW 16
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)!="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD_PIN_SCL 1
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)!="defined(CONFIG_0)"
+  #define CONFIG_PANEL_LCD_PIN_SDA 2
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
+  #define CONFIG_PANEL_LCD_PIN_BL 0
+#endif
+#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_CHANGE_MESSAGE)="defined(CONFIG_y)"
+  #define CONFIG_PANEL_BOOT_MESSAGE ""
+#endif
+
+#if defined(CONFIG_SERIAL_8250)
+  #define CONFIG_SERIAL_8250_NR_UARTS 4
+#endif
+#if defined(CONFIG_SERIAL_8250)
+  #define CONFIG_SERIAL_8250_RUNTIME_UARTS 4
+#endif
+#if defined(CONFIG_ARM) && defined(CONFIG_PLAT_S3C)
+  #define CONFIG_SERIAL_SAMSUNG_UARTS 3
+#endif
+#if defined(CONFIG_BFIN_UART0_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART0_CTS_PIN 23
+#endif
+#if defined(CONFIG_BFIN_UART0_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART0_RTS_PIN 22
+#endif
+#if defined(CONFIG_BFIN_UART1_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART1_CTS_PIN -1
+#endif
+#if defined(CONFIG_BFIN_UART1_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART1_RTS_PIN -1
+#endif
+#if defined(CONFIG_BFIN_UART2_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART2_CTS_PIN -1
+#endif
+#if defined(CONFIG_BFIN_UART2_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART2_RTS_PIN -1
+#endif
+#if defined(CONFIG_BFIN_UART3_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART3_CTS_PIN -1
+#endif
+#if defined(CONFIG_BFIN_UART3_CTSRTS) && !defined(CONFIG_BF548)
+  #define CONFIG_UART3_RTS_PIN -1
+#endif
+#if defined(CONFIG_SERIAL_SH_SCI)
+  #define CONFIG_SERIAL_SH_SCI_NR_UARTS 2
+#endif
+#if defined(CONFIG_SERIAL_MCF)
+  #define CONFIG_SERIAL_MCF_BAUDRATE 19200
+#endif
+#if defined(CONFIG_SERIAL_MPC52xx_CONSOLE)
+  #define CONFIG_SERIAL_MPC52xx_CONSOLE_BAUD 9600
+#endif
+#if defined(CONFIG_SERIAL_TXX9)
+  #define CONFIG_SERIAL_TXX9_NR_UARTS 6
+#endif
+#if defined(CONFIG_SERIAL_BFIN_SPORT)
+  #define CONFIG_SPORT_BAUD_RATE 9600 if (SERIAL_SPORT_BAUD_RATE_9600)
+#endif
+
+#if defined(CONFIG_DLCI)
+  #define CONFIG_DLCI_MAX 8
+#endif
+

@@ -21,14 +21,15 @@ filesToProcess() {
 
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
+system=linux-redhat
 partialPreprocFlags="--bdd -x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
-  --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
+  --include=completedConf.h --include=partialConf.h \
+  -c $system.properties \
+  --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug --errorXML --interface"
 
-system=linux-redhat
-partialPreprocFlags="-c $system.properties $partialPreprocFlags"
 
 #  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
@@ -63,7 +64,7 @@ flags() {
   elif grep -q "fs/xfs/" <<< "$name"; then
     extraFlag="-I $srcPath/fs/xfs -I $srcPath/fs/xfs/linux-2.6"
   elif grep -q "fs/ntfs/" <<< "$name"; then
-    extraFlag="-DNTFS_VERSION=\"\\\"2.1.29\"\\\" --include ntfs.h"
+    extraFlag="-DNTFS_VERSION=\"\\\"2.1.29\"\\\" --include $srcPath/fs/ntfs/ntfs.h"
   elif grep -q "drivers/gpu/drm/" <<< "$name"; then
     extraFlag="-I $srcPath/include/drm"
   elif egrep -q "drivers/scsi/pcmcia/|drivers/usb/storage/" <<< "$name"; then
@@ -78,8 +79,15 @@ flags() {
     extraFlag="-I $srcPath/drivers/net/skfp -DPCI -DMEM_MAPPED_IO"
   elif grep -q "drivers/staging/rt2860/" <<< "$name"; then
     extraFlag="-DLINUX -DAGGREGATION_SUPPORT -DPIGGYBACK_SUPPORT -DWMM_SUPPORT -DRTMP_MAC_PCI -DRTMP_PCI_SUPPORT -DRT2860 -DRTMP_RF_RW_SUPPORT -DRTMP_EFUSE_SUPPORT -DRT30xx -DRT3090 -DDBG"
+  elif grep -q "drivers/staging/otus/" <<< "$name"; then
+    extraFlag="-DAMAC -DGCCK -DOFDM -DTXQ_IN_ISR  -DWLAN_HOSTIF=0 -DZM_USB_STREAM_MODE=1 -DZM_USB_TX_STREAM_MODE=0 -DZM_PCI_DMA_TEST=0 -DZM_LARGEPAYLOAD_TEST=0 -DZM_FW_LOOP_BACK=0 -DZM_LINUX_TPC=1 -DZM_HOSTAPD_SUPPORT -DZM_HALPLUS_LOCK -DZM_OTUS_LINUX_PHASE_2"
   elif grep -q "drivers/staging/rt2870/" <<< "$name"; then
     extraFlag="-DLINUX -DAGGREGATION_SUPPORT -DPIGGYBACK_SUPPORT -DWMM_SUPPORT -DRTMP_MAC_USB -DRTMP_USB_SUPPORT -DRT2870 -DRTMP_TIMER_TASK_SUPPORT -DRTMP_RF_RW_SUPPORT -DRTMP_EFUSE_SUPPORT -DRT30xx -DRT3070 -DDBG"
+    extraFlag="-DLINUX -DAGGREGATION_SUPPORT -DPIGGYBACK_SUPPORT -DWMM_SUPPORT -DRTMP_MAC_USB -DRTMP_USB_SUPPORT -DRT2870 -DRTMP_TIMER_TASK_SUPPORT -DRTMP_RF_RW_SUPPORT -DRTMP_EFUSE_SUPPORT -DRT30xx -DRT3070 -DDBG"
+  elif grep -q "drivers/staging/vt6656/" <<< "$name"; then
+    extraFlag="-DHOSTAP"
+  elif grep -q "drivers/staging/rtl8192u/" <<< "$name"; then
+    extraFlag="-DJACKSON_NEW_8187 -DJACKSON_NEW_RX -DTHOMAS_BEACON -DTHOMAS_TASKLET -DTHOMAS_SKB -DTHOMAS_TURBO -DUSE_ONE_PIPE -DENABLE_DOT11D"
   elif grep -q "drivers/staging/rtl8192e/" <<< "$name"; then
     extraFlag="-DRTL8192E -DTHOMAS_TURBO -DENABLE_DOT11D"
   elif [ "$name" = "drivers/net/wireless/iwlwifi/iwl-devtrace" ]; then
