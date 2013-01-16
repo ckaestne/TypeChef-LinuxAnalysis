@@ -8,7 +8,7 @@
 ##################################################################
 #srcPath=linux-2.6.33.3
 # XXX:$PWD/ makes the path absolute, it is needed for some stupid bug!
-srcPath=$PWD/linux-2.6.33.3
+srcPath=$PWD/l
 
 ##################################################################
 # List of files to preprocess
@@ -25,7 +25,7 @@ partialPreprocFlags="--bdd -x CONFIG_ \
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
   --include=completedConf.h --include=partialConf.h --openFeat openFeaturesList.txt \
-  --writePI --recordTiming --lexdebug --errorXML"
+  --writePI --recordTiming --lexdebug --errorXML --interface"
 
 system=linux-redhat
 partialPreprocFlags="-c $system.properties $partialPreprocFlags"

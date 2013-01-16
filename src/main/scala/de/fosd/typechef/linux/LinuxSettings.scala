@@ -14,6 +14,6 @@ object LinuxSettings {
     val featureModelFile = "2.6.33.3-2var.dimacs"
     val openFeatureList = "openFeaturesList.txt"
 
-    val pathToLinuxSource = "linux-2.6.33.3"
+    val pathToLinuxSource = "l"
 
 }
