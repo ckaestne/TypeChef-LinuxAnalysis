@@ -20,14 +20,24 @@ object FilterAllYesConfigFiles extends App {
         filterNot(_.isEmpty).
         map((x: String) => x.take(x.indexOf("="))    ).
         toSet
-    println(config)
+//    println(config)                                      /**/
     for (file <- files) {
 
         val pcFile = new File("l/" + file + ".pc")
         if (pcFile.exists) {
             val pc = new FeatureExprParser(FeatureExprFactory.dflt).parseFile(pcFile)
 
-           println(file+": "+pc.evaluate(config))
+            val compilable=pc.evaluate(config)
+
+            if (!compilable) {
+                println("Removing file "+file+", pc: "+pc)
+
+                try {
+                new File("l/"+file+".i").delete()
+                new File("l/"+file+".i.dbg").delete()
+                new File("l/"+file+".i.xml").delete()
+                } catch {case e:Exception => e.printStackTrace()}
+            }
 
             //            filePC.
 
