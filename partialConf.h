@@ -479,6 +479,7 @@
 #if defined(CONFIG_PANEL)
   #define CONFIG_PANEL_PROFILE 5
 #endif
+/*
 #if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)"
   #define CONFIG_PANEL_KEYPAD 0
 #endif
@@ -524,7 +525,7 @@
 #if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_CHANGE_MESSAGE)="defined(CONFIG_y)"
   #define CONFIG_PANEL_BOOT_MESSAGE ""
 #endif
-
+*/
 #if defined(CONFIG_SERIAL_8250)
   #define CONFIG_SERIAL_8250_NR_UARTS 4
 #endif

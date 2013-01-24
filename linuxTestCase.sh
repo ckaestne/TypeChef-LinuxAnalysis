@@ -131,11 +131,11 @@ export outCSV=linux.csv
 ##################################################################
 filesToProcess|while read i; do
   extraFlags="$(flags "$i")"
-  if [ ! -f $srcPath/$i.dbg ]; then
-    touch $srcPath/$i.dbg
-    . ./jcpp.sh $srcPath/$i.c $extraFlags
+  if [ ! -f $srcPath/$i.i.dbg ]; then
+    touch $srcPath/$i.i.dbg
+    . ./jcpp.sh $srcPath/$i.i $extraFlags
   else
-    echo "Skipping $srcPath/$i.c"
+    echo "Skipping $srcPath/$i.i"
   fi
 done
 

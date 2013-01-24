@@ -29,7 +29,7 @@ object ErrorList {
             print(s)
             out.write(s)
         }
-        def indent(s: String) = s + (" " * (40 - s.length))
+        def indent(s: String) = s// + (" " * (40 - s.length))
 
         for (file <- files) {
             val fullFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".c.xml"
