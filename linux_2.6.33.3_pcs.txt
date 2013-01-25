@@ -7046,7 +7046,7 @@ fs/proc/kmsg.c: ((PRINTK == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
 fs/proc/loadavg.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/meminfo.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/mmu.c: ((MMU == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
-fs/proc/nommu.c: ((PROC_FS == "y") || (PROC_FS == "m"))
+fs/proc/nommu.c: (((PROC_FS == "y") || (PROC_FS == "m")) && (MMU != "y"))
 fs/proc/page.c: ((PROC_PAGE_MONITOR == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
 fs/proc/proc_devtree.c: ((PROC_DEVICETREE == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
 fs/proc/proc_net.c: ((NET == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
@@ -7056,7 +7056,7 @@ fs/proc/root.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/softirqs.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/stat.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/task_mmu.c: ((MMU == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
-fs/proc/task_nommu.c: ((PROC_FS == "y") || (PROC_FS == "m"))
+fs/proc/task_nommu.c: (((PROC_FS == "y") || (PROC_FS == "m")) && (MMU != "y"))
 fs/proc/uptime.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/version.c: ((PROC_FS == "y") || (PROC_FS == "m"))
 fs/proc/vmcore.c: ((PROC_VMCORE == "y") && ((PROC_FS == "y") || (PROC_FS == "m")))
@@ -7072,7 +7072,7 @@ fs/quota/quota_v2.c: ((QFMT_V2 == "y") || (QFMT_V2 == "m"))
 fs/ramfs/file-mmu.c: (MMU == "y")
 fs/ramfs/file-nommu.c: [TRUE]
 fs/ramfs/inode.c: [TRUE]
-fs/read_write.c: [TRUE]
+fs/read_write.c: (MMU != "y")
 fs/readdir.c: [TRUE]
 fs/reiserfs/bitmap.c: ((REISERFS_FS == "y") || (REISERFS_FS == "m"))
 fs/reiserfs/dir.c: ((REISERFS_FS == "y") || (REISERFS_FS == "m"))
@@ -7588,7 +7588,7 @@ mm/mmzone.c: [TRUE]
 mm/mprotect.c: (MMU == "y")
 mm/mremap.c: (MMU == "y")
 mm/msync.c: (MMU == "y")
-mm/nommu.c: [TRUE]
+mm/nommu.c: (MMU != "y")
 mm/oom_kill.c: [TRUE]
 mm/page-writeback.c: [TRUE]
 mm/page_alloc.c: [TRUE]
