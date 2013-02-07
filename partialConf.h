@@ -32,8 +32,8 @@
 	#define CONFIG_CMDLINE ""
 #endif
 
-#define OBJTREE="";
-#define SRCTREE="";
+#define OBJTREE ""
+#define SRCTREE ""
 
 #ifdef CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE
 	#ifdef CONFIG_BOOTPARAM_HUNG_TASK_PANIC	
@@ -578,3 +578,17 @@
   #define CONFIG_DLCI_MAX 8
 #endif
 
+#ifdef CONFIG_HIBERNATION
+#define CONFIG_PM_STD_PARTITION ""
+#endif
+#ifdef CONFIG_DETECT_SOFTLOCKUP
+  #ifdef CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC
+    #define CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC_VALUE 1
+  #else
+    #define CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC_VALUE 0
+  #endif
+#endif
+
+//seem always selected by default and not deselectable
+#define CONFIG_WEXT_SPY
+#define CONFIG_WEXT_PRIV

@@ -86,6 +86,8 @@ flags() {
     extraFlag="-DLINUX -DAGGREGATION_SUPPORT -DPIGGYBACK_SUPPORT -DWMM_SUPPORT -DRTMP_MAC_USB -DRTMP_USB_SUPPORT -DRT2870 -DRTMP_TIMER_TASK_SUPPORT -DRTMP_RF_RW_SUPPORT -DRTMP_EFUSE_SUPPORT -DRT30xx -DRT3070 -DDBG"
   elif grep -q "drivers/staging/vt6656/" <<< "$name"; then
     extraFlag="-DHOSTAP"
+  elif grep -q "drivers/staging/vt6655/" <<< "$name"; then
+    extraFlag="-DHOSTAP"
   elif grep -q "drivers/staging/rtl8192u/" <<< "$name"; then
     extraFlag="-DJACKSON_NEW_8187 -DJACKSON_NEW_RX -DTHOMAS_BEACON -DTHOMAS_TASKLET -DTHOMAS_SKB -DTHOMAS_TURBO -DUSE_ONE_PIPE -DENABLE_DOT11D"
   elif grep -q "drivers/staging/rtl8192e/" <<< "$name"; then
