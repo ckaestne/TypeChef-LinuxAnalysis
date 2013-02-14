@@ -132,8 +132,8 @@ export outCSV=linux.csv
 # Actually invoke the preprocessor and analyze result.
 ##################################################################
 filesToProcess|while read i; do
-  extraFlags="$(flags "$i")"
   if [ ! -f $srcPath/$i.dbg ]; then
+    extraFlags="$(flags "$i")"
     touch $srcPath/$i.dbg
     . ./jcpp.sh $srcPath/$i.c $extraFlags
   else
