@@ -101,7 +101,6 @@ arch/x86/kernel/olpc
 arch/x86/kernel/paravirt-spinlocks
 arch/x86/kernel/paravirt
 arch/x86/kernel/pci-dma
-arch/x86/kernel/pci-nommu
 arch/x86/kernel/pcspeaker
 arch/x86/kernel/probe_roms_32
 arch/x86/kernel/process
@@ -5755,7 +5754,6 @@ fs/proc/kmsg
 fs/proc/loadavg
 fs/proc/meminfo
 fs/proc/mmu
-fs/proc/nommu
 fs/proc/page
 fs/proc/proc_net
 fs/proc/proc_sysctl
@@ -5764,7 +5762,6 @@ fs/proc/root
 fs/proc/softirqs
 fs/proc/stat
 fs/proc/task_mmu
-fs/proc/task_nommu
 fs/proc/uptime
 fs/proc/version
 fs/proc/vmcore
@@ -5778,7 +5775,6 @@ fs/quota/quota_tree
 fs/quota/quota_v1
 fs/quota/quota_v2
 fs/ramfs/file-mmu
-fs/ramfs/file-nommu
 fs/ramfs/inode
 fs/read_write
 fs/readdir
@@ -6279,7 +6275,6 @@ mm/mmzone
 mm/mprotect
 mm/mremap
 mm/msync
-mm/nommu
 mm/oom_kill
 mm/page-writeback
 mm/page_alloc
