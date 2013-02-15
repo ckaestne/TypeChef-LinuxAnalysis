@@ -479,51 +479,6 @@
 #if defined(CONFIG_PANEL)
   #define CONFIG_PANEL_PROFILE 5
 #endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)"
-  #define CONFIG_PANEL_KEYPAD 0
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD 0
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_HEIGHT 2
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_WIDTH 40
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_BWIDTH 40
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_HWIDTH 64
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_CHARSET 0
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_PROTO 0
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD_PIN_E 14
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD_PIN_RS 17
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD_PIN_RW 16
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)!="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD_PIN_SCL 1
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)" && defined(CONFIG_PANEL_LCD_PROTO)!="defined(CONFIG_0)"
-  #define CONFIG_PANEL_LCD_PIN_SDA 2
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_PROFILE)="defined(CONFIG_0)" && defined(CONFIG_PANEL_LCD)="defined(CONFIG_1)"
-  #define CONFIG_PANEL_LCD_PIN_BL 0
-#endif
-#if defined(CONFIG_PANEL) && defined(CONFIG_PANEL_CHANGE_MESSAGE)="defined(CONFIG_y)"
-  #define CONFIG_PANEL_BOOT_MESSAGE ""
-#endif
 
 #if defined(CONFIG_SERIAL_8250)
   #define CONFIG_SERIAL_8250_NR_UARTS 4
