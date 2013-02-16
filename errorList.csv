@@ -783,7 +783,7 @@ drivers/char/tpm/tpm_infineon;0;0;0;0;0;
 drivers/char/tpm/tpm_nsc;0;0;0;0;0;
 drivers/char/tpm/tpm_tis;0;0;0;0;0;
 drivers/char/tty_audit;0;0;0;0;0;
-drivers/char/tty_buffer;2;0;0;0;2;expression level type error as before
+drivers/char/tty_buffer;2;0;0;0;2;actual type warning, as above
 drivers/char/tty_io;0;0;0;0;0;
 drivers/char/tty_ioctl;0;0;0;0;0;
 drivers/char/tty_ldisc;0;0;0;0;0;
@@ -998,7 +998,7 @@ drivers/gpu/drm/nouveau/nv10_fifo;0;0;0;0;0;
 drivers/gpu/drm/nouveau/nv10_graph;0;0;0;0;0;
 drivers/gpu/drm/nouveau/nv17_gpio;0;0;0;0;0;
 drivers/gpu/drm/nouveau/nv17_tv;0;0;0;0;0;
-drivers/gpu/drm/nouveau/nv17_tv_modes;1;0;0;0;1;not sure whether typechef incorrectly determines different types or whether this is really an implementation problem
+drivers/gpu/drm/nouveau/nv17_tv_modes;1;0;0;0;1;probably type warning; not sure whether typechef incorrectly determines different types or whether this is really an implementation problem
 drivers/gpu/drm/nouveau/nv20_graph;0;0;0;0;0;
 drivers/gpu/drm/nouveau/nv40_fb;0;0;0;0;0;
 drivers/gpu/drm/nouveau/nv40_fifo;0;0;0;0;0;
@@ -3184,21 +3184,21 @@ drivers/net/wireless/atmel_pci;0;0;0;0;0;
 drivers/net/wireless/b43/debugfs;0;0;0;0;0;
 drivers/net/wireless/b43/dma;0;0;0;0;0;
 drivers/net/wireless/b43/leds;0;0;0;0;0;
-drivers/net/wireless/b43/lo;17;0;17;0;17;strange problem where b43_phy.g is either in a struct or union depending on a feature. ignore for now?
-drivers/net/wireless/b43/main;1;0;1;0;1;
+drivers/net/wireless/b43/lo;0;0;0;0;0;strange problem where b43_phy.g is either in a struct or union depending on a feature. ignore for now?
+drivers/net/wireless/b43/main;0;0;0;0;0;
 drivers/net/wireless/b43/pcmcia;0;0;0;0;0;
-drivers/net/wireless/b43/phy_a;6;0;6;0;6;
+drivers/net/wireless/b43/phy_a;0;0;0;0;0;
 drivers/net/wireless/b43/phy_common;0;0;0;0;0;
-drivers/net/wireless/b43/phy_g;31;0;31;0;31;
-drivers/net/wireless/b43/phy_lp;32;0;32;0;32;
+drivers/net/wireless/b43/phy_g;0;0;0;0;0;
+drivers/net/wireless/b43/phy_lp;0;0;0;0;0;
 drivers/net/wireless/b43/pio;0;0;0;0;0;
 drivers/net/wireless/b43/rfkill;0;0;0;0;0;
 drivers/net/wireless/b43/sdio;0;0;0;0;0;
-drivers/net/wireless/b43/sysfs;3;0;3;0;3;
-drivers/net/wireless/b43/tables;4;0;4;0;4;
+drivers/net/wireless/b43/sysfs;0;0;0;0;0;
+drivers/net/wireless/b43/tables;0;0;0;0;0;
 drivers/net/wireless/b43/tables_lpphy;0;0;0;0;0;
 drivers/net/wireless/b43/wa;0;0;0;0;0;
-drivers/net/wireless/b43/xmit;1;0;1;0;1;inner struct/union problem, seems difficult, investigate
+drivers/net/wireless/b43/xmit;0;0;0;0;0;inner struct/union problem, seems difficult, investigate
 drivers/net/wireless/b43legacy/debugfs;0;0;0;0;0;
 drivers/net/wireless/b43legacy/dma;0;0;0;0;0;
 drivers/net/wireless/b43legacy/ilt;0;0;0;0;0;
@@ -4049,7 +4049,7 @@ drivers/staging/comedi/drivers/pcmda12;0;0;0;0;0;
 drivers/staging/comedi/drivers/pcmmio;0;0;0;0;0;
 drivers/staging/comedi/drivers/pcmuio;0;0;0;0;0;
 drivers/staging/comedi/drivers/poc;0;0;0;0;0;
-drivers/staging/comedi/drivers/quatech_daqp_cs;1;0;1;0;1;expression level problem, check
+drivers/staging/comedi/drivers/quatech_daqp_cs;1;0;1;0;1;actual type warning (potential bug)
 drivers/staging/comedi/drivers/rtd520;0;0;0;0;0;
 drivers/staging/comedi/drivers/rti800;0;0;0;0;0;
 drivers/staging/comedi/drivers/rti802;0;0;0;0;0;
@@ -4353,7 +4353,7 @@ drivers/staging/rtl8192su/ieee80211/ieee80211_crypt;0;0;0;0;0;
 drivers/staging/rtl8192su/ieee80211/ieee80211_crypt_ccmp;0;0;0;0;0;
 drivers/staging/rtl8192su/ieee80211/ieee80211_crypt_tkip;0;0;0;0;0;
 drivers/staging/rtl8192su/ieee80211/ieee80211_crypt_wep;0;0;0;0;0;
-drivers/staging/rtl8192su/ieee80211/ieee80211_module;1;0;0;0;1;
+drivers/staging/rtl8192su/ieee80211/ieee80211_module;1;0;0;0;1;actual type warning, as above
 drivers/staging/rtl8192su/ieee80211/ieee80211_rx;0;0;0;0;0;
 drivers/staging/rtl8192su/ieee80211/ieee80211_softmac;0;0;0;0;0;
 drivers/staging/rtl8192su/ieee80211/ieee80211_softmac_wx;0;0;0;0;0;
@@ -4379,7 +4379,7 @@ drivers/staging/rtl8192u/ieee80211/ieee80211_crypt;0;0;0;0;0;
 drivers/staging/rtl8192u/ieee80211/ieee80211_crypt_ccmp;0;0;0;0;0;
 drivers/staging/rtl8192u/ieee80211/ieee80211_crypt_tkip;0;0;0;0;0;
 drivers/staging/rtl8192u/ieee80211/ieee80211_crypt_wep;0;0;0;0;0;
-drivers/staging/rtl8192u/ieee80211/ieee80211_module;1;0;0;0;1;
+drivers/staging/rtl8192u/ieee80211/ieee80211_module;1;0;0;0;1;actual type warning, as above
 drivers/staging/rtl8192u/ieee80211/ieee80211_rx;0;0;0;0;0;
 drivers/staging/rtl8192u/ieee80211/ieee80211_softmac;0;0;0;0;0;
 drivers/staging/rtl8192u/ieee80211/ieee80211_softmac_wx;0;0;0;0;0;
@@ -7173,7 +7173,7 @@ net/wireless/sysfs;0;0;0;0;0;
 net/wireless/util;;;;;;.c.xml file not found
 net/wireless/wext-compat;0;0;0;0;0;
 net/wireless/wext-core;0;0;0;0;0;
-net/wireless/wext-priv;4;0;4;0;4;probably feature model extraction problem.
+net/wireless/wext-priv;4;0;4;0;4;probably feature model extraction problem, see bug #15
 net/wireless/wext-proc;0;0;0;0;0;
 net/wireless/wext-sme;0;0;0;0;0;
 net/wireless/wext-spy;0;0;0;0;0;
