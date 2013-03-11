@@ -3456,7 +3456,7 @@ drivers/pci/quirks;0;0;0;0;0;
 drivers/pci/remove;0;0;0;0;0;
 drivers/pci/rom;0;0;0;0;0;
 drivers/pci/search;0;0;0;0;0;
-drivers/pci/setup-bus;;;;;;.c.xml file not found
+drivers/pci/setup-bus;0;0;0;0;0;
 drivers/pci/setup-res;0;0;0;0;0;
 drivers/pci/slot;0;0;0;0;0;
 drivers/pcmcia/cardbus;0;0;0;0;0;
@@ -4331,7 +4331,7 @@ drivers/staging/rtl8192e/ieee80211/ieee80211_crypt;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_ccmp;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_tkip;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_wep;0;0;0;0;0;
-drivers/staging/rtl8192e/ieee80211/ieee80211_module;0;0;0;0;0;
+drivers/staging/rtl8192e/ieee80211/ieee80211_module;1;0;0;0;1;
 drivers/staging/rtl8192e/ieee80211/ieee80211_rx;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_softmac;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_softmac_wx;0;0;0;0;0;
@@ -5643,35 +5643,35 @@ fs/notify/inotify/inotify;0;0;0;0;0;
 fs/notify/inotify/inotify_fsnotify;0;0;0;0;0;
 fs/notify/inotify/inotify_user;0;0;0;0;0;
 fs/notify/notification;0;0;0;0;0;
-fs/ntfs/aops;;;;;;.c.xml file not found
-fs/ntfs/attrib;;;;;;.c.xml file not found
-fs/ntfs/bitmap;;;;;;.c.xml file not found
-fs/ntfs/collate;;;;;;.c.xml file not found
-fs/ntfs/compress;;;;;;.c.xml file not found
-fs/ntfs/debug;;;;;;.c.xml file not found
-fs/ntfs/dir;;;;;;.c.xml file not found
-fs/ntfs/file;;;;;;.c.xml file not found
-fs/ntfs/index;;;;;;.c.xml file not found
-fs/ntfs/inode;;;;;;.c.xml file not found
-fs/ntfs/lcnalloc;;;;;;.c.xml file not found
-fs/ntfs/logfile;;;;;;.c.xml file not found
-fs/ntfs/mft;;;;;;.c.xml file not found
-fs/ntfs/mst;;;;;;.c.xml file not found
-fs/ntfs/namei;;;;;;.c.xml file not found
-fs/ntfs/quota;;;;;;.c.xml file not found
-fs/ntfs/runlist;;;;;;.c.xml file not found
-fs/ntfs/super;;;;;;.c.xml file not found
-fs/ntfs/sysctl;;;;;;.c.xml file not found
-fs/ntfs/unistr;;;;;;.c.xml file not found
-fs/ntfs/upcase;;;;;;.c.xml file not found
-fs/ntfs/usnjrnl;;;;;;.c.xml file not found
+fs/ntfs/aops;0;0;0;0;0;
+fs/ntfs/attrib;0;0;0;0;0;
+fs/ntfs/bitmap;0;0;0;0;0;
+fs/ntfs/collate;0;0;0;0;0;
+fs/ntfs/compress;0;0;0;0;0;
+fs/ntfs/debug;0;0;0;0;0;
+fs/ntfs/dir;0;0;0;0;0;
+fs/ntfs/file;0;0;0;0;0;
+fs/ntfs/index;0;0;0;0;0;
+fs/ntfs/inode;0;0;0;0;0;
+fs/ntfs/lcnalloc;0;0;0;0;0;
+fs/ntfs/logfile;0;0;0;0;0;
+fs/ntfs/mft;0;0;0;0;0;
+fs/ntfs/mst;0;0;0;0;0;
+fs/ntfs/namei;0;0;0;0;0;
+fs/ntfs/quota;0;0;0;0;0;
+fs/ntfs/runlist;0;0;0;0;0;
+fs/ntfs/super;0;0;0;0;0;
+fs/ntfs/sysctl;0;0;0;0;0;
+fs/ntfs/unistr;0;0;0;0;0;
+fs/ntfs/upcase;0;0;0;0;0;
+fs/ntfs/usnjrnl;0;0;0;0;0;
 fs/ocfs2/acl;0;0;0;0;0;
 fs/ocfs2/alloc;0;0;0;0;0;
 fs/ocfs2/aops;0;0;0;0;0;
 fs/ocfs2/blockcheck;0;0;0;0;0;
 fs/ocfs2/buffer_head_io;0;0;0;0;0;
 fs/ocfs2/cluster/heartbeat;0;0;0;0;0;
-fs/ocfs2/cluster/masklog;;;;;;.c.xml file not found
+fs/ocfs2/cluster/masklog;0;0;0;0;0;
 fs/ocfs2/cluster/netdebug;0;0;0;0;0;
 fs/ocfs2/cluster/nodemanager;0;0;0;0;0;
 fs/ocfs2/cluster/quorum;0;0;0;0;0;
@@ -5770,14 +5770,14 @@ fs/qnx4/bitmap;0;0;0;0;0;
 fs/qnx4/dir;0;0;0;0;0;
 fs/qnx4/inode;0;0;0;0;0;
 fs/qnx4/namei;0;0;0;0;0;
-fs/quota/dquot;;;;;;.c.xml file not found
+fs/quota/dquot;0;0;0;0;0;
 fs/quota/quota;0;0;0;0;0;
 fs/quota/quota_tree;0;0;0;0;0;
 fs/quota/quota_v1;0;0;0;0;0;
 fs/quota/quota_v2;0;0;0;0;0;
 fs/ramfs/file-mmu;;;;;;.c.xml file not found
 fs/ramfs/inode;0;0;0;0;0;
-fs/read_write;;;;;;.c.xml file not found
+fs/read_write;0;0;0;0;0;
 fs/readdir;0;0;0;0;0;
 fs/reiserfs/bitmap;0;0;0;0;0;
 fs/reiserfs/dir;0;0;0;0;0;fixed struct bug
@@ -6026,7 +6026,7 @@ kernel/kthread;0;0;0;0;0;
 kernel/latencytop;0;0;0;0;0;
 kernel/lockdep;0;0;0;0;0;
 kernel/lockdep_proc;0;0;0;0;0;
-kernel/module;;;;;;.c.xml file not found
+kernel/module;0;0;0;0;0;
 kernel/mutex-debug;0;0;0;0;0;
 kernel/mutex;0;0;0;0;0;
 kernel/notifier;0;0;0;0;0;
@@ -6059,7 +6059,7 @@ kernel/rcutiny;0;0;0;0;0;
 kernel/rcutorture;0;0;0;0;0;
 kernel/rcutree;0;0;0;0;0;
 kernel/rcutree_trace;0;0;0;0;0;
-kernel/relay;;;;;;.c.xml file not found
+kernel/relay;0;0;0;0;0;
 kernel/res_counter;0;0;0;0;0;
 kernel/resource;;;;;;.c.xml file not found
 kernel/rtmutex-debug;0;0;0;0;0;
@@ -6106,7 +6106,7 @@ kernel/timer;;;;;;.c.xml file not found
 kernel/trace/blktrace;0;0;0;0;0;
 kernel/trace/ftrace;0;0;0;0;0;
 kernel/trace/kmemtrace;0;0;0;0;0;
-kernel/trace/power-traces;;;;;;.c.xml file not found
+kernel/trace/power-traces;0;0;0;0;0;
 kernel/trace/ring_buffer;2;0;2;0;2;actual type warning
 kernel/trace/ring_buffer_benchmark;0;0;0;0;0;
 kernel/trace/trace;0;0;0;0;0;
@@ -6149,17 +6149,17 @@ lib/argv_split;0;0;0;0;0;
 lib/audit;0;0;0;0;0;
 lib/bcd;0;0;0;0;0;
 lib/bitmap;0;0;0;0;0;
-lib/bitrev;;;;;;.c.xml file not found
+lib/bitrev;0;0;0;0;0;
 lib/bug;0;0;0;0;0;
 lib/bust_spinlocks;0;0;0;0;0;
 lib/check_signature;0;0;0;0;0;
 lib/cmdline;0;0;0;0;0;
 lib/cpumask;0;0;0;0;0;
-lib/crc-ccitt;;;;;;.c.xml file not found
-lib/crc-itu-t;;;;;;.c.xml file not found
+lib/crc-ccitt;0;0;0;0;0;
+lib/crc-itu-t;0;0;0;0;0;
 lib/crc-t10dif;0;0;0;0;0;
-lib/crc16;;;;;;.c.xml file not found
-lib/crc7;;;;;;.c.xml file not found
+lib/crc16;0;0;0;0;0;
+lib/crc7;0;0;0;0;0;
 lib/ctype;;;;;;.c.xml file not found
 lib/debug_locks;0;0;0;0;0;
 lib/debugobjects;0;0;0;0;0;
@@ -6206,7 +6206,7 @@ lib/lzo/lzo1x_compress;0;0;0;0;0;
 lib/lzo/lzo1x_decompress;0;0;0;0;0;
 lib/nlattr;0;0;0;0;0;
 lib/parser;0;0;0;0;0;
-lib/percpu_counter;;;;;;.c.xml file not found
+lib/percpu_counter;0;0;0;0;0;
 lib/plist;0;0;0;0;0;
 lib/prio_heap;0;0;0;0;0;
 lib/prio_tree;0;0;0;0;0;
@@ -6253,14 +6253,14 @@ mm/highmem;;;;;;.c.xml file not found
 mm/hugetlb;0;0;0;0;0;
 mm/hwpoison-inject;0;0;0;0;0;
 mm/init-mm;0;0;0;0;0;
-mm/kmemcheck;;;;;;.c.xml file not found
+mm/kmemcheck;0;0;0;0;0;
 mm/kmemleak-test;0;0;0;0;0;
 mm/kmemleak;0;0;0;0;0;
 mm/ksm;0;0;0;0;0;
 mm/maccess;0;0;0;0;0;
 mm/madvise;;;;;;.c.xml file not found
 mm/memcontrol;0;0;0;0;0;
-mm/memory-failure;;;;;;.c.xml file not found
+mm/memory-failure;0;0;0;0;0;
 mm/memory;;;;;;.c.xml file not found
 mm/memory_hotplug;0;0;0;0;0;
 mm/mempolicy;0;0;0;0;0;
@@ -6288,7 +6288,7 @@ mm/prio_tree;0;0;0;0;0;
 mm/readahead;0;0;0;0;0;
 mm/rmap;;;;;;.c.xml file not found
 mm/shmem;0;0;0;0;0;
-mm/slab;;;;;;.c.xml file not found
+mm/slab;6;0;0;0;6;
 mm/slob;0;0;0;0;0;
 mm/slub;0;0;0;0;0;
 mm/sparse;0;0;0;0;0;
@@ -6317,7 +6317,7 @@ net/8021q/vlan_netlink;0;0;0;0;0;
 net/8021q/vlanproc;0;0;0;0;0;
 net/9p/client;0;0;0;0;0;
 net/9p/error;0;0;0;0;0;
-net/9p/mod;;;;;;.c.xml file not found
+net/9p/mod;0;0;0;0;0;
 net/9p/protocol;0;0;0;0;0;
 net/9p/trans_fd;0;0;0;0;0;
 net/9p/trans_rdma;0;0;0;0;0;
@@ -6333,7 +6333,7 @@ net/atm/atm_misc;0;0;0;0;0;
 net/atm/atm_sysfs;0;0;0;0;0;
 net/atm/br2684;0;0;0;0;0;
 net/atm/clip;0;0;0;0;0;
-net/atm/common;;;;;;.c.xml file not found
+net/atm/common;0;0;0;0;0;
 net/atm/ioctl;0;0;0;0;0;
 net/atm/lec;0;0;0;0;0;
 net/atm/mpc;0;0;0;0;0;
@@ -6347,14 +6347,14 @@ net/atm/resources;0;0;0;0;0;
 net/atm/signaling;0;0;0;0;0;
 net/atm/svc;0;0;0;0;0;
 net/ax25/af_ax25;0;0;0;0;0;
-net/ax25/ax25_addr;;;;;;.c.xml file not found
+net/ax25/ax25_addr;0;0;0;0;0;
 net/ax25/ax25_dev;0;0;0;0;0;
 net/ax25/ax25_ds_in;0;0;0;0;0;
 net/ax25/ax25_ds_subr;0;0;0;0;0;
 net/ax25/ax25_ds_timer;0;0;0;0;0;
 net/ax25/ax25_iface;0;0;0;0;0;strange function header, check
 net/ax25/ax25_in;0;0;0;0;0;
-net/ax25/ax25_ip;;;;;;.c.xml file not found
+net/ax25/ax25_ip;0;0;0;0;0;
 net/ax25/ax25_out;0;0;0;0;0;
 net/ax25/ax25_route;0;0;0;0;0;
 net/ax25/ax25_std_in;0;0;0;0;0;
@@ -6375,7 +6375,7 @@ net/bluetooth/hci_conn;0;0;0;0;0;
 net/bluetooth/hci_core;0;0;0;0;0;
 net/bluetooth/hci_event;0;0;0;0;0;
 net/bluetooth/hci_sock;0;0;0;0;0;
-net/bluetooth/hci_sysfs;;;;;;.c.xml file not found
+net/bluetooth/hci_sysfs;0;0;0;0;0;
 net/bluetooth/hidp/core;0;0;0;0;0;
 net/bluetooth/hidp/sock;0;0;0;0;0;
 net/bluetooth/l2cap;0;0;0;0;0;
@@ -6434,27 +6434,27 @@ net/core/dst;0;0;0;0;0;check. weired macro stuff in kmem.h
 net/core/ethtool;0;0;0;0;0;
 net/core/fib_rules;0;0;0;0;0;
 net/core/filter;0;0;0;0;0;
-net/core/flow;;;;;;.c.xml file not found
+net/core/flow;0;0;0;0;0;
 net/core/gen_estimator;0;0;0;0;0;
 net/core/gen_stats;0;0;0;0;0;
 net/core/iovec;0;0;0;0;0;
 net/core/link_watch;0;0;0;0;0;
 net/core/neighbour;0;0;0;0;0;
 net/core/net-sysfs;0;0;0;0;0;
-net/core/net-traces;;;;;;.c.xml file not found
-net/core/net_namespace;;;;;;.c.xml file not found
+net/core/net-traces;0;0;0;0;0;
+net/core/net_namespace;0;0;0;0;0;
 net/core/netevent;0;0;0;0;0;
 net/core/netpoll;0;0;0;0;0;
 net/core/pktgen;0;0;0;0;0;
 net/core/request_sock;0;0;0;0;0;
-net/core/rtnetlink;;;;;;.c.xml file not found
+net/core/rtnetlink;0;0;0;0;0;
 net/core/scm;0;0;0;0;0;
 net/core/skbuff;0;0;0;0;0;
-net/core/sock;;;;;;.c.xml file not found
+net/core/sock;0;0;0;0;0;
 net/core/stream;0;0;0;0;0;
 net/core/sysctl_net_core;0;0;0;0;0;
-net/core/user_dma;;;;;;.c.xml file not found
-net/core/utils;;;;;;.c.xml file not found
+net/core/user_dma;0;0;0;0;0;
+net/core/utils;0;0;0;0;0;
 net/dcb/dcbnl;0;0;0;0;0;
 net/dccp/ackvec;0;0;0;0;0;
 net/dccp/ccid;0;0;0;0;0;
@@ -6468,7 +6468,7 @@ net/dccp/diag;0;0;0;0;0;
 net/dccp/feat;0;0;0;0;0;
 net/dccp/input;0;0;0;0;0;
 net/dccp/ipv4;0;0;0;0;0;
-net/dccp/minisocks;;;;;;.c.xml file not found
+net/dccp/minisocks;0;0;0;0;0;
 net/dccp/options;0;0;0;0;0;
 net/dccp/output;0;0;0;0;0;
 net/dccp/probe;0;0;0;0;0;
@@ -6506,9 +6506,9 @@ net/ieee802154/nl-phy;0;0;0;0;0;
 net/ieee802154/nl_policy;0;0;0;0;0;
 net/ieee802154/raw;0;0;0;0;0;
 net/ieee802154/wpan-class;0;0;0;0;0;
-net/ipv4/af_inet;;;;;;.c.xml file not found
+net/ipv4/af_inet;0;0;0;0;0;
 net/ipv4/ah4;0;0;0;0;0;
-net/ipv4/arp;;;;;;.c.xml file not found
+net/ipv4/arp;0;0;0;0;0;
 net/ipv4/cipso_ipv4;0;0;0;0;0;
 net/ipv4/datagram;0;0;0;0;0;
 net/ipv4/devinet;0;0;0;0;0;
@@ -6517,10 +6517,10 @@ net/ipv4/fib_frontend;0;0;0;0;0;
 net/ipv4/fib_hash;0;0;0;0;0;
 net/ipv4/fib_rules;0;0;0;0;0;
 net/ipv4/fib_semantics;0;0;0;0;0;
-net/ipv4/fib_trie;;;;;;.c.xml file not found
-net/ipv4/icmp;;;;;;.c.xml file not found
+net/ipv4/fib_trie;0;0;0;0;0;
+net/ipv4/icmp;0;0;0;0;0;
 net/ipv4/igmp;0;0;0;0;0;
-net/ipv4/inet_connection_sock;;;;;;.c.xml file not found
+net/ipv4/inet_connection_sock;0;0;0;0;0;
 net/ipv4/inet_diag;0;0;0;0;0;
 net/ipv4/inet_fragment;0;0;0;0;0;
 net/ipv4/inet_hashtables;0;0;0;0;0;
@@ -6538,7 +6538,7 @@ net/ipv4/ipcomp;0;0;0;0;0;
 net/ipv4/ipconfig;0;0;0;0;0;
 net/ipv4/ipip;0;0;0;0;0;
 net/ipv4/ipmr;0;0;0;0;0;
-net/ipv4/netfilter;;;;;;.c.xml file not found
+net/ipv4/netfilter;0;0;0;0;0;
 net/ipv4/netfilter/arp_tables;0;0;0;0;0;
 net/ipv4/netfilter/arpt_mangle;0;0;0;0;0;
 net/ipv4/netfilter/arptable_filter;0;0;0;0;0;
@@ -6589,20 +6589,20 @@ net/ipv4/protocol;0;0;0;0;0;
 net/ipv4/raw;0;0;0;0;0;
 net/ipv4/route;0;0;0;0;0;
 net/ipv4/syncookies;0;0;0;0;0;
-net/ipv4/sysctl_net_ipv4;;;;;;.c.xml file not found
+net/ipv4/sysctl_net_ipv4;0;0;0;0;0;
 net/ipv4/tcp;0;0;0;0;0;
 net/ipv4/tcp_bic;0;0;0;0;0;
-net/ipv4/tcp_cong;;;;;;.c.xml file not found
+net/ipv4/tcp_cong;0;0;0;0;0;
 net/ipv4/tcp_diag;0;0;0;0;0;
 net/ipv4/tcp_highspeed;0;0;0;0;0;
 net/ipv4/tcp_htcp;0;0;0;0;0;
 net/ipv4/tcp_hybla;0;0;0;0;0;
 net/ipv4/tcp_illinois;0;0;0;0;0;
-net/ipv4/tcp_input;;;;;;.c.xml file not found
-net/ipv4/tcp_ipv4;;;;;;.c.xml file not found
+net/ipv4/tcp_input;0;0;0;0;0;
+net/ipv4/tcp_ipv4;0;0;0;0;0;
 net/ipv4/tcp_lp;0;0;0;0;0;
-net/ipv4/tcp_minisocks;;;;;;.c.xml file not found
-net/ipv4/tcp_output;;;;;;.c.xml file not found
+net/ipv4/tcp_minisocks;0;0;0;0;0;
+net/ipv4/tcp_output;0;0;0;0;0;
 net/ipv4/tcp_probe;0;0;0;0;0;
 net/ipv4/tcp_scalable;0;0;0;0;0;
 net/ipv4/tcp_timer;0;0;0;0;0;
@@ -6611,8 +6611,8 @@ net/ipv4/tcp_veno;0;0;0;0;0;
 net/ipv4/tcp_westwood;0;0;0;0;0;
 net/ipv4/tcp_yeah;0;0;0;0;0;
 net/ipv4/tunnel4;0;0;0;0;0;
-net/ipv4/udp;;;;;;.c.xml file not found
-net/ipv4/udplite;;;;;;.c.xml file not found
+net/ipv4/udp;0;0;0;0;0;
+net/ipv4/udplite;0;0;0;0;0;
 net/ipv4/xfrm4_input;0;0;0;0;0;
 net/ipv4/xfrm4_mode_beet;0;0;0;0;0;
 net/ipv4/xfrm4_mode_transport;0;0;0;0;0;
@@ -6671,7 +6671,7 @@ net/ipv6/reassembly;0;0;0;0;0;
 net/ipv6/route;0;0;0;0;0;
 net/ipv6/sit;0;0;0;0;0;
 net/ipv6/syncookies;0;0;0;0;0;
-net/ipv6/sysctl_net_ipv6;;;;;;.c.xml file not found
+net/ipv6/sysctl_net_ipv6;0;0;0;0;0;
 net/ipv6/tcp_ipv6;0;0;0;0;0;
 net/ipv6/tunnel6;0;0;0;0;0;
 net/ipv6/udp;0;0;0;0;0;
@@ -6717,7 +6717,7 @@ net/irda/irlap_frame;0;0;0;0;0;
 net/irda/irlmp;0;0;0;0;0;
 net/irda/irlmp_event;0;0;0;0;0;
 net/irda/irlmp_frame;0;0;0;0;0;
-net/irda/irmod;;;;;;.c.xml file not found
+net/irda/irmod;0;0;0;0;0;
 net/irda/irnet/irnet_irda;0;0;0;0;0;
 net/irda/irnet/irnet_ppp;0;0;0;0;0;
 net/irda/irnetlink;0;0;0;0;0;
@@ -6740,7 +6740,7 @@ net/llc/llc_c_ac;0;0;0;0;0;
 net/llc/llc_c_ev;0;0;0;0;0;
 net/llc/llc_c_st;0;0;0;0;0;
 net/llc/llc_conn;0;0;0;0;0;
-net/llc/llc_core;;;;;;.c.xml file not found
+net/llc/llc_core;0;0;0;0;0;
 net/llc/llc_if;0;0;0;0;0;
 net/llc/llc_input;0;0;0;0;0;
 net/llc/llc_output;0;0;0;0;0;
@@ -6792,11 +6792,11 @@ net/mac80211/util;0;0;0;0;0;
 net/mac80211/wep;0;0;0;0;0;
 net/mac80211/wme;0;0;0;0;0;
 net/mac80211/wpa;0;0;0;0;0;
-net/netfilter/core;;;;;;.c.xml file not found
+net/netfilter/core;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_app;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_conn;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_core;0;0;0;0;0;
-net/netfilter/ipvs/ip_vs_ctl;;;;;;.c.xml file not found
+net/netfilter/ipvs/ip_vs_ctl;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_dh;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_est;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_ftp;0;0;0;0;0;
@@ -6817,7 +6817,7 @@ net/netfilter/ipvs/ip_vs_wrr;0;0;0;0;0;
 net/netfilter/ipvs/ip_vs_xmit;0;0;0;0;0;
 net/netfilter/nf_conntrack_acct;0;0;0;0;0;
 net/netfilter/nf_conntrack_amanda;0;0;0;0;0;
-net/netfilter/nf_conntrack_core;;;;;;.c.xml file not found
+net/netfilter/nf_conntrack_core;0;0;0;0;0;
 net/netfilter/nf_conntrack_ecache;0;0;0;0;0;
 net/netfilter/nf_conntrack_expect;0;0;0;0;0;
 net/netfilter/nf_conntrack_extend;0;0;0;0;0;
@@ -6826,17 +6826,17 @@ net/netfilter/nf_conntrack_h323_asn1;0;0;0;0;0;
 net/netfilter/nf_conntrack_h323_main;0;0;0;0;0;
 net/netfilter/nf_conntrack_helper;0;0;0;0;0;
 net/netfilter/nf_conntrack_irc;0;0;0;0;0;
-net/netfilter/nf_conntrack_l3proto_generic;;;;;;.c.xml file not found
+net/netfilter/nf_conntrack_l3proto_generic;0;0;0;0;0;
 net/netfilter/nf_conntrack_netbios_ns;0;0;0;0;0;
 net/netfilter/nf_conntrack_netlink;0;0;0;0;0;
-net/netfilter/nf_conntrack_pptp;;;;;;.c.xml file not found
+net/netfilter/nf_conntrack_pptp;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto_dccp;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto_generic;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto_gre;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto_sctp;0;0;0;0;0;
-net/netfilter/nf_conntrack_proto_tcp;;;;;;.c.xml file not found
-net/netfilter/nf_conntrack_proto_udp;;;;;;.c.xml file not found
+net/netfilter/nf_conntrack_proto_tcp;0;0;0;0;0;
+net/netfilter/nf_conntrack_proto_udp;0;0;0;0;0;
 net/netfilter/nf_conntrack_proto_udplite;0;0;0;0;0;
 net/netfilter/nf_conntrack_sane;0;0;0;0;0;
 net/netfilter/nf_conntrack_sip;0;0;0;0;0;
@@ -6922,13 +6922,13 @@ net/netrom/nr_timer;0;0;0;0;0;
 net/netrom/sysctl_net_netrom;0;0;0;0;0;
 net/nonet;0;0;0;0;0;
 net/packet/af_packet;0;0;0;0;0;
-net/phonet/af_phonet;;;;;;.c.xml file not found
+net/phonet/af_phonet;0;0;0;0;0;
 net/phonet/datagram;0;0;0;0;0;
 net/phonet/pep-gprs;0;0;0;0;0;
 net/phonet/pep;0;0;0;0;0;
 net/phonet/pn_dev;0;0;0;0;0;
 net/phonet/pn_netlink;0;0;0;0;0;
-net/phonet/socket;;;;;;.c.xml file not found
+net/phonet/socket;0;0;0;0;0;
 net/phonet/sysctl;0;0;0;0;0;
 net/rds/af_rds;0;0;0;0;0;
 net/rds/bind;0;0;0;0;0;
@@ -6988,7 +6988,7 @@ net/rxrpc/ar-connection;0;0;0;0;0;
 net/rxrpc/ar-connevent;0;0;0;0;0;
 net/rxrpc/ar-error;0;0;0;0;0;
 net/rxrpc/ar-input;0;0;0;0;0;
-net/rxrpc/ar-key;;;;;;.c.xml file not found
+net/rxrpc/ar-key;0;0;0;0;0;
 net/rxrpc/ar-local;0;0;0;0;0;
 net/rxrpc/ar-output;0;0;0;0;0;
 net/rxrpc/ar-peer;0;0;0;0;0;
@@ -7029,8 +7029,8 @@ net/sched/sch_blackhole;0;0;0;0;0;
 net/sched/sch_cbq;0;0;0;0;0;
 net/sched/sch_drr;0;0;0;0;0;
 net/sched/sch_dsmark;0;0;0;0;0;
-net/sched/sch_fifo;;;;;;.c.xml file not found
-net/sched/sch_generic;;;;;;.c.xml file not found
+net/sched/sch_fifo;0;0;0;0;0;
+net/sched/sch_generic;0;0;0;0;0;
 net/sched/sch_gred;0;0;0;0;0;
 net/sched/sch_hfsc;0;0;0;0;0;
 net/sched/sch_htb;0;0;0;0;0;
@@ -7170,9 +7170,9 @@ net/wireless/reg;0;0;0;0;0;
 net/wireless/scan;0;0;0;0;0;
 net/wireless/sme;0;0;0;0;0;
 net/wireless/sysfs;0;0;0;0;0;
-net/wireless/util;;;;;;.c.xml file not found
+net/wireless/util;0;0;0;0;0;
 net/wireless/wext-compat;0;0;0;0;0;
-net/wireless/wext-core;0;0;0;0;0;
+net/wireless/wext-core;1;0;1;0;1;
 net/wireless/wext-priv;4;0;4;0;4;probably feature model extraction problem, see bug #15
 net/wireless/wext-proc;0;0;0;0;0;
 net/wireless/wext-sme;0;0;0;0;0;
@@ -7194,7 +7194,7 @@ net/xfrm/xfrm_hash;0;0;0;0;0;
 net/xfrm/xfrm_input;0;0;0;0;0;
 net/xfrm/xfrm_ipcomp;0;0;0;0;0;
 net/xfrm/xfrm_output;0;0;0;0;0;
-net/xfrm/xfrm_policy;;;;;;.c.xml file not found
+net/xfrm/xfrm_policy;0;0;0;0;0;
 net/xfrm/xfrm_proc;0;0;0;0;0;
 net/xfrm/xfrm_state;0;0;0;0;0;
 net/xfrm/xfrm_sysctl;0;0;0;0;0;
@@ -7215,18 +7215,18 @@ security/inode;0;0;0;0;0;
 security/keys/gc;0;0;0;0;0;
 security/keys/key;0;0;0;0;0;
 security/keys/keyctl;0;0;0;0;0;
-security/keys/keyring;;;;;;.c.xml file not found
+security/keys/keyring;0;0;0;0;0;
 security/keys/permission;0;0;0;0;0;
 security/keys/proc;0;0;0;0;0;
 security/keys/process_keys;0;0;0;0;0;
 security/keys/request_key;0;0;0;0;0;
 security/keys/request_key_auth;0;0;0;0;0;
 security/keys/sysctl;0;0;0;0;0;
-security/keys/user_defined;;;;;;.c.xml file not found
+security/keys/user_defined;0;0;0;0;0;
 security/lsm_audit;0;0;0;0;0;
 security/min_addr;;;;;;.c.xml file not found
 security/security;0;0;0;0;0;
-sound/ac97_bus;;;;;;.c.xml file not found
+sound/ac97_bus;0;0;0;0;0;
 sound/core/control;0;0;0;0;0;
 sound/core/device;0;0;0;0;0;
 sound/core/hrtimer;0;0;0;0;0;
@@ -7252,7 +7252,7 @@ sound/core/pcm;0;0;0;0;0;
 sound/core/pcm_lib;0;0;0;0;0;
 sound/core/pcm_memory;0;0;0;0;0;
 sound/core/pcm_misc;0;0;0;0;0;
-sound/core/pcm_native;;;;;;.c.xml file not found
+sound/core/pcm_native;0;0;0;0;0;
 sound/core/pcm_timer;0;0;0;0;0;
 sound/core/rawmidi;0;0;0;0;0;
 sound/core/rtctimer;0;0;0;0;0;
@@ -7298,7 +7298,7 @@ sound/drivers/opl3/opl3_lib;0;0;0;0;0;
 sound/drivers/opl3/opl3_midi;0;0;0;0;0;
 sound/drivers/opl3/opl3_oss;0;0;0;0;0;
 sound/drivers/opl3/opl3_seq;0;0;0;0;0;
-sound/drivers/opl3/opl3_synth;;;;;;.c.xml file not found
+sound/drivers/opl3/opl3_synth;0;0;0;0;0;
 sound/drivers/opl4/opl4_lib;0;0;0;0;0;
 sound/drivers/opl4/opl4_mixer;0;0;0;0;0;
 sound/drivers/opl4/opl4_proc;0;0;0;0;0;
@@ -7353,7 +7353,7 @@ sound/isa/gus/gus_pcm;0;0;0;0;0;
 sound/isa/gus/gus_reset;0;0;0;0;0;
 sound/isa/gus/gus_timer;0;0;0;0;0;
 sound/isa/gus/gus_uart;0;0;0;0;0;
-sound/isa/gus/gus_volume;;;;;;.c.xml file not found
+sound/isa/gus/gus_volume;0;0;0;0;0;
 sound/isa/gus/gusclassic;0;0;0;0;0;
 sound/isa/gus/gusextreme;0;0;0;0;0;
 sound/isa/gus/gusmax;0;0;0;0;0;
@@ -7396,7 +7396,7 @@ sound/last;0;0;0;0;0;
 sound/oss/ad1848;0;0;0;0;0;
 sound/oss/aedsp16;0;0;0;0;0;
 sound/oss/audio;0;0;0;0;0;
-sound/oss/dev_table;;;;;;.c.xml file not found
+sound/oss/dev_table;0;0;0;0;0;
 sound/oss/dmabuf;0;0;0;0;0;
 sound/oss/kahlua;0;0;0;0;0;
 sound/oss/midi_synth;0;0;0;0;0;
@@ -7450,7 +7450,7 @@ sound/pci/cs46xx/dsp_spos;0;0;0;0;0;
 sound/pci/cs46xx/dsp_spos_scb_lib;0;0;0;0;0;
 sound/pci/cs5530;0;0;0;0;0;
 sound/pci/cs5535audio/cs5535audio;0;0;0;0;0;
-sound/pci/cs5535audio/cs5535audio_olpc;;;;;;.c.xml file not found
+sound/pci/cs5535audio/cs5535audio_olpc;0;0;0;0;0;
 sound/pci/cs5535audio/cs5535audio_pcm;0;0;0;0;0;
 sound/pci/cs5535audio/cs5535audio_pm;0;0;0;0;0;
 sound/pci/ctxfi/ctamixer;0;0;0;0;0;
