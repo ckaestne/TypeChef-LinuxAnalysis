@@ -59,3 +59,5 @@ defined(CONFIG_X86_32_SMP) => defined(CONFIG_SMP)
 oneOf(defined(CONFIG_SLUB),defined(CONFIG_SLOB),defined(CONFIG_SLAB))//for type checking, temporarily
 oneOf(defined(CONFIG_TREE_RCU),defined(CONFIG_TREE_PREEMPT_RCU),defined(CONFIG_TINY_RCU))//for type checking, temporarily
 def(CONFIG_RFKILL_LEDS) => def(CONFIG_LEDS_TRIGGERS) // not in feature model (bug)
+!(CONFIG_DISCONTIGMEM || CONFIG_NUMA) => !CONFIG_NEED_MULTIPLE_NODES //from FM
+CONFIG_SPARSEMEM_VMEMMAP => CONFIG_X86_64 // from FM (but not in dimacs)
