@@ -13,7 +13,7 @@ import xml.XML
 object ErrorList {
 
     def main(args: Array[String]) {
-        assert(args.size > 0, "parameters expected: file outputfile")
+        assert(args.size > 0, "parameters expected: file outputfile (or -f filelist)")
         val (files, outStats) =
             if (args(0) == "-f")
                 (scala.io.Source.fromFile(args(1)).getLines.toList, if (args.length > 2) args(2) else "errorList.csv")
@@ -29,7 +29,7 @@ object ErrorList {
             print(s)
             out.write(s)
         }
-        def indent(s: String) = s + (" " * (40 - s.length))
+        def indent(s: String) = s // + (" " * (40 - s.length))
 
         for (file <- files) {
             val fullFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".c.xml"
@@ -52,15 +52,15 @@ object ErrorList {
                     filterNot(n => n.text.contains("incompatible types") && n.text.contains("==")).
                     size + ";")
                 //critical errors
-		append((errorXml \ "typeerror").filter(n =>
+                append((errorXml \ "typeerror").filter(n =>
                     "Critical" == (n \ "severity").text.trim).
                     size + ";")
                 //other errors
                 append((errorXml \ "typeerror").size + ";")
 
-		if (new File(commentFilePath).exists) {
-			append(scala.io.Source.fromFile(commentFilePath).getLines().next.trim)
-		}
+                if (new File(commentFilePath).exists) {
+                    append(scala.io.Source.fromFile(commentFilePath).getLines().next.trim)
+                }
 
                 append("\n")
             }
