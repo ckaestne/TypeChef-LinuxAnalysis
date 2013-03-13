@@ -34,9 +34,14 @@ object ErrorList {
         for (file <- files) {
             val fullFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".c.xml"
             val commentFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".comment"
+            val dbgFilePath = LinuxSettings.pathToLinuxSource + "/" + file + ".dbg"
 
-            if (!new File(fullFilePath).exists)
-                append(indent(file) + ";;;;;;.c.xml file not found\n")
+            if (!new File(fullFilePath).exists) {
+                append(indent(file) + ";;;;;;.c.xml file not found")
+                if (new File(dbgFilePath).exists)
+                        append(" -- " + scala.io.Source.fromFile(dbgFilePath).getLines().toList.lastOption.getOrElse("").trim)
+                append("\n")
+            }
             else {
                 append(indent(file) + ";")
 
