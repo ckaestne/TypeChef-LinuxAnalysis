@@ -13,9 +13,7 @@
 
 #define CONFIG_X86
 
-#ifdef CONFIG_NEED_MULTIPLE_NODES
-	#define CONFIG_NODES_SHIFT 3
-#endif
+#define CONFIG_NODES_SHIFT 3
 
 //from scripts/Makefile.lib 
 #ifdef CONFIG_DYNAMIC_DEBUG
@@ -111,6 +109,7 @@
 #define CONFIG_INIT_ENV_ARG_LIMIT 32
 #define CONFIG_IO_DELAY_TYPE_NONE 3
 #define CONFIG_HZ 250
+#define HZ 250
 #define CONFIG_X86_MINIMUM_CPU_FAMILY 5
 #define CONFIG_DEFAULT_SECURITY ""
 #define CONFIG_BASE_SMALL 0
@@ -547,3 +546,16 @@
 //seem always selected by default and not deselectable
 #define CONFIG_WEXT_SPY
 #define CONFIG_WEXT_PRIV
+
+#ifdef CONFIG_XEN
+  #ifdef CONFIG_X86_32
+    #define CONFIG_XEN_MAX_DOMAIN_MEMORY 8
+  #else
+    #define CONFIG_XEN_MAX_DOMAIN_MEMORY 32
+  #endif
+#endif
+
+#ifdef CONFIG_X86_64
+//set through generated file
+#define __NR_syscall_max 299
+#endif
