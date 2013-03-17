@@ -66,9 +66,9 @@ arch/x86/kernel/cpu/umc;0;0;0;0;0;
 arch/x86/kernel/cpu/vmware;0;0;0;0;0;
 arch/x86/kernel/cpuid;0;0;0;0;0;
 arch/x86/kernel/crash;0;0;0;0;0;
-arch/x86/kernel/doublefault_32;1;1;0;0;0;lexer error, hard to avoid
+arch/x86/kernel/doublefault_32;0;0;0;0;0;lexer error, hard to avoid
 arch/x86/kernel/dumpstack;0;0;0;0;0;
-arch/x86/kernel/e820;1;1;0;0;0;lexer error, hard to avoid
+arch/x86/kernel/e820;0;0;0;0;0;lexer error, hard to avoid
 arch/x86/kernel/early-quirks;0;0;0;0;0;
 arch/x86/kernel/early_printk;0;0;0;0;0;
 arch/x86/kernel/efi;0;0;0;0;0;
@@ -115,7 +115,7 @@ arch/x86/kernel/scx200_32;0;0;0;0;0;
 arch/x86/kernel/setup;0;0;0;0;0;
 arch/x86/kernel/setup_percpu;0;0;0;0;0;
 arch/x86/kernel/sfi;0;0;0;0;0;
-arch/x86/kernel/signal;1;1;0;0;0;
+arch/x86/kernel/signal;0;0;0;0;0;
 arch/x86/kernel/smp;0;0;0;0;0;
 arch/x86/kernel/smpboot;0;0;0;0;0;
 arch/x86/kernel/stacktrace;0;0;0;0;0;
@@ -136,7 +136,7 @@ arch/x86/kernel/vmi_32;0;0;0;0;0;
 arch/x86/kernel/vmiclock_32;0;0;0;0;0;
 arch/x86/kernel/x86_init;0;0;0;0;0;
 arch/x86/kernel/xsave;0;0;0;0;0;
-arch/x86/kvm/emulate;1;1;0;0;0;
+arch/x86/kvm/emulate;0;0;0;0;0;
 arch/x86/kvm/i8254;0;0;0;0;0;
 arch/x86/kvm/i8259;0;0;0;0;0;
 arch/x86/kvm/irq;0;0;0;0;0;
@@ -229,15 +229,15 @@ arch/x86/pci/pcbios;0;0;0;0;0;
 arch/x86/power/cpu;0;0;0;0;0;
 arch/x86/video/fbdev;0;0;0;0;0;
 arch/x86/xen/debugfs;0;0;0;0;0;
-arch/x86/xen/enlighten;1;1;0;0;0;
-arch/x86/xen/grant-table;1;1;0;0;0;
+arch/x86/xen/enlighten;0;0;0;0;0;lexer problem
+arch/x86/xen/grant-table;0;0;0;0;0;
 arch/x86/xen/irq;0;0;0;0;0;
-arch/x86/xen/mmu;1;1;0;0;0;
+arch/x86/xen/mmu;0;0;0;0;0;
 arch/x86/xen/multicalls;0;0;0;0;0;
-arch/x86/xen/setup;1;1;0;0;0;lexer bug
-arch/x86/xen/smp;1;1;0;0;0;
+arch/x86/xen/setup;2;0;2;0;2;lexer bug
+arch/x86/xen/smp;0;0;0;0;0;
 arch/x86/xen/spinlock;0;0;0;0;0;
-arch/x86/xen/suspend;1;1;0;0;0;
+arch/x86/xen/suspend;0;0;0;0;0;
 arch/x86/xen/time;0;0;0;0;0;
 block/blk-barrier;0;0;0;0;0;
 block/blk-cgroup;0;0;0;0;0;
@@ -455,7 +455,7 @@ drivers/acpi/acpica/utresrc;0;0;0;0;0;
 drivers/acpi/acpica/utstate;0;0;0;0;0;
 drivers/acpi/acpica/utxface;0;0;0;0;0;
 drivers/acpi/battery;0;0;0;0;0;
-drivers/acpi/blacklist;;;;;;.c.xml file not found
+drivers/acpi/blacklist;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 drivers/acpi/bus;0;0;0;0;0;
 drivers/acpi/button;0;0;0;0;0;
 drivers/acpi/cm_sbs;0;0;0;0;0;
@@ -597,7 +597,7 @@ drivers/base/dd;0;0;0;0;0;
 drivers/base/devres;0;0;0;0;0;
 drivers/base/devtmpfs;0;0;0;0;0;
 drivers/base/dma-coherent;0;0;0;0;0;
-drivers/base/dma-mapping;;;;;;.c.xml file not found
+drivers/base/dma-mapping;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 drivers/base/driver;0;0;0;0;0;
 drivers/base/firmware;0;0;0;0;0;
 drivers/base/firmware_class;0;0;0;0;0;
@@ -669,7 +669,7 @@ drivers/block/ub;0;0;0;0;0;
 drivers/block/umem;0;0;0;0;0;
 drivers/block/virtio_blk;0;0;0;0;0;
 drivers/block/xd;0;0;0;0;0;
-drivers/block/xen-blkfront;1;1;0;0;0;
+drivers/block/xen-blkfront;0;0;0;0;0;lexer bug
 drivers/bluetooth/ath3k;0;0;0;0;0;
 drivers/bluetooth/bcm203x;0;0;0;0;0;
 drivers/bluetooth/bfusb;0;0;0;0;0;
@@ -714,7 +714,7 @@ drivers/char/hangcheck-timer;0;0;0;0;0;
 drivers/char/hpet;0;0;0;0;0;
 drivers/char/hvc_console;0;0;0;0;0;
 drivers/char/hvc_irq;0;0;0;0;0;
-drivers/char/hvc_xen;1;1;0;0;0;
+drivers/char/hvc_xen;0;0;0;0;0;
 drivers/char/hw_random/amd-rng;0;0;0;0;0;
 drivers/char/hw_random/core;0;0;0;0;0;
 drivers/char/hw_random/geode-rng;0;0;0;0;0;
@@ -792,9 +792,9 @@ drivers/char/vc_screen;0;0;0;0;0;
 drivers/char/virtio_console;0;0;0;0;0;
 drivers/char/vt;0;0;0;0;0;
 drivers/char/vt_ioctl;0;0;0;0;0;
-drivers/clocksource/acpi_pm;;;;;;.c.xml file not found
-drivers/clocksource/cs5535-clockevt;;;;;;.c.xml file not found
-drivers/clocksource/scx200_hrt;;;;;;.c.xml file not found
+drivers/clocksource/acpi_pm;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/clocksource/cs5535-clockevt;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/clocksource/scx200_hrt;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 drivers/connector/cn_proc;0;0;0;0;0;
 drivers/connector/cn_queue;0;0;0;0;0;
 drivers/connector/connector;0;0;0;0;0;
@@ -1595,7 +1595,7 @@ drivers/input/touchscreen/wm9705;0;0;0;0;0;
 drivers/input/touchscreen/wm9712;0;0;0;0;0;
 drivers/input/touchscreen/wm9713;0;0;0;0;0;
 drivers/input/touchscreen/wm97xx-core;0;0;0;0;0;
-drivers/input/xen-kbdfront;1;1;0;0;0;
+drivers/input/xen-kbdfront;0;0;0;0;0;
 drivers/isdn/act2000/act2000_isa;0;0;0;0;0;
 drivers/isdn/act2000/capi;0;0;0;0;0;
 drivers/isdn/act2000/module;0;0;0;0;0;
@@ -2546,8 +2546,8 @@ drivers/misc/tifm_7xx1;0;0;0;0;0;
 drivers/misc/tifm_core;0;0;0;0;0;
 drivers/mmc/card/block;0;0;0;0;0;
 drivers/mmc/card/mmc_test;0;0;0;0;0;
-drivers/mmc/card/queue;0;0;0;0;0;
-drivers/mmc/card/sdio_uart;0;0;0;0;0;
+drivers/mmc/card/queue;;;;;;.c.xml file not found -- parsing.
+drivers/mmc/card/sdio_uart;;;;;;.c.xml file not found -- parsing.
 drivers/mmc/core/bus;0;0;0;0;0;
 drivers/mmc/core/core;0;0;0;0;0;
 drivers/mmc/core/debugfs;0;0;0;0;0;
@@ -3378,7 +3378,7 @@ drivers/net/wireless/zd1211rw/zd_rf_al7230b;0;0;0;0;0;
 drivers/net/wireless/zd1211rw/zd_rf_rf2959;0;0;0;0;0;
 drivers/net/wireless/zd1211rw/zd_rf_uw2453;0;0;0;0;0;
 drivers/net/wireless/zd1211rw/zd_usb;0;0;0;0;0;
-drivers/net/xen-netfront;1;1;0;0;0;
+drivers/net/xen-netfront;0;0;0;0;0;
 drivers/net/yellowfin;0;0;0;0;0;
 drivers/net/znet;0;0;0;0;0;
 drivers/parport/daisy;0;0;0;0;0;
@@ -3473,28 +3473,28 @@ drivers/pcmcia/rsrc_nonstatic;0;0;0;0;0;
 drivers/pcmcia/socket_sysfs;0;0;0;0;0;
 drivers/pcmcia/tcic;0;0;0;0;0;
 drivers/pcmcia/yenta_socket;0;0;0;0;0;
-drivers/platform/x86/acer-wmi;;;;;;.c.xml file not found
-drivers/platform/x86/acerhdf;;;;;;.c.xml file not found
-drivers/platform/x86/asus-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/asus_acpi;;;;;;.c.xml file not found
-drivers/platform/x86/classmate-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/compal-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/dell-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/dell-wmi;;;;;;.c.xml file not found
-drivers/platform/x86/eeepc-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/fujitsu-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/hp-wmi;;;;;;.c.xml file not found
-drivers/platform/x86/intel_menlow;;;;;;.c.xml file not found
-drivers/platform/x86/msi-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/msi-wmi;;;;;;.c.xml file not found
-drivers/platform/x86/panasonic-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/sony-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/tc1100-wmi;;;;;;.c.xml file not found
-drivers/platform/x86/thinkpad_acpi;;;;;;.c.xml file not found
-drivers/platform/x86/topstar-laptop;;;;;;.c.xml file not found
-drivers/platform/x86/toshiba_acpi;;;;;;.c.xml file not found
-drivers/platform/x86/toshiba_bluetooth;;;;;;.c.xml file not found
-drivers/platform/x86/wmi;;;;;;.c.xml file not found
+drivers/platform/x86/acer-wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/acerhdf;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/asus-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/asus_acpi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/classmate-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/compal-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/dell-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/dell-wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/eeepc-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/fujitsu-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/hp-wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/intel_menlow;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/msi-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/msi-wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/panasonic-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/sony-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/tc1100-wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/thinkpad_acpi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/topstar-laptop;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/toshiba_acpi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/toshiba_bluetooth;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+drivers/platform/x86/wmi;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 drivers/pnp/card;0;0;0;0;0;
 drivers/pnp/core;0;0;0;0;0;
 drivers/pnp/driver;0;0;0;0;0;
@@ -4331,7 +4331,7 @@ drivers/staging/rtl8192e/ieee80211/ieee80211_crypt;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_ccmp;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_tkip;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_crypt_wep;0;0;0;0;0;
-drivers/staging/rtl8192e/ieee80211/ieee80211_module;1;0;0;0;1;
+drivers/staging/rtl8192e/ieee80211/ieee80211_module;1;0;0;0;1;actual type warning; as usual
 drivers/staging/rtl8192e/ieee80211/ieee80211_rx;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_softmac;0;0;0;0;0;
 drivers/staging/rtl8192e/ieee80211/ieee80211_softmac_wx;0;0;0;0;0;
@@ -4787,7 +4787,7 @@ drivers/video/backlight/wm831x_bl;0;0;0;0;0;
 drivers/video/broadsheetfb;0;0;0;0;0;
 drivers/video/carminefb;0;0;0;0;0;
 drivers/video/cfbcopyarea;0;0;0;0;0;rewrote FB_WRITEL macro with parameter
-drivers/video/cfbfillrect;1;1;0;0;0;
+drivers/video/cfbfillrect;0;0;0;0;0;lexer bug
 drivers/video/cfbimgblt;0;0;0;0;0;
 drivers/video/cirrusfb;0;0;0;0;0;
 drivers/video/console/bitblit;0;0;0;0;0;
@@ -4894,7 +4894,7 @@ drivers/video/sm501fb;0;0;0;0;0;
 drivers/video/sstfb;0;0;0;0;0;
 drivers/video/svgalib;0;0;0;0;0;
 drivers/video/syscopyarea;0;0;0;0;0;
-drivers/video/sysfillrect;1;1;0;0;0;
+drivers/video/sysfillrect;0;0;0;0;0;
 drivers/video/sysimgblt;0;0;0;0;0;
 drivers/video/tdfxfb;0;0;0;0;0;
 drivers/video/tmiofb;0;0;0;0;0;
@@ -4921,7 +4921,7 @@ drivers/video/via/viafbdev;0;0;0;0;0;
 drivers/video/via/viamode;0;0;0;0;0;
 drivers/video/via/vt1636;0;0;0;0;0;
 drivers/video/vt8623fb;0;0;0;0;0;
-drivers/video/xen-fbfront;1;1;0;0;0;
+drivers/video/xen-fbfront;0;0;0;0;0;
 drivers/virtio/virtio;0;0;0;0;0;
 drivers/virtio/virtio_balloon;0;0;0;0;0;
 drivers/virtio/virtio_pci;0;0;0;0;0;
@@ -4984,17 +4984,17 @@ drivers/watchdog/wdt;0;0;0;0;0;
 drivers/watchdog/wdt_pci;0;0;0;0;0;
 drivers/watchdog/wm831x_wdt;0;0;0;0;0;
 drivers/watchdog/wm8350_wdt;0;0;0;0;0;
-drivers/xen/balloon;1;1;0;0;0;
+drivers/xen/balloon;0;0;0;0;0;
 drivers/xen/cpu_hotplug;0;0;0;0;0;
 drivers/xen/events;0;0;0;0;0;
 drivers/xen/evtchn;0;0;0;0;0;
 drivers/xen/features;0;0;0;0;0;
-drivers/xen/grant-table;1;1;0;0;0;
-drivers/xen/manage;1;1;0;0;0;
+drivers/xen/grant-table;0;0;0;0;0;
+drivers/xen/manage;0;0;0;0;0;
 drivers/xen/sys-hypervisor;0;0;0;0;0;
 drivers/xen/xenbus/xenbus_client;0;0;0;0;0;
-drivers/xen/xenbus/xenbus_comms;1;1;0;0;0;
-drivers/xen/xenbus/xenbus_probe;1;1;0;0;0;
+drivers/xen/xenbus/xenbus_comms;0;0;0;0;0;
+drivers/xen/xenbus/xenbus_probe;0;0;0;0;0;
 drivers/xen/xenbus/xenbus_xs;0;0;0;0;0;
 drivers/xen/xenfs/super;0;0;0;0;0;
 drivers/xen/xenfs/xenbus;0;0;0;0;0;
@@ -5046,7 +5046,7 @@ fs/afs/vnode;0;0;0;0;0;
 fs/afs/volume;0;0;0;0;0;
 fs/afs/write;0;0;0;0;0;
 fs/aio;0;0;0;0;0;
-fs/anon_inodes;;;;;;.c.xml file not found
+fs/anon_inodes;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 fs/attr;0;0;0;0;0;
 fs/autofs/dirhash;0;0;0;0;0;
 fs/autofs/init;0;0;0;0;0;
@@ -5499,7 +5499,7 @@ fs/minix/itree_v1;0;0;0;0;0;
 fs/minix/itree_v2;0;0;0;0;0;
 fs/minix/namei;0;0;0;0;0;
 fs/mpage;0;0;0;0;0;check: ! called on a function (not a function pointer?), TS bug
-fs/namei;;;;;;.c.xml file not found
+fs/namei;0;0;0;0;0;
 fs/namespace;0;0;0;0;0;
 fs/ncpfs/dir;0;0;0;0;0;
 fs/ncpfs/file;0;0;0;0;0;
@@ -5754,7 +5754,7 @@ fs/proc/kcore;0;0;0;0;0;
 fs/proc/kmsg;0;0;0;0;0;
 fs/proc/loadavg;0;0;0;0;0;
 fs/proc/meminfo;0;0;0;0;0;
-fs/proc/mmu;;;;;;.c.xml file not found
+fs/proc/mmu;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 fs/proc/page;0;0;0;0;0;
 fs/proc/proc_net;0;0;0;0;0;
 fs/proc/proc_sysctl;0;0;0;0;0;
@@ -5762,7 +5762,7 @@ fs/proc/proc_tty;0;0;0;0;0;
 fs/proc/root;0;0;0;0;0;
 fs/proc/softirqs;0;0;0;0;0;
 fs/proc/stat;0;0;0;0;0;
-fs/proc/task_mmu;;;;;;.c.xml file not found
+fs/proc/task_mmu;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 fs/proc/uptime;0;0;0;0;0;
 fs/proc/version;0;0;0;0;0;
 fs/proc/vmcore;0;0;0;0;0;
@@ -5775,7 +5775,7 @@ fs/quota/quota;0;0;0;0;0;
 fs/quota/quota_tree;0;0;0;0;0;
 fs/quota/quota_v1;0;0;0;0;0;
 fs/quota/quota_v2;0;0;0;0;0;
-fs/ramfs/file-mmu;;;;;;.c.xml file not found
+fs/ramfs/file-mmu;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 fs/ramfs/inode;0;0;0;0;0;
 fs/read_write;0;0;0;0;0;
 fs/readdir;0;0;0;0;0;
@@ -5955,15 +5955,15 @@ fs/xfs/xfs_trans_inode;0;0;0;0;0;
 fs/xfs/xfs_trans_item;0;0;0;0;0;
 fs/xfs/xfs_utils;0;0;0;0;0;
 fs/xfs/xfs_vnodeops;0;0;0;0;0;
-init/calibrate;;;;;;.c.xml file not found
+init/calibrate;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 init/do_mounts;0;0;0;0;0;
 init/do_mounts_initrd;0;0;0;0;0;
 init/do_mounts_md;0;0;0;0;0;
 init/do_mounts_rd;0;0;0;0;0;
 init/initramfs;0;0;0;0;0;
-init/main;;;;;;.c.xml file not found
+init/main;0;0;0;0;0;
 init/noinitramfs;0;0;0;0;0;
-init/version;;;;;;.c.xml file not found
+init/version;0;0;0;0;0;
 ipc/ipc_sysctl;0;0;0;0;0;
 ipc/ipcns_notifier;0;0;0;0;0;
 ipc/mq_sysctl;0;0;0;0;0;
@@ -5982,14 +5982,14 @@ kernel/audit_watch;0;0;0;0;0;
 kernel/auditfilter;0;0;0;0;0;
 kernel/auditsc;0;0;0;0;0;
 kernel/backtracetest;0;0;0;0;0;
-kernel/capability;;;;;;.c.xml file not found
+kernel/capability;0;0;0;0;0;
 kernel/cgroup;0;0;0;0;0;
 kernel/cgroup_freezer;0;0;0;0;0;
-kernel/cpu;;;;;;.c.xml file not found
+kernel/cpu;0;0;0;0;0;
 kernel/cpuset;0;0;0;0;0;
 kernel/cred;0;0;0;0;0;
 kernel/delayacct;0;0;0;0;0;
-kernel/dma;;;;;;.c.xml file not found
+kernel/dma;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 kernel/exec_domain;0;0;0;0;0;
 kernel/exit;0;0;0;0;0;
 kernel/extable;0;0;0;0;0;
@@ -6002,18 +6002,18 @@ kernel/gcov/gcc_3_4;0;0;0;0;0;
 kernel/groups;0;0;0;0;0;
 kernel/hrtimer;0;0;0;0;0;
 kernel/hung_task;0;0;0;0;0;
-kernel/hw_breakpoint;;;;;;.c.xml file not found
-kernel/irq/autoprobe;;;;;;.c.xml file not found
-kernel/irq/chip;;;;;;.c.xml file not found
-kernel/irq/devres;;;;;;.c.xml file not found
-kernel/irq/handle;;;;;;.c.xml file not found
-kernel/irq/manage;;;;;;.c.xml file not found
-kernel/irq/migration;;;;;;.c.xml file not found
-kernel/irq/numa_migrate;;;;;;.c.xml file not found
-kernel/irq/pm;;;;;;.c.xml file not found
-kernel/irq/proc;;;;;;.c.xml file not found
-kernel/irq/resend;;;;;;.c.xml file not found
-kernel/irq/spurious;;;;;;.c.xml file not found
+kernel/hw_breakpoint;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/autoprobe;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/chip;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/devres;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/handle;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/manage;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/migration;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/numa_migrate;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/pm;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/proc;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/resend;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/irq/spurious;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 kernel/itimer;0;0;0;0;0;
 kernel/kallsyms;0;0;0;0;0;
 kernel/kexec;0;0;0;0;0;
@@ -6032,10 +6032,10 @@ kernel/mutex;0;0;0;0;0;
 kernel/notifier;0;0;0;0;0;
 kernel/ns_cgroup;0;0;0;0;0;
 kernel/nsproxy;0;0;0;0;0;
-kernel/panic;;;;;;.c.xml file not found
+kernel/panic;0;0;0;0;0;
 kernel/params;0;0;0;0;0;
-kernel/perf_event;;;;;;.c.xml file not found
-kernel/pid;;;;;;.c.xml file not found
+kernel/perf_event;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+kernel/pid;0;0;0;0;0;
 kernel/pid_namespace;0;0;0;0;0;
 kernel/pm_qos_params;0;0;0;0;0;
 kernel/posix-cpu-timers;0;0;0;0;0;
@@ -6051,17 +6051,17 @@ kernel/power/suspend;0;0;0;0;0;
 kernel/power/suspend_test;0;0;0;0;0;
 kernel/power/swap;0;0;0;0;0;
 kernel/power/user;0;0;0;0;0;
-kernel/printk;;;;;;.c.xml file not found
+kernel/printk;0;0;0;0;0;
 kernel/profile;0;0;0;0;0;
 kernel/ptrace;0;0;0;0;0;
-kernel/rcupdate;;;;;;.c.xml file not found
+kernel/rcupdate;0;0;0;0;0;
 kernel/rcutiny;0;0;0;0;0;
 kernel/rcutorture;0;0;0;0;0;
 kernel/rcutree;0;0;0;0;0;
 kernel/rcutree_trace;0;0;0;0;0;
 kernel/relay;0;0;0;0;0;
 kernel/res_counter;0;0;0;0;0;
-kernel/resource;;;;;;.c.xml file not found
+kernel/resource;0;0;0;0;0;
 kernel/rtmutex-debug;0;0;0;0;0;
 kernel/rtmutex-tester;0;0;0;0;0;
 kernel/rtmutex;0;0;0;0;0;
@@ -6081,7 +6081,7 @@ kernel/spinlock;0;0;0;0;0;
 kernel/srcu;0;0;0;0;0;
 kernel/stacktrace;0;0;0;0;0;
 kernel/stop_machine;0;0;0;0;0;
-kernel/sys;;;;;;.c.xml file not found
+kernel/sys;0;0;0;0;0;
 kernel/sys_ni;0;0;0;0;0;
 kernel/sysctl;0;0;0;0;0;
 kernel/sysctl_binary;0;0;0;0;0;
@@ -6089,12 +6089,12 @@ kernel/sysctl_check;0;0;0;0;0;
 kernel/taskstats;0;0;0;0;0;
 kernel/test_kprobes;0;0;0;0;0;
 kernel/time;0;0;0;0;0;
-kernel/time/clockevents;;;;;;.c.xml file not found
+kernel/time/clockevents;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 kernel/time/clocksource;0;0;0;0;0;
 kernel/time/jiffies;0;0;0;0;0;
 kernel/time/ntp;0;0;0;0;0;
 kernel/time/tick-broadcast;0;0;0;0;0;
-kernel/time/tick-common;;;;;;.c.xml file not found
+kernel/time/tick-common;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 kernel/time/tick-oneshot;0;0;0;0;0;
 kernel/time/tick-sched;0;0;0;0;0;
 kernel/time/timecompare;0;0;0;0;0;
@@ -6102,7 +6102,7 @@ kernel/time/timeconv;0;0;0;0;0;
 kernel/time/timekeeping;0;0;0;0;0;
 kernel/time/timer_list;0;0;0;0;0;
 kernel/time/timer_stats;0;0;0;0;0;
-kernel/timer;;;;;;.c.xml file not found
+kernel/timer;0;0;0;0;0;
 kernel/trace/blktrace;0;0;0;0;0;
 kernel/trace/ftrace;0;0;0;0;0;
 kernel/trace/kmemtrace;0;0;0;0;0;
@@ -6139,7 +6139,7 @@ kernel/tsacct;0;0;0;0;0;
 kernel/uid16;0;0;0;0;0;
 kernel/up;0;0;0;0;0;
 kernel/user-return-notifier;0;0;0;0;0;
-kernel/user;;;;;;.c.xml file not found
+kernel/user;0;0;0;0;0;
 kernel/user_namespace;0;0;0;0;0;
 kernel/utsname;0;0;0;0;0;
 kernel/utsname_sysctl;0;0;0;0;0;
@@ -6160,7 +6160,7 @@ lib/crc-itu-t;0;0;0;0;0;
 lib/crc-t10dif;0;0;0;0;0;
 lib/crc16;0;0;0;0;0;
 lib/crc7;0;0;0;0;0;
-lib/ctype;;;;;;.c.xml file not found
+lib/ctype;0;0;0;0;0;
 lib/debug_locks;0;0;0;0;0;
 lib/debugobjects;0;0;0;0;0;
 lib/dec_and_lock;0;0;0;0;0;
@@ -6169,26 +6169,26 @@ lib/decompress_bunzip2;0;0;0;0;0;
 lib/decompress_inflate;0;0;0;0;0;
 lib/decompress_unlzma;0;0;0;0;0;
 lib/decompress_unlzo;0;0;0;0;0;
-lib/devres;;;;;;.c.xml file not found
+lib/devres;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 lib/div64;0;0;0;0;0;
 lib/dma-debug;0;0;0;0;0;
 lib/dump_stack;0;0;0;0;0;
 lib/dynamic_debug;0;0;0;0;0;
 lib/extable;0;0;0;0;0;
 lib/fault-inject;0;0;0;0;0;
-lib/find_last_bit;;;;;;.c.xml file not found
-lib/find_next_bit;;;;;;.c.xml file not found
+lib/find_last_bit;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+lib/find_next_bit;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 lib/flex_array;0;0;0;0;0;
 lib/gcd;0;0;0;0;0;
 lib/genalloc;0;0;0;0;0;
 lib/halfmd4;0;0;0;0;0;
-lib/hexdump;;;;;;.c.xml file not found
-lib/hweight;;;;;;.c.xml file not found
+lib/hexdump;0;0;0;0;0;
+lib/hweight;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 lib/idr;0;0;0;0;0;
 lib/int_sqrt;0;0;0;0;0;
-lib/iomap;;;;;;.c.xml file not found
-lib/iomap_copy;;;;;;.c.xml file not found
-lib/ioremap;;;;;;.c.xml file not found
+lib/iomap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+lib/iomap_copy;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+lib/ioremap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 lib/irq_regs;0;0;0;0;0;
 lib/is_single_threaded;0;0;0;0;0;
 lib/kasprintf;0;0;0;0;0;
@@ -6226,7 +6226,7 @@ lib/sort;0;0;0;0;0;
 lib/spinlock_debug;0;0;0;0;0;
 lib/string;0;0;0;0;0;
 lib/string_helpers;0;0;0;0;0;
-lib/syscall;;;;;;.c.xml file not found
+lib/syscall;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 lib/textsearch;0;0;0;0;0;
 lib/ts_bm;0;0;0;0;0;
 lib/ts_fsm;0;0;0;0;0;
@@ -6240,16 +6240,16 @@ lib/zlib_inflate/inflate;0;0;0;0;0;
 lib/zlib_inflate/inflate_syms;0;0;0;0;0;
 lib/zlib_inflate/inftrees;0;0;0;0;0;
 lib/zlib_inflate/infutil;0;0;0;0;0;
-mm/backing-dev;;;;;;.c.xml file not found
+mm/backing-dev;0;0;0;0;0;
 mm/bootmem;0;0;0;0;0;
 mm/bounce;0;0;0;0;0;
-mm/dmapool;;;;;;.c.xml file not found
+mm/dmapool;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/fadvise;0;0;0;0;0;
 mm/failslab;0;0;0;0;0;
 mm/filemap;0;0;0;0;0;
 mm/filemap_xip;0;0;0;0;0;
-mm/fremap;;;;;;.c.xml file not found
-mm/highmem;;;;;;.c.xml file not found
+mm/fremap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+mm/highmem;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/hugetlb;0;0;0;0;0;
 mm/hwpoison-inject;0;0;0;0;0;
 mm/init-mm;0;0;0;0;0;
@@ -6258,37 +6258,37 @@ mm/kmemleak-test;0;0;0;0;0;
 mm/kmemleak;0;0;0;0;0;
 mm/ksm;0;0;0;0;0;
 mm/maccess;0;0;0;0;0;
-mm/madvise;;;;;;.c.xml file not found
+mm/madvise;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/memcontrol;0;0;0;0;0;
 mm/memory-failure;0;0;0;0;0;
-mm/memory;;;;;;.c.xml file not found
+mm/memory;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/memory_hotplug;0;0;0;0;0;
 mm/mempolicy;0;0;0;0;0;
 mm/mempool;0;0;0;0;0;
 mm/migrate;0;0;0;0;0;
-mm/mincore;;;;;;.c.xml file not found
-mm/mlock;;;;;;.c.xml file not found
+mm/mincore;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+mm/mlock;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/mm_init;0;0;0;0;0;
-mm/mmap;;;;;;.c.xml file not found
+mm/mmap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/mmu_context;0;0;0;0;0;
 mm/mmu_notifier;0;0;0;0;0;
 mm/mmzone;0;0;0;0;0;
-mm/mprotect;;;;;;.c.xml file not found
-mm/mremap;;;;;;.c.xml file not found
-mm/msync;;;;;;.c.xml file not found
+mm/mprotect;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+mm/mremap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
+mm/msync;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/oom_kill;0;0;0;0;0;
 mm/page-writeback;0;0;0;0;0;
-mm/page_alloc;;;;;;.c.xml file not found
+mm/page_alloc;0;0;0;0;0;
 mm/page_cgroup;0;0;0;0;0;
 mm/page_io;0;0;0;0;0;
 mm/page_isolation;0;0;0;0;0;
-mm/pagewalk;;;;;;.c.xml file not found
+mm/pagewalk;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/percpu;0;0;0;0;0;
 mm/prio_tree;0;0;0;0;0;
 mm/readahead;0;0;0;0;0;
-mm/rmap;;;;;;.c.xml file not found
+mm/rmap;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/shmem;0;0;0;0;0;
-mm/slab;6;0;0;0;6;
+mm/slab;6;0;0;0;6;actual type warning, as usual
 mm/slob;0;0;0;0;0;
 mm/slub;0;0;0;0;0;
 mm/sparse;0;0;0;0;0;
@@ -6297,10 +6297,10 @@ mm/swap_state;0;0;0;0;0;
 mm/swapfile;0;0;0;0;0;
 mm/thrash;0;0;0;0;0;
 mm/truncate;0;0;0;0;0;
-mm/util;;;;;;.c.xml file not found
-mm/vmalloc;;;;;;.c.xml file not found
+mm/util;0;0;0;0;0;
+mm/vmalloc;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 mm/vmscan;0;0;0;0;0;
-mm/vmstat;;;;;;.c.xml file not found
+mm/vmstat;0;0;0;0;0;
 net/802/fc;0;0;0;0;0;
 net/802/fddi;0;0;0;0;0;
 net/802/garp;0;0;0;0;0;
@@ -7224,7 +7224,7 @@ security/keys/request_key_auth;0;0;0;0;0;
 security/keys/sysctl;0;0;0;0;0;
 security/keys/user_defined;0;0;0;0;0;
 security/lsm_audit;0;0;0;0;0;
-security/min_addr;;;;;;.c.xml file not found
+security/min_addr;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 security/security;0;0;0;0;0;
 sound/ac97_bus;0;0;0;0;0;
 sound/core/control;0;0;0;0;0;
@@ -7234,7 +7234,7 @@ sound/core/hwdep;0;0;0;0;0;
 sound/core/info;0;0;0;0;0;
 sound/core/info_oss;0;0;0;0;0;
 sound/core/init;0;0;0;0;0;
-sound/core/isadma;;;;;;.c.xml file not found
+sound/core/isadma;;;;;;.c.xml file not found -- file has contradictory presence condition. existing.
 sound/core/jack;0;0;0;0;0;
 sound/core/memalloc;0;0;0;0;0;
 sound/core/memory;0;0;0;0;0;
