@@ -5,6 +5,7 @@ import java.io.File
 import de.fosd.typechef.lexer.{PartialPPLexer, Token}
 import scala.collection.JavaConversions._
 import de.fosd.typechef.featureexpr.FeatureExprFactory
+import de.fosd.typechef.LexerToken
 
 /**
  * compares two parially preprocessed files if they have equivalent token streams.
@@ -29,10 +30,10 @@ object TokenStreamDiff {
         else if (!new File(args(1)).exists)
             println("parameter " + args(1) + " is not a file")
         else {
-            var r: Seq[Token] = parse(args(0))
-            var s: Seq[Token] = parse(args(1))
+            var r: Seq[LexerToken] = parse(args(0))
+            var s: Seq[LexerToken] = parse(args(1))
 
-            var last = List[Token]()
+            var last = List[LexerToken]()
 
             while (!r.isEmpty) {
 
@@ -91,9 +92,9 @@ object TokenStreamDiff {
     }
 
 
-    def parse(file: String): Seq[Token] = new PartialPPLexer().parseFile(file, file, FeatureExprFactory.default.featureModelFactory.empty)
+    def parse(file: String): Seq[LexerToken] = new PartialPPLexer().parseFile(file, List(), FeatureExprFactory.default.featureModelFactory.empty)
 
-    def removeDead(l: Seq[Token]): Seq[Token] =
+    def removeDead(l: Seq[LexerToken]): Seq[LexerToken] =
         l.filter(t => {
             val dead = t.getFeature.isContradiction(fm)
             if (dead) println("warning token " + t + " is dead")

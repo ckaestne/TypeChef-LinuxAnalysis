@@ -1,12 +1,12 @@
 name := "TypeChef-LinuxAnalysis"
 
-version := "0.3.2"
+version := "0.3.4"
 
 organization := "de.fosd.typechef"
 
 scalaVersion := "2.9.1"
 
-libraryDependencies += "de.fosd.typechef" %% "frontend" % "0.3.2"
+libraryDependencies += "de.fosd.typechef" %% "frontend" % "0.3.4"
 
 libraryDependencies += "gnu.getopt" % "java-getopt" % "1.0.13"
 

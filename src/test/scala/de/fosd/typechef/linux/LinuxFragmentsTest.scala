@@ -11,7 +11,7 @@ import featuremodel.LinuxApproxModel
 class LinuxFragmentsTest {
     val p = new CParser(new LinuxApproxModel().createFeatureModel)
 
-    def assertParseResult(expected: AST, code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]) {
+    def assertParseResult(expected: AST, code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]) {
         val actual = p.parse(code.stripMargin, mainProduction).expectOneResult
         System.out.println(actual)
         actual match {
@@ -24,12 +24,12 @@ class LinuxFragmentsTest {
         }
     }
 
-    def assertParseResult(expected: AST, code: String, productions: List[(TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]]) {
+    def assertParseResult(expected: AST, code: String, productions: List[(TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]]) {
         for (production <- productions)
             assertParseResult(expected, code, production)
     }
 
-    def assertParseable(code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
+    def assertParseable(code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
         val actual = p.parseAny(code.stripMargin, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
@@ -42,7 +42,7 @@ class LinuxFragmentsTest {
         }
     }
 
-    def assertParseAnyResult(expected: Any, code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
+    def assertParseAnyResult(expected: Any, code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
         val actual = p.parseAny(code.stripMargin, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
@@ -55,7 +55,7 @@ class LinuxFragmentsTest {
         }
     }
 
-    def assertParseError(code: String, mainProduction: (TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any], expectErrorMsg: Boolean = false) {
+    def assertParseError(code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any], expectErrorMsg: Boolean = false) {
         val actual = p.parseAny(code.stripMargin, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
@@ -67,7 +67,7 @@ class LinuxFragmentsTest {
         }
     }
 
-    def assertParseError(code: String, productions: List[(TokenReader[TokenWrapper, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]]) {
+    def assertParseError(code: String, productions: List[(TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]]) {
         for (production <- productions)
             assertParseError(code, production)
     }
