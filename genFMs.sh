@@ -5,7 +5,7 @@ echo $thisdir
 linuxDir=l
 
 cd $linuxDir
-for arch in arm x86 alpha  avr32   cris  h8300  Kconfig  m68k   microblaze  mn10300  powerpc  score  sparc    xtensa  blackfin  frv   ia64   m32r     m68knommu  mips        parisc   s390 sh     um
+for arch in arm x86 alpha  avr32   cris  h8300  m68k   microblaze  mn10300  powerpc  score  sparc    xtensa  blackfin  frv   ia64   m32r     m68knommu  mips        parisc   s390 sh     um
 do
   export LINUXVERSION=2.6.33.3
   export ARCH=$arch
