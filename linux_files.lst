@@ -1,3 +1,5 @@
+arch/x86/mm/init_64
+arch/x86/mm/init_32
 arch/x86/crypto/aes_glue
 arch/x86/crypto/crc32c-intel
 arch/x86/crypto/salsa20_glue
@@ -6300,6 +6302,7 @@ mm/util
 mm/vmalloc
 mm/vmscan
 mm/vmstat
+net/compat
 net/802/fc
 net/802/fddi
 net/802/garp
