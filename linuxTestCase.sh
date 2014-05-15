@@ -22,14 +22,14 @@ filesToProcess() {
 # Note: this clears $partialPreprocFlags
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
 system=linux-redhat
-partialPreprocFlags="--bdd -x CONFIG_ \
-  --xtc
+partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
   --include=completedConf.h --include=partialConf.h \
   -c $system.properties \
   --openFeat openFeaturesList.txt \
-  --writePI --recordTiming --lexdebug --errorXML --interface"
+  --writePI --recordTiming --lexdebug --errorXML --interface \
+  --adjustLines"
 
 
 #  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
@@ -135,8 +135,14 @@ export outCSV=linux.csv
 filesToProcess|while read i; do
   if [ ! -f $srcPath/$i.dbg ]; then
     extraFlags="$(flags "$i")"
+#    echo $partialPreprocFlags
+#    echo $extraFlags
     touch $srcPath/$i.dbg
     . ./jcpp.sh $srcPath/$i.c $extraFlags
+    if [ "$1" =  "--one" ]
+    then
+        exit
+    fi
   else
     echo "Skipping $srcPath/$i.c"
   fi

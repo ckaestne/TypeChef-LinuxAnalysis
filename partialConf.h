@@ -565,3 +565,7 @@
 #endif
 
 #undef CONFIG_VIOCD
+
+#ifdef CONFIG_DE2104X
+#define CONFIG_DE2104X_DSL 0
+#endif
