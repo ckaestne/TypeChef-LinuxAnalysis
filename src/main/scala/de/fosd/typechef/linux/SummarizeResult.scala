@@ -12,25 +12,34 @@ object SummarizeResult extends App {
     val dir = args(0);
     val filelist = args(1);
 
+    def error(msg: String, file: String, isComment:Boolean) {
+	if (isComment)
+	    println("COMMENT "+file)
+	else
+	    println("FAIL[%s] %s".format(msg, file))
+    }
+
     for (line<-io.Source.fromFile(filelist).getLines()) {
         val  file = dir+"/"+line+".dbg"
+        val  commentfile = dir+"/"+line+".comment"
+	val commentExists = new File(commentfile).exists
 
         if (!new File(file).exists) {
-            println("FAIL[file does not exist] "+line)
+            error("file does not exist",line,commentExists)
         } else {
             val lines=io.Source.fromFile(file).getLines().toList
 
             if (lines.filterNot(_.trim.length==0).isEmpty)
-		println("FAIL[file empty] "+line)
+		error("file empty",line,commentExists)
             else
             if (!lines.exists(_=="True\tlexing succeeded"))
-                println("FAIL[lexing failed] "+line)
+                error("lexing failed",line,commentExists)
             else
             if (!lines.exists(_=="True\tparsing succeeded"))
-                println("FAIL[parsing failed] "+line)
+                error("parsing failed",line,commentExists)
             else
             if (!lines.exists(_=="No type errors found."))
-                println("FAIL[type checking failed] "+line)
+                error("type checking failed",line,commentExists)
             else
                 println("SUCCESS "+line)
         }
