@@ -11,8 +11,8 @@ do
   export ARCH=$arch
   ../linux-variability-analysis-tools/exconfig/bin/exconf-i386 arch/$arch/Kconfig > $thisdir/pcs/$arch.exconfig
   echo `wc -l $thisdir/pcs/$arch.exconfig`
-  java -cp ../linux-variability-analysis-tools/fm-translation/target/fm-translation-0.5-SNAPSHOT-jar-with-dependencies.jar gsd.linux.tools.TristateTranslationMain $thisdir/pcs/$arch.exconfig $thisdir/pcs/$arch.bool2
-  java -cp ../linux-variability-analysis-tools/fm-translation/target/fm-translation-0.5-SNAPSHOT-jar-with-dependencies.jar gsd.linux.tools.CNFMain $thisdir/pcs/$arch.bool2 $thisdir/pcs/$arch.var2.dimacs
+  ../linux-variability-analysis-tools/fm-translation/run.sh gsd.linux.tools.TristateTranslationMain $thisdir/pcs/$arch.exconfig $thisdir/pcs/$arch.bool2
+  ../linux-variability-analysis-tools/fm-translation/run.sh gsd.linux.tools.CNFMain $thisdir/pcs/$arch.bool2 $thisdir/pcs/$arch.var2.dimacs
 done
 
 cd $thisdir
