@@ -559,3 +559,13 @@
 //set through generated file
 #define __NR_syscall_max 299
 #endif
+
+#if defined(CONFIG_SECURITY) && defined(CONFIG_SECURITY_SELINUX)
+#define CONFIG_LSM_MMAP_MIN_ADDR 65536
+#endif
+
+#undef CONFIG_VIOCD
+
+#ifdef CONFIG_DE2104X
+#define CONFIG_DE2104X_DSL 0
+#endif

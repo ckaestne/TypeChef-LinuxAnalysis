@@ -56,8 +56,11 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
                     // X != m should be probably translated to something like CONFIG_X && !CONFIG_X_2.
                         throw new RuntimeException("Can't handle this case!")
             } |
-            ("(" ~> (ID ~ "==" ~! featVal) <~ ")") ^^ {
+            ("(" ~> (ID ~ "==" ~ featVal) <~ ")") ^^ {
                 case (id ~ _ ~ isModule) => toFeature(id, isModule)
+            } |
+            ("(" ~> (ID ~ "==" ~ stringLit) <~ ")") ^^ {
+               x=> True
             } |
             ID ^^ (id => toFeature(id, true) or toFeature(id, false))
 
@@ -71,6 +74,7 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
     def ID = "[A-Za-z0-9_]*".r
 
     def featVal = ("\"" ~> "(y|m)".r <~ "\"") ^^ (_ == "m")
+    def stringLit = ("\"" ~> "[a-z]*".r <~ "\"") 
 
 
     def main(workingDir: Option[java.io.File], openFeatureList: Option[java.io.File], arg1: java.io.File) {
