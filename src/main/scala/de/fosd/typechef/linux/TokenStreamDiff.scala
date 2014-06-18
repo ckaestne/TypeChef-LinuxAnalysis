@@ -2,10 +2,10 @@ package de.fosd.typechef.linux
 
 import featuremodel.LinuxExclDeadModel
 import java.io.File
-import de.fosd.typechef.lexer.{PartialPPLexer, Token}
 import scala.collection.JavaConversions._
 import de.fosd.typechef.featureexpr.FeatureExprFactory
 import de.fosd.typechef.LexerToken
+import de.fosd.typechef.lexer.LexerFrontend
 
 /**
  * compares two parially preprocessed files if they have equivalent token streams.
@@ -92,7 +92,7 @@ object TokenStreamDiff {
     }
 
 
-    def parse(file: String): Seq[LexerToken] = new PartialPPLexer().parseFile(file, List(), FeatureExprFactory.default.featureModelFactory.empty)
+    def parse(file: String): Seq[LexerToken] = new LexerFrontend().parseFile(file, List(), FeatureExprFactory.default.featureModelFactory.empty)
 
     def removeDead(l: Seq[LexerToken]): Seq[LexerToken] =
         l.filter(t => {

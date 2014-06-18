@@ -12,6 +12,7 @@ object LinuxSettings {
 
     val partialConfFile = "partialConf.h"
     val featureModelFile = "2.6.33.3-2var.dimacs"
+    val featureModelFile2 = "pcs/x86.dimacs"
     val openFeatureList = "openFeaturesList.txt"
 
     val pathToLinuxSource = "l"

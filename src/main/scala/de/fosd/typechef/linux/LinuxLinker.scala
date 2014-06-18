@@ -4,6 +4,7 @@ import java.io.File
 import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureExprParser, FeatureModel, FeatureExprFactory}
 import de.fosd.typechef.typesystem.linker._
 import de.fosd.typechef.parser._
+import de.fosd.typechef.error.Position
 
 
 object LinuxLinker extends com.github.paulp.optional.Application {
@@ -17,7 +18,7 @@ object LinuxLinker extends com.github.paulp.optional.Application {
         assert(featureModelDimacs.exists(), "feature model file does not exist")
         assert(fileList.exists(), "file list file does not exist")
 
-        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile_2Var(featureModelDimacs.getAbsolutePath) //.and(fexprParser.parseFile(new File("approx.fm")))
+        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(featureModelDimacs.getAbsolutePath) //.and(fexprParser.parseFile(new File("approx.fm")))
         val files = io.Source.fromFile(fileList).getLines().toList
 
         val filesByDirectory = files.groupBy(f => f.take(f.lastIndexOf("/")))
@@ -159,7 +160,7 @@ object LinuxDirLinker extends com.github.paulp.optional.Application {
         assert(featureModelDimacs.exists(), "feature model file does not exist")
         assert(fileList.exists(), "file list file does not exist")
 
-        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile_2Var(featureModelDimacs.getAbsolutePath).and(fexprParser.parseFile(new File("approx.fm")))
+        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(featureModelDimacs.getAbsolutePath).and(fexprParser.parseFile(new File("approx.fm")))
 
         val files = io.Source.fromFile(fileList).getLines().toList
 
