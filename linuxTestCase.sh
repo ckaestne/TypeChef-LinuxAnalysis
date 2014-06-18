@@ -24,8 +24,8 @@ filesToProcess() {
 system=linux-redhat
 partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   --featureModelFExpr approx.fm \
-  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
-  --include=completedConf.h --include=partialConf.h \
+  --typeSystemFeatureModelDimacs=pcs/x86.dimacs \
+  --include=completedConf.h --include=pcs/x86.nonbool.h \
   -c $system.properties \
   --openFeat openFeaturesList.txt \
   --writePI --recordTiming --lexdebug --errorXML --interface \

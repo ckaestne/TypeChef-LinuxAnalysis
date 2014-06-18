@@ -5,7 +5,6 @@ import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureModelFactory, Fe
 
 
 /**
- * small feature model, used during parsing
  */
 class LinuxDimacsModel {
     protected def loadDimacsModel(fm: String): FeatureModel = {
@@ -20,6 +19,8 @@ class LinuxDimacsModel {
     def createFeatureModel = loadDimacsModel(LinuxSettings.featureModelFile)
 
     def createFeatureModel2 = loadDimacsModel(LinuxSettings.featureModelFile2)
+    
+    def createFeatureModelArm = loadDimacsModel("pcs/arm.dimacs")
 
 
 }

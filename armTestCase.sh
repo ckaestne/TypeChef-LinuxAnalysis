@@ -21,8 +21,8 @@ system=linux-redhat
 partialPreprocFlags="-x CONFIG_ \
   --xtc
   --featureModelFExpr approx.arm.fm \
-  --typeSystemFeatureModelDimacs=pcs/arm.var2.dimacs \
-  --include=partialConf.arm.h \
+  --typeSystemFeatureModelDimacs=pcs/arm.dimacs \
+  --include=pcs/arm.nonbool.h \
   -c $system.properties \
   --writePI --recordTiming --lexdebug --errorXML --interface"
 
