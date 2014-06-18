@@ -8,16 +8,18 @@ import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureModelFactory, Fe
  * small feature model, used during parsing
  */
 class LinuxDimacsModel {
-    protected def loadDimacsModel: FeatureModel = {
+    protected def loadDimacsModel(fm: String): FeatureModel = {
         println("loading feature model...");
         val start = System.currentTimeMillis
-        val featureModel = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile_2Var(LinuxSettings.featureModelFile)
+        val featureModel = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(fm)
         println("done. [" + (System.currentTimeMillis - start) + " ms]")
         featureModel
     }
 
 
-    def createFeatureModel = loadDimacsModel
+    def createFeatureModel = loadDimacsModel(LinuxSettings.featureModelFile)
+
+    def createFeatureModel2 = loadDimacsModel(LinuxSettings.featureModelFile2)
 
 
 }

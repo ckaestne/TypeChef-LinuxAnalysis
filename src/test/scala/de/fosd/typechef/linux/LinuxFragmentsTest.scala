@@ -7,12 +7,17 @@ import de.fosd.typechef.parser._
 import de.fosd.typechef.parser.c._
 import de.fosd.typechef.conditional.Opt
 import featuremodel.LinuxApproxModel
+import de.fosd.typechef.lexer.LexerFrontend
 
 class LinuxFragmentsTest {
     val p = new CParser(new LinuxApproxModel().createFeatureModel)
 
+    import scala.collection.JavaConversions._
+
     def assertParseResult(expected: AST, code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[AST]) {
-        val actual = p.parse(code.stripMargin, mainProduction).expectOneResult
+        val tokens = new LexerFrontend().parse(code.stripMargin)
+        val in = CLexerAdapter.prepareTokens(tokens)
+        val actual = p.parse(in, mainProduction).expectOneResult
         System.out.println(actual)
         actual match {
             case p.Success(ast, unparsed) => {
@@ -30,7 +35,9 @@ class LinuxFragmentsTest {
     }
 
     def assertParseable(code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
-        val actual = p.parseAny(code.stripMargin, mainProduction)
+        val tokens = new LexerFrontend().parse(code.stripMargin)
+        val in = CLexerAdapter.prepareTokens(tokens)
+        val actual = p.parseAny(in, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
             case p.Success(ast, unparsed) => {
@@ -43,7 +50,9 @@ class LinuxFragmentsTest {
     }
 
     def assertParseAnyResult(expected: Any, code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any]) {
-        val actual = p.parseAny(code.stripMargin, mainProduction)
+        val tokens = new LexerFrontend().parse(code.stripMargin)
+        val in = CLexerAdapter.prepareTokens(tokens)
+        val actual = p.parseAny(in, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
             case p.Success(ast, unparsed) => {
@@ -56,7 +65,9 @@ class LinuxFragmentsTest {
     }
 
     def assertParseError(code: String, mainProduction: (TokenReader[CToken, CTypeContext], FeatureExpr) => p.MultiParseResult[Any], expectErrorMsg: Boolean = false) {
-        val actual = p.parseAny(code.stripMargin, mainProduction)
+        val tokens = new LexerFrontend().parse(code.stripMargin)
+        val in = CLexerAdapter.prepareTokens(tokens)
+        val actual = p.parseAny(in, mainProduction)
         System.out.println(actual)
         (actual: @unchecked) match {
             case p.Success(ast, unparsed) => {

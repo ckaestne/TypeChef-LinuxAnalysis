@@ -18,6 +18,7 @@ object CheckFeatureExpr extends App {
 
     val fmApprox = new LinuxApproxModel().createFeatureModel
     val fmDimacs = new LinuxDimacsModel().createFeatureModel
+    val fmDimacsNew = new LinuxDimacsModel().createFeatureModel2
 
     for (fexprStr <- fexprStrs; if (!fexprStr.trim.isEmpty)) {
 
@@ -32,7 +33,9 @@ object CheckFeatureExpr extends App {
 
         println("Approx.fm: " + status(fexpr, fmApprox))
 
-        println("Dimacs: " + status(fexpr, fmDimacs))
+        println("Dimacs.old: " + status(fexpr, fmDimacs))
+
+        println("Dimacs: " + status(fexpr, fmDimacsNew))
 
         val undertakerFMgen = new UndertakerFMParser("x86.model")
         val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
