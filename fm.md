@@ -1,4 +1,4 @@
-# reading the feature model _2var file:
+# reading the feature model _2var file (depricated):
 
 
 Variables `X` and `X_m` work as follows:
