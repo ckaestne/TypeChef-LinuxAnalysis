@@ -27,7 +27,10 @@ object CheckFeatureExpr extends App {
 
 
         def status(fexpr: FeatureExpr, fm: FeatureModel): String =
-            (if (fexpr.isSatisfiable(fm)) "SAT" else "!SAT") + ", " + (if (fexpr.isTautology(fm)) "TAU" else "!TAU")
+	    if (!fexpr.isSatisfiable(fm)) "contradiction"
+	    else if (fexpr.isTautology(fm)) "tautology"
+	    else "satisfiable"
+//            (if (fexpr.isSatisfiable(fm)) "SAT" else "!SAT") + ", " + (if (fexpr.isTautology(fm)) "TAU" else "!TAU")
 
         println("Plain: " + status(fexpr, NoFeatureModel))
 
