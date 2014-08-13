@@ -27,16 +27,16 @@
 #define CONFIG_TIPC_CLUSTERS 1
 
 #if defined(CONFIG_DEFAULT_SECURITY_SELINUX)
-  #define CONFIG_DEFAULT_SECURITY selinux
+  #define CONFIG_DEFAULT_SECURITY "selinux"
 #endif
 #if (defined(CONFIG_DEFAULT_SECURITY_SMACK) && !defined(CONFIG_DEFAULT_SECURITY_SELINUX))
-  #define CONFIG_DEFAULT_SECURITY smack
+  #define CONFIG_DEFAULT_SECURITY "smack"
 #endif
 #if (!defined(CONFIG_DEFAULT_SECURITY_SELINUX) && !defined(CONFIG_DEFAULT_SECURITY_SMACK) && defined(CONFIG_DEFAULT_SECURITY_TOMOYO))
-  #define CONFIG_DEFAULT_SECURITY tomoyo
+  #define CONFIG_DEFAULT_SECURITY "tomoyo"
 #endif
 #if (!defined(CONFIG_DEFAULT_SECURITY_SELINUX) && !defined(CONFIG_DEFAULT_SECURITY_SMACK) && !defined(CONFIG_DEFAULT_SECURITY_TOMOYO) && defined(CONFIG_DEFAULT_SECURITY_DAC))
-  #define CONFIG_DEFAULT_SECURITY 
+  #define CONFIG_DEFAULT_SECURITY ""
 #endif
 
 #define CONFIG_SERIAL_TXX9_NR_UARTS 6
@@ -170,7 +170,7 @@
 
 #define CONFIG_PINT2_ASSIGN 0x07000101
 
-#define CONFIG_SYMBOL_PREFIX _
+#define CONFIG_SYMBOL_PREFIX "_"
 
 #define CONFIG_LEGACY_PTY_COUNT 256
 
@@ -203,7 +203,7 @@
 
 #define CONFIG_IRQ_DMA1_8 8
 
-#define CONFIG_CMDLINE console=ttyBF0,57600
+#define CONFIG_CMDLINE "console=ttyBF0,57600"
 
 #define CONFIG_DMA3_SPORT1RX 9
 
@@ -261,7 +261,7 @@
 
 #define CONFIG_MSNDCLAS_MEM D0000
 
-#define CONFIG_PSS_BOOT_FILE /etc/sound/dsp001.ld
+#define CONFIG_PSS_BOOT_FILE "/etc/sound/dsp001.ld"
 
 #define CONFIG_PM_WAKEUP_GPIO_NUMBER 2
 
@@ -330,7 +330,7 @@
 
 #define CONFIG_IRQ_MXVR_ERR 11
 
-#define CONFIG_MSNDCLAS_PERM_FILE /etc/sound/msndperm.bin
+#define CONFIG_MSNDCLAS_PERM_FILE "/etc/sound/msndperm.bin"
 
 #define CONFIG_IMA_MEASURE_PCR_IDX 10
 
@@ -398,22 +398,22 @@
 #define CONFIG_IRQ_DMA2_4 9
 
 #if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_WESTWOOD) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
-  #define CONFIG_DEFAULT_TCP_CONG westwood
+  #define CONFIG_DEFAULT_TCP_CONG "westwood"
 #endif
 #if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_HTCP) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
-  #define CONFIG_DEFAULT_TCP_CONG htcp
+  #define CONFIG_DEFAULT_TCP_CONG "htcp"
 #endif
 #if (defined(CONFIG_INET) && defined(CONFIG_DEFAULT_BIC) && defined(CONFIG_NET))
-  #define CONFIG_DEFAULT_TCP_CONG bic
+  #define CONFIG_DEFAULT_TCP_CONG "bic"
 #endif
 #if ((defined(CONFIG_INET) && defined(CONFIG_DEFAULT_CUBIC) && defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET))) || (defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_RENO) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET))))
-  #define CONFIG_DEFAULT_TCP_CONG cubic
+  #define CONFIG_DEFAULT_TCP_CONG "cubic"
 #endif
 #if (defined(CONFIG_DEFAULT_RENO) && defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
-  #define CONFIG_DEFAULT_TCP_CONG reno
+  #define CONFIG_DEFAULT_TCP_CONG "reno"
 #endif
 #if (defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && defined(CONFIG_DEFAULT_VEGAS) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
-  #define CONFIG_DEFAULT_TCP_CONG vegas
+  #define CONFIG_DEFAULT_TCP_CONG "vegas"
 #endif
 
 #define CONFIG_DE2104X_DSL 0
@@ -438,7 +438,7 @@
 
 #define CONFIG_IRQ_UART3_ERR 7
 
-#define CONFIG_KGDB_TESTS_BOOT_STRING V1F100
+#define CONFIG_KGDB_TESTS_BOOT_STRING "V1F100"
 
 #define CONFIG_MSNDPIN_IO 290
 
@@ -448,7 +448,7 @@
 
 #define CONFIG_PANEL_PARPORT 0
 
-#define CONFIG_KERNELVERSION 2.6.30-vamos
+#define CONFIG_KERNELVERSION "2.6.30-vamos"
 
 #define CONFIG_UART1_RTS_PIN -1
 
@@ -520,9 +520,9 @@
 
 #define CONFIG_IRQ_SPORT2_ERROR 7
 
-#define CONFIG_MSNDPIN_INIT_FILE /etc/sound/pndspini.bin
+#define CONFIG_MSNDPIN_INIT_FILE "/etc/sound/pndspini.bin"
 
-#if ((!defined(CONFIG_PLL_BYPASS) && defined(CONFIG_BFIN533_EZKIT) && defined(CONFIG_BFIN_KERNEL_CLOCK)) || ((defined(CONFIG_PLL_BYPASS) || !defined(CONFIG_BFIN533_STAMP)) && defined(CONFIG_BFIN533_BLUETECHNIX_CM) && !defined(CONFIG_PLL_BYPASS) && defined(CONFIG_BFIN_KERNEL_CLOCK) && (defined(CONFIG_PLL_BYPASS) || (!defined(CONFIG_BFIN538_EZKIT) && !defined(CONFIG_BFIN548_EZKIT) && !defined(CONFIG_BFIN527_EZKIT) && !defined(CONFIG_BFIN548_BLUETECHNIX_CM) && !defined(CONFIG_BFIN537_STAMP)) || !defined(CONFIG_BFIN_KERNEL_CLOCK))))
+#if ((!defined(CONFIG_PLL_BYPASS) && defined(CONFIG_BFIN533_EZKIT) && defined(CONFIG_BFIN_KERNEL_CLOCK)) || (defined(CONFIG_BFIN533_BLUETECHNIX_CM) && !defined(CONFIG_PLL_BYPASS) && defined(CONFIG_BFIN_KERNEL_CLOCK) && (defined(CONFIG_PLL_BYPASS) || (!defined(CONFIG_BFIN538_EZKIT) && !defined(CONFIG_BFIN548_EZKIT) && !defined(CONFIG_BFIN527_EZKIT) && !defined(CONFIG_BFIN548_BLUETECHNIX_CM) && !defined(CONFIG_BFIN537_STAMP)) || !defined(CONFIG_BFIN_KERNEL_CLOCK)) && (defined(CONFIG_PLL_BYPASS) || !defined(CONFIG_BFIN533_STAMP) || !defined(CONFIG_BFIN_KERNEL_CLOCK))))
   #define CONFIG_VCO_MULT 22
 #endif
 #if (!defined(CONFIG_PLL_BYPASS) && defined(CONFIG_BFIN533_STAMP) && defined(CONFIG_BFIN_KERNEL_CLOCK) && (defined(CONFIG_PLL_BYPASS) || !defined(CONFIG_BFIN533_EZKIT) || !defined(CONFIG_BFIN_KERNEL_CLOCK)))
@@ -583,13 +583,13 @@
 #define CONFIG_IRQ_PPI0_ERROR 7
 
 #if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_DEADLINE))
-  #define CONFIG_DEFAULT_IOSCHED deadline
+  #define CONFIG_DEFAULT_IOSCHED "deadline"
 #endif
 #if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_CFQ) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
-  #define CONFIG_DEFAULT_IOSCHED cfq
+  #define CONFIG_DEFAULT_IOSCHED "cfq"
 #endif
 #if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_NOOP) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_CFQ)) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
-  #define CONFIG_DEFAULT_IOSCHED noop
+  #define CONFIG_DEFAULT_IOSCHED "noop"
 #endif
 
 #define CONFIG_IRQ_PROG0_INTA 11
@@ -643,7 +643,7 @@
 
 #define CONFIG_IRQ_SPI2 10
 
-#define CONFIG_ARCH blackfin
+#define CONFIG_ARCH "blackfin"
 
 #define CONFIG_IRQ_CAN0_TX 11
 
@@ -759,9 +759,9 @@
 
 #define CONFIG_IRQ_PROG1_INTA 11
 
-#define CONFIG_TRIX_BOOT_FILE /etc/sound/trxpro.hex
+#define CONFIG_TRIX_BOOT_FILE "/etc/sound/trxpro.hex"
 
-#define CONFIG_PANEL_BOOT_MESSAGE 
+#define CONFIG_PANEL_BOOT_MESSAGE ""
 
 #define CONFIG_IRQ_PIXC_IN1 8
 
@@ -784,11 +784,11 @@
 
 #define CONFIG_IRQ_TWI 10
 
-#define CONFIG_INITRAMFS_SOURCE 
+#define CONFIG_INITRAMFS_SOURCE ""
 
 #define CONFIG_IRQ_DMA2_9 9
 
-#define CONFIG_UEVENT_HELPER_PATH /sbin/hotplug
+#define CONFIG_UEVENT_HELPER_PATH "/sbin/hotplug"
 
 #define CONFIG_DVB_MAX_ADAPTERS 8
 
@@ -829,7 +829,7 @@
 
 #define CONFIG_IRQ_DMAC0_ERR 7
 
-#define CONFIG_MSNDCLAS_INIT_FILE /etc/sound/msndinit.bin
+#define CONFIG_MSNDCLAS_INIT_FILE "/etc/sound/msndinit.bin"
 
 #if (defined(CONFIG_BF52x) || defined(CONFIG_BF51x) || (!defined(CONFIG_BF52x) && !defined(CONFIG_BF51x) && !defined(CONFIG_BF561) && (defined(CONFIG_BF534) || defined(CONFIG_BF536) || defined(CONFIG_BF537))) || (!defined(CONFIG_BF537) && !defined(CONFIG_BF536) && !defined(CONFIG_BF561) && !defined(CONFIG_BF51x) && (defined(CONFIG_BF534) || defined(CONFIG_BF536) || defined(CONFIG_BF537)) && !defined(CONFIG_BF54x) && !defined(CONFIG_BF52x) && !defined(CONFIG_BF534)))
   #define CONFIG_IRQ_TIMER3 12
@@ -913,13 +913,13 @@
 #endif
 
 #if ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && defined(CONFIG_WIRELESS) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && defined(CONFIG_WIRELESS)) || (defined(CONFIG_WIRELESS) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)) || (defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE))))))))
-  #define CONFIG_MAC80211_RC_DEFAULT minstrel
+  #define CONFIG_MAC80211_RC_DEFAULT "minstrel"
 #endif
 #if ((!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID) && defined(CONFIG_WIRELESS) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID) && defined(CONFIG_WIRELESS)) || (defined(CONFIG_WIRELESS) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID)) || (defined(CONFIG_MAC80211_RC_DEFAULT_PID) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))))))))
-  #define CONFIG_MAC80211_RC_DEFAULT pid
+  #define CONFIG_MAC80211_RC_DEFAULT "pid"
 #endif
 #if ((!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_PID) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)) && ((defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211)) || (defined(CONFIG_WIRELESS) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)))
-  #define CONFIG_MAC80211_RC_DEFAULT 
+  #define CONFIG_MAC80211_RC_DEFAULT ""
 #endif
 
 #define CONFIG_IRQ_MDMAS1 13
@@ -976,7 +976,7 @@
 
 #define CONFIG_DMA_ERROR 7
 
-#define CONFIG_FAT_DEFAULT_IOCHARSET iso8859-1
+#define CONFIG_FAT_DEFAULT_IOCHARSET "iso8859-1"
 
 #define CONFIG_SECURITY_SELINUX_POLICYDB_VERSION_MAX_VALUE 19
 
@@ -989,7 +989,7 @@
   #define CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE 1
 #endif
 
-#define CONFIG_RTC_HCTOSYS_DEVICE rtc0
+#define CONFIG_RTC_HCTOSYS_DEVICE "rtc0"
 
 #define CONFIG_MEM_SDGCTL 0x0
 
@@ -1042,7 +1042,7 @@
 
 #define CONFIG_IRQ_DMA1_WRRD1 8
 
-#define CONFIG_PM_STD_PARTITION 
+#define CONFIG_PM_STD_PARTITION ""
 
 #define CONFIG_SERIAL_8250_NR_UARTS 4
 
@@ -1092,7 +1092,7 @@
 
 #define CONFIG_MSNDPIN_IRQ 5
 
-#define CONFIG_MSNDPIN_PERM_FILE /etc/sound/pndsperm.bin
+#define CONFIG_MSNDPIN_PERM_FILE "/etc/sound/pndsperm.bin"
 
 #define CONFIG_MTD_PHYSMAP_START 0x8000000
 
@@ -1106,7 +1106,7 @@
 
 #define CONFIG_PINT3_ASSIGN 0x02020303
 
-#define CONFIG_EXTRA_FIRMWARE_DIR firmware
+#define CONFIG_EXTRA_FIRMWARE_DIR "firmware"
 
 #define CONFIG_LSM_MMAP_MIN_ADDR 65536
 
@@ -1116,9 +1116,9 @@
 
 #define CONFIG_IRQ_DMA2_5 9
 
-#define CONFIG_NLS_DEFAULT iso8859-1
+#define CONFIG_NLS_DEFAULT "iso8859-1"
 
-#define CONFIG_SMB_NLS_REMOTE cp437
+#define CONFIG_SMB_NLS_REMOTE "cp437"
 
 #define CONFIG_MSNDPIN_MPU_IO 0
 
@@ -1128,7 +1128,7 @@
 
 #define CONFIG_AIC7XXX_DEBUG_MASK 0
 
-#define CONFIG_DEFCONFIG_LIST /lib/modules/$UNAME_RELEASE/.config
+#define CONFIG_DEFCONFIG_LIST "/lib/modules/$UNAME_RELEASE/.config"
 
 #define CONFIG_IRQ_KEY 8
 
