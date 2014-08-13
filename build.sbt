@@ -8,6 +8,8 @@ scalaVersion := "2.10.4"
 
 libraryDependencies += "de.fosd.typechef" % "frontend_2.10" % "0.3.6"
 
+libraryDependencies += "de.fosd.typechef" % "javabdd_repackaged" % "1.0b2"
+
 libraryDependencies += "gnu.getopt" % "java-getopt" % "1.0.13"
 
 libraryDependencies += "junit" % "junit" % "4.8.2" % "test"
