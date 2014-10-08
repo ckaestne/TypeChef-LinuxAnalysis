@@ -3,10 +3,10 @@
 thisdir=`pwd`
 echo $thisdir
 linuxDir=l
-dumpconf=$thisdir/../undertaker/scripts/kconfig/dumpconf
+dumpconf=$thisdir/../kconfigreader/binary/dumpconf
 
 cd $linuxDir
-for arch in arm x86 alpha  avr32   cris  h8300  m68k   microblaze  mn10300  powerpc  score  sparc    xtensa  blackfin  frv   ia64   m32r     m68knommu  mips        parisc   s390 sh   
+for arch in x86 arm alpha  avr32   cris  h8300  m68k   microblaze  mn10300  powerpc  score  sparc    xtensa  blackfin  frv   ia64   m32r     m68knommu  mips        parisc   s390 sh   
 do
   export LINUXVERSION=2.6.33.3
   export ARCH=$arch

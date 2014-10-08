@@ -80,10 +80,10 @@
 #if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_DEADLINE))
   #define CONFIG_DEFAULT_IOSCHED "deadline"
 #endif
-#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_CFQ) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
+#if (defined(CONFIG_DEFAULT_CFQ) && defined(CONFIG_BLOCK) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
   #define CONFIG_DEFAULT_IOSCHED "cfq"
 #endif
-#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_NOOP) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_CFQ)) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
+#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_NOOP) && (!defined(CONFIG_DEFAULT_CFQ) || !defined(CONFIG_BLOCK)) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
   #define CONFIG_DEFAULT_IOSCHED "noop"
 #endif
 
@@ -118,22 +118,22 @@
 #endif
 
 #undef CONFIG_DEFAULT_TCP_CONG
-#if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_WESTWOOD) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
+#if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_WESTWOOD) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC)) && defined(CONFIG_INET))
   #define CONFIG_DEFAULT_TCP_CONG "westwood"
 #endif
-#if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_HTCP) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
+#if (defined(CONFIG_NET) && defined(CONFIG_DEFAULT_HTCP) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC)) && defined(CONFIG_INET))
   #define CONFIG_DEFAULT_TCP_CONG "htcp"
 #endif
-#if (defined(CONFIG_INET) && defined(CONFIG_DEFAULT_BIC) && defined(CONFIG_NET))
+#if (defined(CONFIG_NET) && defined(CONFIG_INET) && defined(CONFIG_DEFAULT_BIC))
   #define CONFIG_DEFAULT_TCP_CONG "bic"
 #endif
-#if ((defined(CONFIG_INET) && defined(CONFIG_DEFAULT_CUBIC) && defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET))) || (defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_RENO) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET))))
+#if ((defined(CONFIG_NET) && defined(CONFIG_INET) && defined(CONFIG_DEFAULT_CUBIC) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC))) || (defined(CONFIG_NET) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_RENO)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC)) && defined(CONFIG_INET)))
   #define CONFIG_DEFAULT_TCP_CONG "cubic"
 #endif
-#if (defined(CONFIG_DEFAULT_RENO) && defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS) || !defined(CONFIG_NET)) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
+#if (defined(CONFIG_DEFAULT_RENO) && defined(CONFIG_NET) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_VEGAS)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_WESTWOOD)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC)) && defined(CONFIG_INET))
   #define CONFIG_DEFAULT_TCP_CONG "reno"
 #endif
-#if (defined(CONFIG_NET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC) || !defined(CONFIG_NET)) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP) || !defined(CONFIG_NET)) && defined(CONFIG_DEFAULT_VEGAS) && defined(CONFIG_INET) && (!defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC) || !defined(CONFIG_NET)))
+#if (defined(CONFIG_NET) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_BIC)) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_HTCP)) && defined(CONFIG_DEFAULT_VEGAS) && (!defined(CONFIG_NET) || !defined(CONFIG_INET) || !defined(CONFIG_DEFAULT_CUBIC)) && defined(CONFIG_INET))
   #define CONFIG_DEFAULT_TCP_CONG "vegas"
 #endif
 
@@ -143,13 +143,16 @@
 
 #define CONFIG_DM9000_DEBUGLEVEL 4
 
-#undef CONFIG_DUMMY_CONSOLE_COLUMNS
+//WARNING: no defaults for CONFIG_DUMMY_CONSOLE_COLUMNS
+#define CONFIG_DUMMY_CONSOLE_COLUMNS 0
 
-#undef CONFIG_DUMMY_CONSOLE_ROWS
+//WARNING: no defaults for CONFIG_DUMMY_CONSOLE_ROWS
+#define CONFIG_DUMMY_CONSOLE_ROWS 0
 
 #define CONFIG_DVB_MAX_ADAPTERS 8
 
-#undef CONFIG_EXTRA_FIRMWARE
+//WARNING: no defaults for CONFIG_EXTRA_FIRMWARE
+#define CONFIG_EXTRA_FIRMWARE ""
 
 #define CONFIG_EXTRA_FIRMWARE_DIR "firmware"
 
@@ -253,22 +256,24 @@
 
 #define CONFIG_LEGACY_PTY_COUNT 256
 
-#undef CONFIG_LOCALVERSION
+//WARNING: no defaults for CONFIG_LOCALVERSION
+#define CONFIG_LOCALVERSION ""
 
 #define CONFIG_LOG_BUF_SHIFT 17
 
 #define CONFIG_LSM_MMAP_MIN_ADDR 65536
 
-#undef CONFIG_M32R_CFC_NUM
+//WARNING: no defaults for CONFIG_M32R_CFC_NUM
+#define CONFIG_M32R_CFC_NUM 0
 
 #undef CONFIG_MAC80211_RC_DEFAULT
-#if ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && defined(CONFIG_WIRELESS) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && defined(CONFIG_WIRELESS)) || (defined(CONFIG_WIRELESS) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)) || (defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE))))))))
+#if ((defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)) || (defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) && ((defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211)) || (defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE))))))
   #define CONFIG_MAC80211_RC_DEFAULT "minstrel"
 #endif
-#if ((!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID) && defined(CONFIG_WIRELESS) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID) && defined(CONFIG_WIRELESS)) || (defined(CONFIG_WIRELESS) && ((defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID)) || (defined(CONFIG_MAC80211_RC_DEFAULT_PID) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))))))))
+#if ((!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || ((!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211)))) && (!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)) && ((defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211) && defined(CONFIG_MAC80211_RC_DEFAULT_PID)) || (defined(CONFIG_MAC80211_RC_DEFAULT_PID) && ((defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211)) || (defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))))))
   #define CONFIG_MAC80211_RC_DEFAULT "pid"
 #endif
-#if ((!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_NET) || ((!defined(CONFIG_WIRELESS) || ((!defined(CONFIG_MAC80211_RC_DEFAULT_PID) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID) || !defined(CONFIG_WIRELESS)))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)) && ((defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211) && defined(CONFIG_NET)) || (defined(CONFIG_NET) && ((defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211)) || (defined(CONFIG_WIRELESS) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))))) && (!defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_NET)))
+#if ((!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL)) && (!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211) || !defined(CONFIG_MAC80211_RC_DEFAULT_PID)) && ((defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && defined(CONFIG_MAC80211)) || (defined(CONFIG_NET) && defined(CONFIG_WIRELESS) && (defined(CONFIG_MAC80211) || defined(CONFIG_MAC80211_MODULE)))) && (!defined(CONFIG_MAC80211_RC_DEFAULT_PID) || ((!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211)))) && (!defined(CONFIG_MAC80211_RC_DEFAULT_MINSTREL) || ((!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || (!defined(CONFIG_MAC80211) && !defined(CONFIG_MAC80211_MODULE))) && (!defined(CONFIG_NET) || !defined(CONFIG_WIRELESS) || !defined(CONFIG_MAC80211)))))
   #define CONFIG_MAC80211_RC_DEFAULT ""
 #endif
 
@@ -325,10 +330,10 @@
 #define CONFIG_MTD_DILNETPC_BOOTSIZE 0x80000
 
 #undef CONFIG_MTD_DOCPROBE_ADDRESS
-#if ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD_DOCPROBE_ADVANCED) && defined(CONFIG_MTD)) || (((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)))) && (defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD))))
+#if ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0x0000
 #endif
-#if ((((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED))) || (!defined(CONFIG_MTD_MODULE) && !defined(CONFIG_MTD))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED) || !defined(CONFIG_MTD)) && ((defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED) && defined(CONFIG_MTD)) || (((defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)))) && (defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD)))))
+#if ((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (((!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE)) || (!defined(CONFIG_MTD) && !defined(CONFIG_MTD_MODULE))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE)))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE)))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0
 #endif
 
@@ -379,14 +384,15 @@
 #if (defined(CONFIG_MAXSMP) && defined(CONFIG_SMP))
   #define CONFIG_NR_CPUS 4096
 #endif
-#if (defined(CONFIG_SMP) && (defined(CONFIG_X86_BIGSMP) || defined(CONFIG_X86_ES7000) || defined(CONFIG_X86_SUMMIT) || defined(CONFIG_X86_NUMAQ)) && !defined(CONFIG_MAXSMP))
+#if (defined(CONFIG_SMP) && (defined(CONFIG_X86_NUMAQ) || defined(CONFIG_X86_SUMMIT) || defined(CONFIG_X86_BIGSMP) || defined(CONFIG_X86_ES7000)) && !defined(CONFIG_MAXSMP))
   #define CONFIG_NR_CPUS 32
 #endif
-#if (defined(CONFIG_SMP) && !defined(CONFIG_MAXSMP) && (!defined(CONFIG_SMP) || (!defined(CONFIG_X86_BIGSMP) && !defined(CONFIG_X86_ES7000) && !defined(CONFIG_X86_SUMMIT) && !defined(CONFIG_X86_NUMAQ))))
+#if (defined(CONFIG_SMP) && !defined(CONFIG_MAXSMP) && (!defined(CONFIG_SMP) || (!defined(CONFIG_X86_NUMAQ) && !defined(CONFIG_X86_SUMMIT) && !defined(CONFIG_X86_BIGSMP) && !defined(CONFIG_X86_ES7000))))
   #define CONFIG_NR_CPUS 8
 #endif
 
-#undef CONFIG_NR_QUICK
+//WARNING: no defaults for CONFIG_NR_QUICK
+#define CONFIG_NR_QUICK 0
 
 #define CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK 0
 
@@ -541,7 +547,8 @@
 
 #define CONFIG_SERIAL_MPC52xx_CONSOLE_BAUD 9600
 
-#undef CONFIG_SERIAL_SAMSUNG_UARTS
+//WARNING: no defaults for CONFIG_SERIAL_SAMSUNG_UARTS
+#define CONFIG_SERIAL_SAMSUNG_UARTS 0
 
 #define CONFIG_SERIAL_SH_SCI_NR_UARTS 2
 
@@ -576,19 +583,19 @@
 #endif
 
 #undef CONFIG_SPORT_BAUD_RATE
-#if ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) && defined(CONFIG_HAS_IOMEM)) || (defined(CONFIG_HAS_IOMEM) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))))))
+#if ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT)) || (defined(CONFIG_HAS_IOMEM) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))))))
   #define CONFIG_SPORT_BAUD_RATE 115200
 #endif
-#if ((!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || !defined(CONFIG_HAS_IOMEM)) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) && defined(CONFIG_HAS_IOMEM)) || (defined(CONFIG_HAS_IOMEM) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))))
+#if ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT)) || (defined(CONFIG_HAS_IOMEM) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))))
   #define CONFIG_SPORT_BAUD_RATE 57600
 #endif
-#if (((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) && defined(CONFIG_HAS_IOMEM)) || (defined(CONFIG_HAS_IOMEM) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)))))
+#if ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT)) || (defined(CONFIG_HAS_IOMEM) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))))
   #define CONFIG_SPORT_BAUD_RATE 38400
 #endif
-#if ((!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || !defined(CONFIG_HAS_IOMEM)) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) && defined(CONFIG_HAS_IOMEM)) || (defined(CONFIG_HAS_IOMEM) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)))) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)))))
+#if ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT)) || (defined(CONFIG_HAS_IOMEM) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))))
   #define CONFIG_SPORT_BAUD_RATE 19200
 #endif
-#if ((!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || !defined(CONFIG_HAS_IOMEM)) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_9600) && defined(CONFIG_HAS_IOMEM)) || (defined(CONFIG_HAS_IOMEM) && ((defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_9600)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_9600) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200)))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || !defined(CONFIG_HAS_IOMEM)) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)))) && (!defined(CONFIG_HAS_IOMEM) || ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)))))
+#if ((!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_57600)) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT) && defined(CONFIG_SERIAL_SPORT_BAUD_RATE_9600)) || (defined(CONFIG_SERIAL_SPORT_BAUD_RATE_9600) && ((defined(CONFIG_HAS_IOMEM) && defined(CONFIG_SERIAL_BFIN_SPORT)) || (defined(CONFIG_HAS_IOMEM) && (defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)))))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200)) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200)) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT) || !defined(CONFIG_SERIAL_SPORT_BAUD_RATE_38400)) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_115200) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))) && (!defined(CONFIG_SERIAL_SPORT_BAUD_RATE_19200) || ((!defined(CONFIG_HAS_IOMEM) || (!defined(CONFIG_SERIAL_BFIN_SPORT) && !defined(CONFIG_SERIAL_BFIN_SPORT_MODULE))) && (!defined(CONFIG_HAS_IOMEM) || !defined(CONFIG_SERIAL_BFIN_SPORT)))))
   #define CONFIG_SPORT_BAUD_RATE 9600
 #endif
 
@@ -640,7 +647,7 @@
 #if defined(CONFIG_X86_VSMP)
   #define CONFIG_X86_INTERNODE_CACHE_SHIFT 12
 #endif
-#if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_MATOM) && !defined(CONFIG_MK8) && !defined(CONFIG_X86_VSMP) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && (defined(CONFIG_M386) || defined(CONFIG_MGEODEGX1) || defined(CONFIG_M486) || defined(CONFIG_X86_ELAN)) && !defined(CONFIG_NUMA) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU))
+#if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_MATOM) && (defined(CONFIG_X86_ELAN) || defined(CONFIG_M486) || defined(CONFIG_M386) || defined(CONFIG_MGEODEGX1)) && !defined(CONFIG_MK8) && !defined(CONFIG_X86_VSMP) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && !defined(CONFIG_NUMA) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU))
   #define CONFIG_X86_INTERNODE_CACHE_SHIFT 4
 #endif
 #if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_X86_ELAN) && !defined(CONFIG_MATOM) && !defined(CONFIG_M386) && !defined(CONFIG_MK8) && !defined(CONFIG_X86_VSMP) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && !defined(CONFIG_NUMA) && !defined(CONFIG_M486) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MGEODEGX1) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU) && (defined(CONFIG_MK6) || defined(CONFIG_MWINCHIP3D) || defined(CONFIG_M586) || defined(CONFIG_MWINCHIPC6) || defined(CONFIG_MGEODE_LX) || defined(CONFIG_MPENTIUMII) || defined(CONFIG_MCYRIXIII) || defined(CONFIG_M586TSC) || defined(CONFIG_MPENTIUMIII) || defined(CONFIG_MVIAC3_2) || defined(CONFIG_M586MMX) || defined(CONFIG_MEFFICEON) || defined(CONFIG_MCRUSOE) || defined(CONFIG_M686)))
@@ -660,7 +667,7 @@
 #if (!defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MPSC) && (defined(CONFIG_GENERIC_CPU) || defined(CONFIG_MCORE2) || defined(CONFIG_MPENTIUMM) || defined(CONFIG_MATOM) || defined(CONFIG_MK8) || defined(CONFIG_X86_GENERIC) || defined(CONFIG_MK7) || defined(CONFIG_MVIAC7)))
   #define CONFIG_X86_L1_CACHE_SHIFT 6
 #endif
-#if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_MATOM) && !defined(CONFIG_MK8) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && (defined(CONFIG_M386) || defined(CONFIG_MGEODEGX1) || defined(CONFIG_M486) || defined(CONFIG_X86_ELAN)) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU))
+#if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_MATOM) && (defined(CONFIG_X86_ELAN) || defined(CONFIG_M486) || defined(CONFIG_M386) || defined(CONFIG_MGEODEGX1)) && !defined(CONFIG_MK8) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU))
   #define CONFIG_X86_L1_CACHE_SHIFT 4
 #endif
 #if (!defined(CONFIG_MVIAC7) && !defined(CONFIG_X86_ELAN) && !defined(CONFIG_MATOM) && !defined(CONFIG_M386) && !defined(CONFIG_MK8) && !defined(CONFIG_MPENTIUMM) && !defined(CONFIG_MPSC) && !defined(CONFIG_X86_GENERIC) && !defined(CONFIG_M486) && !defined(CONFIG_MK7) && !defined(CONFIG_MPENTIUM4) && !defined(CONFIG_MGEODEGX1) && !defined(CONFIG_MCORE2) && !defined(CONFIG_GENERIC_CPU) && (defined(CONFIG_MK6) || defined(CONFIG_MWINCHIP3D) || defined(CONFIG_M586) || defined(CONFIG_MWINCHIPC6) || defined(CONFIG_MGEODE_LX) || defined(CONFIG_MPENTIUMII) || defined(CONFIG_MCYRIXIII) || defined(CONFIG_M586TSC) || defined(CONFIG_MPENTIUMIII) || defined(CONFIG_MVIAC3_2) || defined(CONFIG_M586MMX) || defined(CONFIG_MEFFICEON) || defined(CONFIG_MCRUSOE) || defined(CONFIG_M686)))
@@ -668,7 +675,7 @@
 #endif
 
 #undef CONFIG_X86_MINIMUM_CPU_FAMILY
-#if ((!defined(CONFIG_X86_32) || !defined(CONFIG_X86_P6_NOP)) && (defined(CONFIG_X86_BSWAP) || defined(CONFIG_X86_WP_WORKS_OK) || defined(CONFIG_X86_CMPXCHG) || defined(CONFIG_X86_XADD)) && !defined(CONFIG_X86_64) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_CMPXCHG64)) && defined(CONFIG_X86_32))
+#if ((!defined(CONFIG_X86_32) || !defined(CONFIG_X86_P6_NOP)) && !defined(CONFIG_X86_64) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_CMPXCHG64)) && defined(CONFIG_X86_32) && (defined(CONFIG_X86_XADD) || defined(CONFIG_X86_CMPXCHG) || defined(CONFIG_X86_BSWAP) || defined(CONFIG_X86_WP_WORKS_OK)))
   #define CONFIG_X86_MINIMUM_CPU_FAMILY 4
 #endif
 #if (defined(CONFIG_X86_32) && defined(CONFIG_X86_CMPXCHG64) && !defined(CONFIG_X86_64) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_P6_NOP)))
@@ -680,15 +687,15 @@
 #if defined(CONFIG_X86_64)
   #define CONFIG_X86_MINIMUM_CPU_FAMILY 64
 #endif
-#if (!defined(CONFIG_X86_64) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_P6_NOP)) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_CMPXCHG64)) && (!defined(CONFIG_X86_32) || (!defined(CONFIG_X86_BSWAP) && !defined(CONFIG_X86_WP_WORKS_OK) && !defined(CONFIG_X86_CMPXCHG) && !defined(CONFIG_X86_XADD))))
+#if (!defined(CONFIG_X86_64) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_P6_NOP)) && (!defined(CONFIG_X86_32) || !defined(CONFIG_X86_CMPXCHG64)) && (!defined(CONFIG_X86_32) || (!defined(CONFIG_X86_XADD) && !defined(CONFIG_X86_CMPXCHG) && !defined(CONFIG_X86_BSWAP) && !defined(CONFIG_X86_WP_WORKS_OK))))
   #define CONFIG_X86_MINIMUM_CPU_FAMILY 3
 #endif
 
 #undef CONFIG_XEN_MAX_DOMAIN_MEMORY
-#if (defined(CONFIG_XEN) && defined(CONFIG_X86_32) && defined(CONFIG_PARAVIRT_GUEST))
+#if (defined(CONFIG_PARAVIRT_GUEST) && defined(CONFIG_XEN) && defined(CONFIG_X86_32))
   #define CONFIG_XEN_MAX_DOMAIN_MEMORY 8
 #endif
-#if (defined(CONFIG_XEN) && defined(CONFIG_X86_64) && defined(CONFIG_PARAVIRT_GUEST) && (!defined(CONFIG_XEN) || !defined(CONFIG_X86_32) || !defined(CONFIG_PARAVIRT_GUEST)))
+#if (defined(CONFIG_PARAVIRT_GUEST) && defined(CONFIG_XEN) && defined(CONFIG_X86_64) && (!defined(CONFIG_PARAVIRT_GUEST) || !defined(CONFIG_XEN) || !defined(CONFIG_X86_32)))
   #define CONFIG_XEN_MAX_DOMAIN_MEMORY 32
 #endif
 

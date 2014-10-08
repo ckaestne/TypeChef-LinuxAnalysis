@@ -25,9 +25,9 @@ system=linux-redhat
 partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   --featureModelFExpr approx.fm \
   --typeSystemFeatureModelDimacs=pcs/x86.dimacs \
-  --include=completedConf.h --include=pcs/x86.nonbool.h \
+  --include=pcs/x86.completed.h --include=pcs/x86.nonbool.h --include=partialConf.h \
   -c $system.properties \
-  --openFeat openFeaturesList.txt \
+  --openFeat pcs/x86.open \
   --writePI --recordTiming --lexdebug --errorXML --interface \
   --adjustLines"
 
