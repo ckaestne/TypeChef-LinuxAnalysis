@@ -66,10 +66,10 @@
 #if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_DEADLINE))
   #define CONFIG_DEFAULT_IOSCHED "deadline"
 #endif
-#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_CFQ) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
+#if (defined(CONFIG_DEFAULT_CFQ) && defined(CONFIG_BLOCK) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
   #define CONFIG_DEFAULT_IOSCHED "cfq"
 #endif
-#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_NOOP) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_CFQ)) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
+#if (defined(CONFIG_BLOCK) && defined(CONFIG_DEFAULT_NOOP) && (!defined(CONFIG_DEFAULT_CFQ) || !defined(CONFIG_BLOCK)) && (!defined(CONFIG_BLOCK) || !defined(CONFIG_DEFAULT_DEADLINE)))
   #define CONFIG_DEFAULT_IOSCHED "noop"
 #endif
 

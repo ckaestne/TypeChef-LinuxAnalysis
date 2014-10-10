@@ -260,56 +260,56 @@
 #define CONFIG_ETRAX_PA_BUTTON_BITMASK 02
 
 #undef CONFIG_ETRAX_PA_CHANGEABLE_BITS
-#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || (defined(CONFIG_ETRAX_ARCH_V10) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS)) && defined(CONFIG_ETRAX_GPIO)))
+#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_BITS FF
 #endif
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
+#if (defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_BITS 0x00
 #endif
-#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))))
+#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_BITS 0x00000000
 #endif
 
 #undef CONFIG_ETRAX_PA_CHANGEABLE_DIR
-#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || (defined(CONFIG_ETRAX_ARCH_V10) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS)) && defined(CONFIG_ETRAX_GPIO)))
+#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_DIR 00
 #endif
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
+#if (defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_DIR 0x00
 #endif
-#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))))
+#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PA_CHANGEABLE_DIR 0x00000000
 #endif
 
 #undef CONFIG_ETRAX_PB_CHANGEABLE_BITS
-#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || (defined(CONFIG_ETRAX_ARCH_V10) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS)) && defined(CONFIG_ETRAX_GPIO)))
+#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_BITS FF
 #endif
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
+#if (defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_BITS 0x00000
 #endif
-#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))))
+#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_BITS 0x00000000
 #endif
 
 #undef CONFIG_ETRAX_PB_CHANGEABLE_DIR
-#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || (defined(CONFIG_ETRAX_ARCH_V10) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS)) && defined(CONFIG_ETRAX_GPIO)))
+#if ((defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V10) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_DIR 00
 #endif
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
+#if (defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && (!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_DIR 0x00000
 #endif
-#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS))))
+#if (((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)) || ((!defined(CONFIG_ETRAX_ARCH_V10) || !defined(CONFIG_ETRAX_GPIO)) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || defined(CONFIG_ETRAXFS)) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)) && defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO)))
   #define CONFIG_ETRAX_PB_CHANGEABLE_DIR 0x00000000
 #endif
 
 #define CONFIG_ETRAX_PC_CHANGEABLE_BITS 0x00000
 
 #undef CONFIG_ETRAX_PC_CHANGEABLE_DIR
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS))
+#if (defined(CONFIG_ETRAX_GPIO) && defined(CONFIG_ETRAXFS) && defined(CONFIG_ETRAX_ARCH_V32))
   #define CONFIG_ETRAX_PC_CHANGEABLE_DIR 0x00000
 #endif
-#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_ARCH_V32) || !defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS)))
+#if (defined(CONFIG_ETRAX_ARCH_V32) && defined(CONFIG_ETRAX_GPIO) && !defined(CONFIG_ETRAXFS) && (!defined(CONFIG_ETRAX_GPIO) || !defined(CONFIG_ETRAXFS) || !defined(CONFIG_ETRAX_ARCH_V32)))
   #define CONFIG_ETRAX_PC_CHANGEABLE_DIR 0x00000000
 #endif
 
@@ -753,10 +753,10 @@
 #define CONFIG_MTD_DILNETPC_BOOTSIZE 0x80000
 
 #undef CONFIG_MTD_DOCPROBE_ADDRESS
-#if ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD)) || ((defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE)) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE))))))
+#if ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0x0000
 #endif
-#if ((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (((!defined(CONFIG_MTD) && !defined(CONFIG_MTD_MODULE)) || (!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD)))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD)) || ((defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE)) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)))))))
+#if ((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (((!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE)) || (!defined(CONFIG_MTD_MODULE) && !defined(CONFIG_MTD))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE)))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD)))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0
 #endif
 

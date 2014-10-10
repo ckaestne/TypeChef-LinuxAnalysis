@@ -10,8 +10,8 @@ for arch in x86 arm alpha  avr32   cris  h8300  m68k   microblaze  mn10300  powe
 do
   export LINUXVERSION=2.6.33.3
   export ARCH=$arch
-  echo ../../kconfigreader/run.sh de.fosd.typechef.kconfig.KConfigReader --writeDimacs --writeNonBoolean --dumpconf $dumpconf arch/$arch/Kconfig $thisdir/pcs/$arch
-  ../../kconfigreader/run.sh de.fosd.typechef.kconfig.KConfigReader --writeDimacs --writeNonBoolean --dumpconf $dumpconf arch/$arch/Kconfig $thisdir/pcs/$arch
+  echo ../../kconfigreader/run.sh de.fosd.typechef.kconfig.KConfigReader --writeDimacs --writeNonBoolean --writeCompletedConf --dumpconf $dumpconf arch/$arch/Kconfig $thisdir/pcs/$arch
+  ../../kconfigreader/run.sh de.fosd.typechef.kconfig.KConfigReader --writeDimacs --writeNonBoolean --writeCompletedConf --dumpconf $dumpconf arch/$arch/Kconfig $thisdir/pcs/$arch
   wc -l $thisdir/pcs/$arch.model
 done
 

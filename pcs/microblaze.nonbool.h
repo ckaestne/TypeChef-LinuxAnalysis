@@ -299,10 +299,10 @@
 #define CONFIG_MTD_DILNETPC_BOOTSIZE 0x80000
 
 #undef CONFIG_MTD_DOCPROBE_ADDRESS
-#if ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD)) || ((defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD)) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE))))))
+#if ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0x0000
 #endif
-#if ((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (((!defined(CONFIG_MTD_MODULE) && !defined(CONFIG_MTD)) || (!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD)))) && (!defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD_DOCPROBE) && defined(CONFIG_MTD)) || ((defined(CONFIG_MTD_MODULE) || defined(CONFIG_MTD)) && (defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)))))))
+#if ((!defined(CONFIG_MTD_DOCPROBE_ADVANCED) || (((!defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_MODULE)) || (!defined(CONFIG_MTD) && !defined(CONFIG_MTD_MODULE))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE)))) && (!defined(CONFIG_MTD) || !defined(CONFIG_MTD_DOCPROBE) || !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE) && !defined(CONFIG_MTD_DOCPROBE_ADVANCED)) || (!defined(CONFIG_MTD_DOCPROBE_ADVANCED) && ((defined(CONFIG_MTD) && defined(CONFIG_MTD_DOCPROBE)) || ((defined(CONFIG_MTD_DOCPROBE) || defined(CONFIG_MTD_DOCPROBE_MODULE)) && (defined(CONFIG_MTD) || defined(CONFIG_MTD_MODULE)))))))
   #define CONFIG_MTD_DOCPROBE_ADDRESS 0
 #endif
 

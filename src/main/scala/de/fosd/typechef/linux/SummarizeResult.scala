@@ -1,5 +1,7 @@
 package de.fosd.typechef.linux
 
+import java.io.File
+
 /**
  * summarizes the result found in all .dbg files
  */

@@ -190,7 +190,7 @@
 #define CONFIG_HISAX_MAX_CARDS 8
 
 #undef CONFIG_HZ
-#if (defined(CONFIG_ARCH_L7200) || (!defined(CONFIG_ARCH_EBSA110) && !defined(CONFIG_ARCH_S3C2410) && defined(CONFIG_OMAP_32K_TIMER) && defined(CONFIG_ARCH_OMAP)) || (!defined(CONFIG_ARCH_EBSA110) && defined(CONFIG_ARCH_AT91RM9200) && defined(CONFIG_ARCH_AT91) && !defined(CONFIG_ARCH_L7200) && !defined(CONFIG_ARCH_S3C2410) && (!defined(CONFIG_ARCH_OMAP) || !defined(CONFIG_OMAP_32K_TIMER))))
+#if (defined(CONFIG_ARCH_L7200) || (defined(CONFIG_OMAP_32K_TIMER) && !defined(CONFIG_ARCH_EBSA110) && defined(CONFIG_ARCH_OMAP) && !defined(CONFIG_ARCH_S3C2410)) || (!defined(CONFIG_ARCH_EBSA110) && defined(CONFIG_ARCH_AT91RM9200) && defined(CONFIG_ARCH_AT91) && !defined(CONFIG_ARCH_L7200) && !defined(CONFIG_ARCH_S3C2410) && (!defined(CONFIG_ARCH_OMAP) || !defined(CONFIG_OMAP_32K_TIMER))))
   #define CONFIG_HZ 128
 #endif
 #if (!defined(CONFIG_ARCH_L7200) && (defined(CONFIG_ARCH_EBSA110) || defined(CONFIG_ARCH_S3C2410)))

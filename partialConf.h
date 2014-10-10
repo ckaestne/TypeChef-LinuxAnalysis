@@ -5,6 +5,9 @@
 
 #define AUTOCONF_INCLUDED
 
+#define OBJTREE ""
+#define SRCTREE ""
+
 #define KBUILD_STR(s) #s
 
 //Non-boolean features
