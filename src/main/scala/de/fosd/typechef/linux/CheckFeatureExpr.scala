@@ -1,9 +1,10 @@
 package de.fosd.typechef.linux
 
+import de.fosd.typechef.featureexpr.sat.SATFeatureModel
 import featuremodel.{LinuxDimacsModel, LinuxApproxModel}
-import java.io.File
+import java.io.{FileWriter, File}
 import util.parsing.combinator._
-import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureModel, FeatureExpr, FeatureExprParser}
+import de.fosd.typechef.featureexpr._
 
 
 object CheckFeatureExpr extends App {
@@ -44,6 +45,11 @@ object CheckFeatureExpr extends App {
         val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
         assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
         println("Undertaker: " + status(slicedFExpr and fexpr, NoFeatureModel))
+
+        if (fexpr.isSatisfiable(fmDimacs)) {
+            GenConfig.genConfig(fexpr, fmDimacs)
+            println("generated ..config")
+        }
         //
         //
         //            val features = fexpr.collectDistinctFeatures
@@ -69,6 +75,81 @@ object CheckFeatureExpr extends App {
     //    //    for (i<- 1 until 207)
     //    //        new UndertakerFMParser("x86.model",i)
     //    new UndertakerFMParser("x86.model", 25)
+}
+
+/**
+ * gen config parses a formula and creates a .config file (if the formula is satisfiable
+ * in the feature model)
+ */
+object GenConfig  /* extends App*/ {
+//    if (args.size != 1 && !new File("formula").exists()) {
+//        println("expected feature expression as parameter")
+//        System.exit(0)
+//    }
+//    val fmDimacs = new LinuxDimacsModel().createFeatureModel
+//
+//    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
+//    val fexpr = fexprStrs.map(s=>new FeatureExprParser().parse(s)).reduce(_ and _)
+//
+//    val allSymbols = fmDimacs
+
+
+    def genConfig(fexpr:FeatureExpr, fm: FeatureModel): Unit = {
+        val variables = fm.asInstanceOf[SATFeatureModel].variables.keys.filterNot(_ startsWith "CONFIG__").map(FeatureExprFactory.createDefinedExternal(_)).toSet ++ fexpr.collectDistinctFeatureObjects
+        val assignment = fexpr.getSatisfiableAssignment(fm, variables, true)
+        val config = satAssignmentToConfig(assignment)
+
+        val configFile = new File("..config")
+        val writer = new FileWriter(configFile)
+
+        for ((k, v) <- config)
+            if (Set("y", "m") contains v)
+                writer.write("%s=%s\n".format(k, v))
+            else if (v == "n")
+                writer.write("# %s is not set\n".format(k))
+            else
+                writer.write("%s=%s\n".format(k, v))
+
+        writer.close()
+
+    }
+
+    def satAssignmentToConfig(r: Option[(List[SingleFeatureExpr], List[SingleFeatureExpr])]): Map[String, String] = {
+        assert(r.isDefined)
+
+        val (enabled, disabled) = r.get
+
+        var result: Map[String, String] = Map()
+        for (f <- disabled) {
+            if (f.feature startsWith "CONFIG_CHOICE") {
+                /*nothing*/
+            }
+            else if (f.feature.endsWith("_m"))
+                result += (f.feature.dropRight(7) -> "n")
+            else if (f.feature contains "=")
+                result += (f.feature.take(f.feature.indexOf("=")) -> "n")
+            else
+                result += (f.feature -> "n")
+        }
+        for (f <- enabled) {
+            if (f.feature startsWith "CONFIG_CHOICE") {
+                /*nothing*/
+            }
+            else if (f.feature.endsWith("_m"))
+                result += (f.feature.dropRight(7) -> "m")
+            else if (f.feature contains "=") {
+                val k = f.feature.take(f.feature.indexOf("="))
+                var v = f.feature.substring(f.feature.indexOf("=") + 1)
+//                if (fm.findItem(k)._type == StringType && v != "n")
+                    v = "\"" + v + "\""
+                result += (k -> v)
+            } else
+                result += (f.feature -> "y")
+        }
+        result
+    }
+
+
 }
 
 
