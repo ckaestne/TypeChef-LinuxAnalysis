@@ -46,10 +46,10 @@ object CheckFeatureExpr extends App {
         assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
         println("Undertaker: " + status(slicedFExpr and fexpr, NoFeatureModel))
 
-        if (fexpr.isSatisfiable(fmDimacs)) {
-            GenConfig.genConfig(fexpr, fmDimacs)
-            println("generated ..config")
-        }
+//        if (fexpr.isSatisfiable(fmDimacs)) {
+//            GenConfig.genConfig(fexpr, fmDimacs)
+//            println("generated ..config")
+//        }
         //
         //
         //            val features = fexpr.collectDistinctFeatures
@@ -80,7 +80,10 @@ object CheckFeatureExpr extends App {
 /**
  * gen config parses a formula and creates a .config file (if the formula is satisfiable
  * in the feature model)
+ *
+ * more accurate version of this functionality now part of kconfigreader
  */
+@Deprecated
 object GenConfig  /* extends App*/ {
 //    if (args.size != 1 && !new File("formula").exists()) {
 //        println("expected feature expression as parameter")

@@ -1,11 +1,6 @@
 package de.fosd.typechef.linux
 
-/*
- * Created by IntelliJ IDEA.
- * User: kaestner
- * Date: 14.02.11
- * Time: 14:57
- */
+
 
 import featuremodel.LinuxFullModel
 import java.io._
@@ -21,7 +16,10 @@ import de.fosd.typechef.featureexpr.FeatureModel
  *
  * assumes partialConf.h and feature model as input (LinuxSettings)
  *
+ *
+ * @deprecated use the equivalent function of kconfigreader for better results
  */
+@Deprecated
 object CompletePartialConfiguration {
 
     def getVars(fm: FeatureModel) =
