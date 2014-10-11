@@ -14,7 +14,7 @@ srcPath=$PWD/l
 # List of files to preprocess
 ##################################################################
 filesToProcess() {
-  local listFile=linux_files.lst
+  local listFile=pcs/x86.flist
   cat $listFile
   #awk -F: '$1 ~ /.c$/ {print gensub(/\.c$/, "", "", $1)}' < linux_2.6.33.3_pcs.txt
 }

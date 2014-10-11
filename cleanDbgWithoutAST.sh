@@ -1,4 +1,4 @@
-cat linux_files.lst | while read i; 
+cat pcs/x86.flist | while read i; 
     do 
         if [ ! -e "l/$i.ast" ] 
         then 
