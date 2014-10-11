@@ -1,47 +1,340 @@
-arch/microblaze/kernel/cpu/cache.c: [TRUE]
-arch/microblaze/kernel/cpu/cpuinfo-pvr-full.c: [TRUE]
-arch/microblaze/kernel/cpu/cpuinfo-static.c: [TRUE]
-arch/microblaze/kernel/cpu/cpuinfo.c: [TRUE]
-arch/microblaze/kernel/cpu/mb.c: [TRUE]
-arch/microblaze/kernel/cpu/pvr.c: [TRUE]
-arch/microblaze/kernel/early_printk.c: ((EARLY_PRINTK == "y") || (EARLY_PRINTK == "m"))
-arch/microblaze/kernel/exceptions.c: [TRUE]
-arch/microblaze/kernel/ftrace.c: ((FUNCTION_TRACER == "y") || (FUNCTION_TRACER == "m"))
-arch/microblaze/kernel/heartbeat.c: ((HEART_BEAT == "y") || (HEART_BEAT == "m"))
-arch/microblaze/kernel/hw_exception_handler.S: [TRUE]
-arch/microblaze/kernel/init_task.c: [TRUE]
-arch/microblaze/kernel/intc.c: [TRUE]
-arch/microblaze/kernel/irq.c: [TRUE]
-arch/microblaze/kernel/mcount.S: ((FUNCTION_TRACER == "y") || (FUNCTION_TRACER == "m"))
-arch/microblaze/kernel/microblaze_ksyms.c: ((MODULES == "y") || (MODULES == "m"))
-arch/microblaze/kernel/misc.S: ((MMU == "y") || (MMU == "m"))
-arch/microblaze/kernel/module.c: ((MODULES == "y") || (MODULES == "m"))
-arch/microblaze/kernel/of_device.c: [TRUE]
-arch/microblaze/kernel/of_platform.c: [TRUE]
-arch/microblaze/kernel/process.c: [TRUE]
-arch/microblaze/kernel/prom.c: [TRUE]
-arch/microblaze/kernel/prom_parse.c: [TRUE]
-arch/microblaze/kernel/ptrace.c: [TRUE]
-arch/microblaze/kernel/reset.c: [TRUE]
-arch/microblaze/kernel/selfmod.c: ((SELFMOD == "y") || (SELFMOD == "m"))
-arch/microblaze/kernel/setup.c: [TRUE]
-arch/microblaze/kernel/signal.c: [TRUE]
-arch/microblaze/kernel/stacktrace.c: ((STACKTRACE == "y") || (STACKTRACE == "m"))
-arch/microblaze/kernel/sys_microblaze.c: [TRUE]
-arch/microblaze/kernel/timer.c: [TRUE]
-arch/microblaze/kernel/traps.c: [TRUE]
-arch/microblaze/lib/fastcopy.S: (OPT_LIB_ASM == "y")
-arch/microblaze/lib/memcpy.c: !(OPT_LIB_ASM == "y")
-arch/microblaze/lib/memmove.c: !(OPT_LIB_ASM == "y")
-arch/microblaze/lib/memset.c: [TRUE]
-arch/microblaze/lib/uaccess.c: ((NO_MMU == "y") || (NO_MMU == "m"))
-arch/microblaze/lib/uaccess_old.S: ((MMU == "y") || (MMU == "m"))
-arch/microblaze/mm/fault.c: ((MMU == "y") || (MMU == "m"))
-arch/microblaze/mm/init.c: [TRUE]
-arch/microblaze/mm/mmu_context.c: ((MMU == "y") || (MMU == "m"))
-arch/microblaze/mm/pgtable.c: ((MMU == "y") || (MMU == "m"))
-arch/microblaze/oprofile/microblaze_oprofile.c: ((OPROFILE == "y") || (OPROFILE == "m"))
-arch/microblaze/platform/platform.c: [TRUE]
+arch/x86/crypto/aes-i586-asm_32.S: ((CRYPTO_AES_586 == "y") || (CRYPTO_AES_586 == "m"))
+arch/x86/crypto/aes-x86_64-asm_64.S: ((CRYPTO_AES_X86_64 == "y") || (CRYPTO_AES_X86_64 == "m"))
+arch/x86/crypto/aes_glue.c: (((CRYPTO_AES_586 == "y") || (CRYPTO_AES_586 == "m")) || ((CRYPTO_AES_X86_64 == "y") || (CRYPTO_AES_X86_64 == "m")))
+arch/x86/crypto/aesni-intel_asm.S: ((CRYPTO_AES_NI_INTEL == "y") || (CRYPTO_AES_NI_INTEL == "m"))
+arch/x86/crypto/aesni-intel_glue.c: ((CRYPTO_AES_NI_INTEL == "y") || (CRYPTO_AES_NI_INTEL == "m"))
+arch/x86/crypto/crc32c-intel.c: ((CRYPTO_CRC32C_INTEL == "y") || (CRYPTO_CRC32C_INTEL == "m"))
+arch/x86/crypto/fpu.c: ((CRYPTO_FPU == "y") || (CRYPTO_FPU == "m"))
+arch/x86/crypto/ghash-clmulni-intel_asm.S: ((CRYPTO_GHASH_CLMUL_NI_INTEL == "y") || (CRYPTO_GHASH_CLMUL_NI_INTEL == "m"))
+arch/x86/crypto/ghash-clmulni-intel_glue.c: ((CRYPTO_GHASH_CLMUL_NI_INTEL == "y") || (CRYPTO_GHASH_CLMUL_NI_INTEL == "m"))
+arch/x86/crypto/salsa20-i586-asm_32.S: ((CRYPTO_SALSA20_586 == "y") || (CRYPTO_SALSA20_586 == "m"))
+arch/x86/crypto/salsa20-x86_64-asm_64.S: ((CRYPTO_SALSA20_X86_64 == "y") || (CRYPTO_SALSA20_X86_64 == "m"))
+arch/x86/crypto/salsa20_glue.c: (((CRYPTO_SALSA20_586 == "y") || (CRYPTO_SALSA20_586 == "m")) || ((CRYPTO_SALSA20_X86_64 == "y") || (CRYPTO_SALSA20_X86_64 == "m")))
+arch/x86/crypto/twofish-i586-asm_32.S: ((CRYPTO_TWOFISH_586 == "y") || (CRYPTO_TWOFISH_586 == "m"))
+arch/x86/crypto/twofish-x86_64-asm_64.S: ((CRYPTO_TWOFISH_X86_64 == "y") || (CRYPTO_TWOFISH_X86_64 == "m"))
+arch/x86/crypto/twofish_glue.c: (((CRYPTO_TWOFISH_586 == "y") || (CRYPTO_TWOFISH_586 == "m")) || ((CRYPTO_TWOFISH_X86_64 == "y") || (CRYPTO_TWOFISH_X86_64 == "m")))
+arch/x86/ia32/audit.c: ((AUDIT == "y") && ((IA32_EMULATION == "y") || (IA32_EMULATION == "m")))
+arch/x86/ia32/ia32_aout.c: (((IA32_AOUT == "y") || (IA32_AOUT == "m")) && ((IA32_EMULATION == "y") || (IA32_EMULATION == "m")))
+arch/x86/ia32/ia32_signal.c: ((IA32_EMULATION == "y") || (IA32_EMULATION == "m"))
+arch/x86/ia32/ia32entry.S: ((IA32_EMULATION == "y") || (IA32_EMULATION == "m"))
+arch/x86/ia32/ipc32.c: ((SYSVIPC == "y") && ((IA32_EMULATION == "y") || (IA32_EMULATION == "m")))
+arch/x86/ia32/sys_ia32.c: ((IA32_EMULATION == "y") || (IA32_EMULATION == "m"))
+arch/x86/kernel/acpi/boot.c: ((ACPI == "y") || (ACPI == "m"))
+arch/x86/kernel/acpi/cstate.c: ((ACPI_PROCESSOR == "y") || (ACPI_PROCESSOR == "m"))
+arch/x86/kernel/acpi/sleep.c: ((ACPI_SLEEP == "y") || (ACPI_SLEEP == "m"))
+arch/x86/kernel/acpi/wakeup_rm.S: ((ACPI_SLEEP == "y") || (ACPI_SLEEP == "m"))
+arch/x86/kernel/alternative.c: [TRUE]
+arch/x86/kernel/amd_iommu.c: (((AMD_IOMMU == "y") || (AMD_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/amd_iommu_init.c: (((AMD_IOMMU == "y") || (AMD_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/aperture_64.c: (((GART_IOMMU == "y") || (GART_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/apic/apic.c: ((X86_LOCAL_APIC == "y") || (X86_LOCAL_APIC == "m"))
+arch/x86/kernel/apic/apic_flat_64.c: (X86_64 == "y")
+arch/x86/kernel/apic/apic_noop.c: ((X86_LOCAL_APIC == "y") || (X86_LOCAL_APIC == "m"))
+arch/x86/kernel/apic/bigsmp_32.c: ((X86_BIGSMP == "y") || (X86_BIGSMP == "m"))
+arch/x86/kernel/apic/es7000_32.c: ((X86_ES7000 == "y") || (X86_ES7000 == "m"))
+arch/x86/kernel/apic/io_apic.c: ((X86_IO_APIC == "y") || (X86_IO_APIC == "m"))
+arch/x86/kernel/apic/ipi.c: (((X86_LOCAL_APIC == "y") || (X86_LOCAL_APIC == "m")) || ((SMP == "y") || (SMP == "m")))
+arch/x86/kernel/apic/nmi.c: ((X86_LOCAL_APIC == "y") || (X86_LOCAL_APIC == "m"))
+arch/x86/kernel/apic/numaq_32.c: ((X86_NUMAQ == "y") || (X86_NUMAQ == "m"))
+arch/x86/kernel/apic/summit_32.c: ((X86_SUMMIT == "y") || (X86_SUMMIT == "m"))
+arch/x86/kernel/apic/x2apic_cluster.c: (((X86_X2APIC == "y") || (X86_X2APIC == "m")) && (X86_64 == "y"))
+arch/x86/kernel/apic/x2apic_phys.c: (((X86_X2APIC == "y") || (X86_X2APIC == "m")) && (X86_64 == "y"))
+arch/x86/kernel/apic/x2apic_uv_x.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/apm_32.c: ((APM == "y") || (APM == "m"))
+arch/x86/kernel/audit_64.c: (((AUDIT == "y") || (AUDIT == "m")) && (X86_64 == "y"))
+arch/x86/kernel/bios_uv.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/bootflag.c: [TRUE]
+arch/x86/kernel/check.c: ((X86_CHECK_BIOS_CORRUPTION == "y") || (X86_CHECK_BIOS_CORRUPTION == "m"))
+arch/x86/kernel/cpu/addon_cpuid_features.c: [TRUE]
+arch/x86/kernel/cpu/amd.c: ((CPU_SUP_AMD == "y") || (CPU_SUP_AMD == "m"))
+arch/x86/kernel/cpu/bugs.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/kernel/cpu/bugs_64.c: ((X86_64 == "y") || (X86_64 == "m"))
+arch/x86/kernel/cpu/capflags.c: [TRUE]
+arch/x86/kernel/cpu/centaur.c: ((CPU_SUP_CENTAUR == "y") || (CPU_SUP_CENTAUR == "m"))
+arch/x86/kernel/cpu/cmpxchg.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/kernel/cpu/common.c: [TRUE]
+arch/x86/kernel/cpu/cpufreq/acpi-cpufreq.c: (((X86_ACPI_CPUFREQ == "y") || (X86_ACPI_CPUFREQ == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/cpufreq-nforce2.c: (((X86_CPUFREQ_NFORCE2 == "y") || (X86_CPUFREQ_NFORCE2 == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/e_powersaver.c: (((X86_E_POWERSAVER == "y") || (X86_E_POWERSAVER == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/elanfreq.c: (((ELAN_CPUFREQ == "y") || (ELAN_CPUFREQ == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/gx-suspmod.c: (((X86_GX_SUSPMOD == "y") || (X86_GX_SUSPMOD == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/longhaul.c: (((X86_LONGHAUL == "y") || (X86_LONGHAUL == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/longrun.c: (((X86_LONGRUN == "y") || (X86_LONGRUN == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/p4-clockmod.c: (((X86_P4_CLOCKMOD == "y") || (X86_P4_CLOCKMOD == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/powernow-k6.c: (((X86_POWERNOW_K6 == "y") || (X86_POWERNOW_K6 == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/powernow-k7.c: (((X86_POWERNOW_K7 == "y") || (X86_POWERNOW_K7 == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/powernow-k8.c: (((X86_POWERNOW_K8 == "y") || (X86_POWERNOW_K8 == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/sc520_freq.c: (((SC520_CPUFREQ == "y") || (SC520_CPUFREQ == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/speedstep-centrino.c: (((X86_SPEEDSTEP_CENTRINO == "y") || (X86_SPEEDSTEP_CENTRINO == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/speedstep-ich.c: (((X86_SPEEDSTEP_ICH == "y") || (X86_SPEEDSTEP_ICH == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/speedstep-lib.c: (((X86_SPEEDSTEP_LIB == "y") || (X86_SPEEDSTEP_LIB == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cpufreq/speedstep-smi.c: (((X86_SPEEDSTEP_SMI == "y") || (X86_SPEEDSTEP_SMI == "m")) && ((CPU_FREQ == "y") || (CPU_FREQ == "m")))
+arch/x86/kernel/cpu/cyrix.c: ((CPU_SUP_CYRIX_32 == "y") || (CPU_SUP_CYRIX_32 == "m"))
+arch/x86/kernel/cpu/hypervisor.c: [TRUE]
+arch/x86/kernel/cpu/intel.c: ((CPU_SUP_INTEL == "y") || (CPU_SUP_INTEL == "m"))
+arch/x86/kernel/cpu/intel_cacheinfo.c: [TRUE]
+arch/x86/kernel/cpu/mcheck/mce-inject.c: (((X86_MCE_INJECT == "y") || (X86_MCE_INJECT == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/mce-severity.c: ((X86_MCE == "y") || (X86_MCE == "m"))
+arch/x86/kernel/cpu/mcheck/mce.c: ((X86_MCE == "y") || (X86_MCE == "m"))
+arch/x86/kernel/cpu/mcheck/mce_amd.c: (((X86_MCE_AMD == "y") || (X86_MCE_AMD == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/mce_intel.c: (((X86_MCE_INTEL == "y") || (X86_MCE_INTEL == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/p5.c: (((X86_ANCIENT_MCE == "y") || (X86_ANCIENT_MCE == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/therm_throt.c: (((X86_THERMAL_VECTOR == "y") || (X86_THERMAL_VECTOR == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/threshold.c: (((X86_MCE_THRESHOLD == "y") || (X86_MCE_THRESHOLD == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mcheck/winchip.c: (((X86_ANCIENT_MCE == "y") || (X86_ANCIENT_MCE == "m")) && ((X86_MCE == "y") || (X86_MCE == "m")))
+arch/x86/kernel/cpu/mtrr/amd.c: (((X86_32 == "y") || (X86_32 == "m")) && ((MTRR == "y") || (MTRR == "m")))
+arch/x86/kernel/cpu/mtrr/centaur.c: (((X86_32 == "y") || (X86_32 == "m")) && ((MTRR == "y") || (MTRR == "m")))
+arch/x86/kernel/cpu/mtrr/cleanup.c: ((MTRR == "y") || (MTRR == "m"))
+arch/x86/kernel/cpu/mtrr/cyrix.c: (((X86_32 == "y") || (X86_32 == "m")) && ((MTRR == "y") || (MTRR == "m")))
+arch/x86/kernel/cpu/mtrr/generic.c: ((MTRR == "y") || (MTRR == "m"))
+arch/x86/kernel/cpu/mtrr/if.c: ((MTRR == "y") || (MTRR == "m"))
+arch/x86/kernel/cpu/mtrr/main.c: ((MTRR == "y") || (MTRR == "m"))
+arch/x86/kernel/cpu/mtrr/state.c: ((MTRR == "y") || (MTRR == "m"))
+arch/x86/kernel/cpu/perf_event.c: ((PERF_EVENTS == "y") || (PERF_EVENTS == "m"))
+arch/x86/kernel/cpu/perfctr-watchdog.c: ((X86_LOCAL_APIC == "y") || (X86_LOCAL_APIC == "m"))
+arch/x86/kernel/cpu/powerflags.c: [TRUE]
+arch/x86/kernel/cpu/proc.c: [TRUE]
+arch/x86/kernel/cpu/sched.c: [TRUE]
+arch/x86/kernel/cpu/transmeta.c: ((CPU_SUP_TRANSMETA_32 == "y") || (CPU_SUP_TRANSMETA_32 == "m"))
+arch/x86/kernel/cpu/umc.c: ((CPU_SUP_UMC_32 == "y") || (CPU_SUP_UMC_32 == "m"))
+arch/x86/kernel/cpu/vmware.c: [TRUE]
+arch/x86/kernel/cpuid.c: ((X86_CPUID == "y") || (X86_CPUID == "m"))
+arch/x86/kernel/crash.c: ((KEXEC == "y") || (KEXEC == "m"))
+arch/x86/kernel/doublefault_32.c: ((DOUBLEFAULT == "y") || (DOUBLEFAULT == "m"))
+arch/x86/kernel/ds.c: ((X86_DS == "y") || (X86_DS == "m"))
+arch/x86/kernel/ds_selftest.c: ((X86_DS_SELFTEST == "y") || (X86_DS_SELFTEST == "m"))
+arch/x86/kernel/dumpstack.c: [TRUE]
+arch/x86/kernel/e820.c: [TRUE]
+arch/x86/kernel/early-quirks.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/kernel/early_printk.c: ((EARLY_PRINTK == "y") || (EARLY_PRINTK == "m"))
+arch/x86/kernel/efi.c: ((EFI == "y") || (EFI == "m"))
+arch/x86/kernel/ftrace.c: ((((DYNAMIC_FTRACE == "y") || (DYNAMIC_FTRACE == "m")) || ((FUNCTION_GRAPH_TRACER == "y") || (FUNCTION_GRAPH_TRACER == "m"))) || ((FTRACE_SYSCALLS == "y") || (FTRACE_SYSCALLS == "m")))
+arch/x86/kernel/hpet.c: ((HPET_TIMER == "y") || (HPET_TIMER == "m"))
+arch/x86/kernel/hw_breakpoint.c: [TRUE]
+arch/x86/kernel/i386_ksyms_32.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/kernel/i387.c: [TRUE]
+arch/x86/kernel/i8237.c: [TRUE]
+arch/x86/kernel/i8253.c: [TRUE]
+arch/x86/kernel/i8259.c: [TRUE]
+arch/x86/kernel/io_delay.c: [TRUE]
+arch/x86/kernel/ioport.c: [TRUE]
+arch/x86/kernel/irq.c: [TRUE]
+arch/x86/kernel/irqinit.c: [TRUE]
+arch/x86/kernel/k8.c: ((K8_NB == "y") || (K8_NB == "m"))
+arch/x86/kernel/kdebugfs.c: [TRUE]
+arch/x86/kernel/kgdb.c: ((KGDB == "y") || (KGDB == "m"))
+arch/x86/kernel/kprobes.c: ((KPROBES == "y") || (KPROBES == "m"))
+arch/x86/kernel/kvm.c: ((KVM_GUEST == "y") || (KVM_GUEST == "m"))
+arch/x86/kernel/kvmclock.c: ((KVM_CLOCK == "y") || (KVM_CLOCK == "m"))
+arch/x86/kernel/ldt.c: [TRUE]
+arch/x86/kernel/mca_32.c: ((MCA == "y") || (MCA == "m"))
+arch/x86/kernel/microcode_amd.c: ((MICROCODE_AMD == "y") && ((MICROCODE == "y") || (MICROCODE == "m")))
+arch/x86/kernel/microcode_core.c: ((MICROCODE == "y") || (MICROCODE == "m"))
+arch/x86/kernel/microcode_intel.c: ((MICROCODE_INTEL == "y") && ((MICROCODE == "y") || (MICROCODE == "m")))
+arch/x86/kernel/mmconf-fam10h_64.c: (((PCI_MMCONFIG == "y") || (PCI_MMCONFIG == "m")) && (X86_64 == "y"))
+arch/x86/kernel/module.c: ((MODULES == "y") || (MODULES == "m"))
+arch/x86/kernel/mpparse.c: ((X86_MPPARSE == "y") || (X86_MPPARSE == "m"))
+arch/x86/kernel/mrst.c: ((X86_MRST == "y") || (X86_MRST == "m"))
+arch/x86/kernel/msr.c: ((X86_MSR == "y") || (X86_MSR == "m"))
+arch/x86/kernel/olpc.c: ((OLPC == "y") || (OLPC == "m"))
+arch/x86/kernel/paravirt-spinlocks.c: ((PARAVIRT_SPINLOCKS == "y") || (PARAVIRT_SPINLOCKS == "m"))
+arch/x86/kernel/paravirt.c: ((PARAVIRT == "y") || (PARAVIRT == "m"))
+arch/x86/kernel/pci-calgary_64.c: (((CALGARY_IOMMU == "y") || (CALGARY_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/pci-dma.c: [TRUE]
+arch/x86/kernel/pci-gart_64.c: (((GART_IOMMU == "y") || (GART_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/pci-nommu.c: [TRUE]
+arch/x86/kernel/pci-swiotlb.c: ((SWIOTLB == "y") || (SWIOTLB == "m"))
+arch/x86/kernel/pcspeaker.c: ((PCSPKR_PLATFORM == "y") || (PCSPKR_PLATFORM == "m"))
+arch/x86/kernel/pmtimer_64.c: (((X86_PM_TIMER == "y") || (X86_PM_TIMER == "m")) && (X86_64 == "y"))
+arch/x86/kernel/probe_roms_32.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/kernel/process.c: [TRUE]
+arch/x86/kernel/ptrace.c: [TRUE]
+arch/x86/kernel/pvclock.c: ((PARAVIRT_CLOCK == "y") || (PARAVIRT_CLOCK == "m"))
+arch/x86/kernel/quirks.c: [TRUE]
+arch/x86/kernel/reboot.c: [TRUE]
+arch/x86/kernel/reboot_fixups_32.c: ((X86_REBOOTFIXUPS == "y") || (X86_REBOOTFIXUPS == "m"))
+arch/x86/kernel/rtc.c: [TRUE]
+arch/x86/kernel/scx200_32.c: ((SCx200 == "y") || (SCx200 == "m"))
+arch/x86/kernel/setup.c: [TRUE]
+arch/x86/kernel/setup_percpu.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/kernel/sfi.c: ((SFI == "y") || (SFI == "m"))
+arch/x86/kernel/signal.c: [TRUE]
+arch/x86/kernel/smp.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/kernel/smpboot.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/kernel/stacktrace.c: ((STACKTRACE == "y") || (STACKTRACE == "m"))
+arch/x86/kernel/step.c: [TRUE]
+arch/x86/kernel/sys_i386_32.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/kernel/sys_x86_64.c: ((X86_64 == "y") || (X86_64 == "m"))
+arch/x86/kernel/syscall_64.c: ((X86_64 == "y") || (X86_64 == "m"))
+arch/x86/kernel/tboot.c: ((INTEL_TXT == "y") || (INTEL_TXT == "m"))
+arch/x86/kernel/tce_64.c: (((CALGARY_IOMMU == "y") || (CALGARY_IOMMU == "m")) && (X86_64 == "y"))
+arch/x86/kernel/test_nx.c: ((DEBUG_NX_TEST == "y") || (DEBUG_NX_TEST == "m"))
+arch/x86/kernel/test_rodata.c: ((DEBUG_RODATA_TEST == "y") || (DEBUG_RODATA_TEST == "m"))
+arch/x86/kernel/time.c: [TRUE]
+arch/x86/kernel/tlb_uv.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/tls.c: (((X86_32 == "y") || (X86_32 == "m")) || ((IA32_EMULATION == "y") || (IA32_EMULATION == "m")))
+arch/x86/kernel/topology.c: [TRUE]
+arch/x86/kernel/trampoline.c: ((X86_TRAMPOLINE == "y") || (X86_TRAMPOLINE == "m"))
+arch/x86/kernel/traps.c: [TRUE]
+arch/x86/kernel/tsc.c: [TRUE]
+arch/x86/kernel/tsc_sync.c: (((SMP == "y") || (SMP == "m")) || ((X86_64_SMP == "y") || (X86_64_SMP == "m")))
+arch/x86/kernel/uv_irq.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/uv_sysfs.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/uv_time.c: (((X86_UV == "y") || (X86_UV == "m")) && (X86_64 == "y"))
+arch/x86/kernel/visws_quirks.c: ((X86_VISWS == "y") || (X86_VISWS == "m"))
+arch/x86/kernel/vm86_32.c: ((VM86 == "y") || (VM86 == "m"))
+arch/x86/kernel/vmi_32.c: ((VMI == "y") || (VMI == "m"))
+arch/x86/kernel/vmiclock_32.c: ((VMI == "y") || (VMI == "m"))
+arch/x86/kernel/vsmp_64.c: (X86_64 == "y")
+arch/x86/kernel/vsyscall_64.c: ((X86_64 == "y") || (X86_64 == "m"))
+arch/x86/kernel/x8664_ksyms_64.c: ((X86_64 == "y") || (X86_64 == "m"))
+arch/x86/kernel/x86_init.c: [TRUE]
+arch/x86/kernel/xsave.c: [TRUE]
+arch/x86/kvm/emulate.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/i8254.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/i8259.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/irq.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/lapic.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/mmu.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/svm.c: (((KVM_AMD == "y") || (KVM_AMD == "m")) && ((KVM == "y") || (KVM == "m")))
+arch/x86/kvm/timer.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/kvm/vmx.c: (((KVM_INTEL == "y") || (KVM_INTEL == "m")) && ((KVM == "y") || (KVM == "m")))
+arch/x86/kvm/x86.c: ((KVM == "y") || (KVM == "m"))
+arch/x86/lguest/boot.c: ((LGUEST_GUEST == "y") || (LGUEST_GUEST == "m"))
+arch/x86/lguest/i386_head.S: ((LGUEST_GUEST == "y") || (LGUEST_GUEST == "m"))
+arch/x86/lib/atomic64_32.c: (X86_32 == "y")
+arch/x86/lib/cache-smp.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/lib/checksum_32.S: (X86_32 == "y")
+arch/x86/lib/clear_page_64.S: !(X86_32 == "y")
+arch/x86/lib/cmpxchg8b_emu.S: ((X86_CMPXCHG64 != "y") && (X86_32 == "y"))
+arch/x86/lib/copy_page_64.S: !(X86_32 == "y")
+arch/x86/lib/copy_user_64.S: !(X86_32 == "y")
+arch/x86/lib/copy_user_nocache_64.S: !(X86_32 == "y")
+arch/x86/lib/csum-copy_64.S: !(X86_32 == "y")
+arch/x86/lib/csum-partial_64.c: !(X86_32 == "y")
+arch/x86/lib/csum-wrappers_64.c: !(X86_32 == "y")
+arch/x86/lib/delay.c: [TRUE]
+arch/x86/lib/getuser.S: [TRUE]
+arch/x86/lib/inat.c: ((KPROBES == "y") || (KPROBES == "m"))
+arch/x86/lib/insn.c: ((KPROBES == "y") || (KPROBES == "m"))
+arch/x86/lib/io_64.c: !(X86_32 == "y")
+arch/x86/lib/iomap_copy_64.S: !(X86_32 == "y")
+arch/x86/lib/memmove_64.c: !(X86_32 == "y")
+arch/x86/lib/memset_64.S: !(X86_32 == "y")
+arch/x86/lib/mmx_32.c: (((X86_USE_3DNOW == "y") || (X86_USE_3DNOW == "m")) && (X86_32 == "y"))
+arch/x86/lib/msr-reg-export.c: [TRUE]
+arch/x86/lib/msr-reg.S: [TRUE]
+arch/x86/lib/msr-smp.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/lib/msr.c: [TRUE]
+arch/x86/lib/putuser.S: [TRUE]
+arch/x86/lib/rwlock_64.S: !(X86_32 == "y")
+arch/x86/lib/rwsem_64.S: (((RWSEM_XCHGADD_ALGORITHM == "y") || (RWSEM_XCHGADD_ALGORITHM == "m")) && !(X86_32 == "y"))
+arch/x86/lib/semaphore_32.S: (X86_32 == "y")
+arch/x86/lib/string_32.c: (X86_32 == "y")
+arch/x86/lib/strstr_32.c: (X86_32 == "y")
+arch/x86/lib/thunk_64.S: !(X86_32 == "y")
+arch/x86/math-emu/div_Xsig.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/div_small.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/errors.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_arith.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_aux.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_entry.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_etc.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_tags.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/fpu_trig.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/get_address.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/load_store.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/mul_Xsig.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/poly_2xm1.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/poly_atan.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/poly_l2.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/poly_sin.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/poly_tan.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/polynom_Xsig.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_add_sub.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_compare.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_constant.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_convert.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_divide.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_ld_str.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_mul.c: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_norm.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_round.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_u_add.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_u_div.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_u_mul.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/reg_u_sub.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/round_Xsig.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/shr_Xsig.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/wm_shrx.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/math-emu/wm_sqrt.S: ((MATH_EMULATION == "y") || (MATH_EMULATION == "m"))
+arch/x86/mm/dump_pagetables.c: ((X86_PTDUMP == "y") || (X86_PTDUMP == "m"))
+arch/x86/mm/extable.c: [TRUE]
+arch/x86/mm/fault.c: [TRUE]
+arch/x86/mm/gup.c: [TRUE]
+arch/x86/mm/highmem_32.c: ((HIGHMEM == "y") || (HIGHMEM == "m"))
+arch/x86/mm/hugetlbpage.c: ((HUGETLB_PAGE == "y") || (HUGETLB_PAGE == "m"))
+arch/x86/mm/init.c: [TRUE]
+arch/x86/mm/iomap_32.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/mm/ioremap.c: [TRUE]
+arch/x86/mm/k8topology_64.c: ((K8_NUMA == "y") || (K8_NUMA == "m"))
+arch/x86/mm/kmemcheck/error.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmemcheck/kmemcheck.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmemcheck/opcode.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmemcheck/pte.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmemcheck/selftest.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmemcheck/shadow.c: ((KMEMCHECK == "y") || (KMEMCHECK == "m"))
+arch/x86/mm/kmmio.c: ((MMIOTRACE == "y") || (MMIOTRACE == "m"))
+arch/x86/mm/memtest.c: ((MEMTEST == "y") || (MEMTEST == "m"))
+arch/x86/mm/mmap.c: [TRUE]
+arch/x86/mm/mmio-mod.c: ((MMIOTRACE == "y") || (MMIOTRACE == "m"))
+arch/x86/mm/numa.c: ((NUMA == "y") || (NUMA == "m"))
+arch/x86/mm/pageattr.c: [TRUE]
+arch/x86/mm/pat.c: [TRUE]
+arch/x86/mm/pf_in.c: ((MMIOTRACE == "y") || (MMIOTRACE == "m"))
+arch/x86/mm/pgtable.c: [TRUE]
+arch/x86/mm/pgtable_32.c: ((X86_32 == "y") || (X86_32 == "m"))
+arch/x86/mm/physaddr.c: [TRUE]
+arch/x86/mm/setup_nx.c: [TRUE]
+arch/x86/mm/testmmiotrace.c: ((MMIOTRACE_TEST == "y") || (MMIOTRACE_TEST == "m"))
+arch/x86/mm/tlb.c: ((SMP == "y") || (SMP == "m"))
+arch/x86/oprofile/backtrace.c: ((OPROFILE == "y") || (OPROFILE == "m"))
+arch/x86/oprofile/init.c: ((OPROFILE == "y") || (OPROFILE == "m"))
+arch/x86/oprofile/nmi_int.c: ((X86_LOCAL_APIC == "y") && ((OPROFILE == "y") || (OPROFILE == "m")))
+arch/x86/oprofile/nmi_timer_int.c: ((X86_IO_APIC == "y") && ((OPROFILE == "y") || (OPROFILE == "m")))
+arch/x86/oprofile/op_model_amd.c: ((X86_LOCAL_APIC == "y") && ((OPROFILE == "y") || (OPROFILE == "m")))
+arch/x86/oprofile/op_model_p4.c: ((X86_LOCAL_APIC == "y") && ((OPROFILE == "y") || (OPROFILE == "m")))
+arch/x86/oprofile/op_model_ppro.c: ((X86_LOCAL_APIC == "y") && ((OPROFILE == "y") || (OPROFILE == "m")))
+arch/x86/pci/acpi.c: (((ACPI == "y") || (ACPI == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/amd_bus.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/bus_numa.c: (((X86_64 == "y") || (X86_64 == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/common.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/direct.c: ((((PCI_MMCONFIG == "y") || (PCI_MMCONFIG == "m")) || ((PCI_DIRECT == "y") || (PCI_DIRECT == "m"))) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/early.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/fixup.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/i386.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/init.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/irq.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/legacy.c: ((PCI == "y") || (PCI == "m"))
+arch/x86/pci/mmconfig-shared.c: (((PCI_MMCONFIG == "y") || (PCI_MMCONFIG == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/numaq_32.c: (((X86_NUMAQ == "y") || (X86_NUMAQ == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/olpc.c: (((PCI_OLPC == "y") || (PCI_OLPC == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/pcbios.c: (((PCI_BIOS == "y") || (PCI_BIOS == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/pci/visws.c: (((X86_VISWS == "y") || (X86_VISWS == "m")) && ((PCI == "y") || (PCI == "m")))
+arch/x86/power/cpu.c: (((PM_SLEEP == "y") || (PM_SLEEP == "m")) && ((PM == "y") || (PM == "m")))
+arch/x86/video/fbdev.c: (((FB == "y") || (FB == "m")) && (X86_32 == "y"))
+arch/x86/xen/debugfs.c: (((XEN_DEBUG_FS == "y") || (XEN_DEBUG_FS == "m")) && ((XEN == "y") || (XEN == "m")))
+arch/x86/xen/enlighten.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/grant-table.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/irq.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/mmu.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/multicalls.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/setup.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/smp.c: (((SMP == "y") || (SMP == "m")) && ((XEN == "y") || (XEN == "m")))
+arch/x86/xen/spinlock.c: (((PARAVIRT_SPINLOCKS == "y") || (PARAVIRT_SPINLOCKS == "m")) && ((XEN == "y") || (XEN == "m")))
+arch/x86/xen/suspend.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/time.c: ((XEN == "y") || (XEN == "m"))
+arch/x86/xen/xen-asm.S: ((XEN == "y") || (XEN == "m"))
 block/blk-barrier.c: ((BLOCK == "y") || (BLOCK == "m"))
 block/blk-cgroup.c: ((BLK_CGROUP == "y") || (BLK_CGROUP == "m"))
 block/blk-core.c: ((BLOCK == "y") || (BLOCK == "m"))
