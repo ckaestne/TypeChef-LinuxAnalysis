@@ -7,27 +7,50 @@ import de.fosd.typechef.parser._
 import de.fosd.typechef.error.Position
 
 
-object LinuxLinker extends com.github.paulp.optional.Application {
+case class Config(fileList: File = null, featureModelDimacs: File = null, prefix: Option[String]=None, dirOnly: Option[String]=None)
+
+object LinuxLinker  {
     val fexprParser = new FeatureExprParser(FeatureExprFactory.bdd)
 
 
-    def main(fileList: File, featureModelDimacs: File, prefix: Option[String], dirOnly: Option[String]) {
+
+    def main(args:Array[String]): Unit = {
+        val parser = new scopt.OptionParser[Config]("LinuxLinker") {
+            opt[File]("fileList") required() valueName("<file>") action { (x, c) =>
+                c.copy(fileList = x) } text("fileList is a required file property")
+            opt[File]("featureModelDimacs") required() valueName("<file>") action { (x, c) =>
+                c.copy(featureModelDimacs = x) } text("featureModelDimacs is a required file property")
+            opt[String]("prefix") valueName("<prefix>")  action { (x, c) =>
+                c.copy(prefix = Some(x)) }
+            opt[String]("dirOnly") valueName("<dir>")  action { (x, c) =>
+                c.copy(dirOnly = Some(x)) }
+        }
+        // parser.parse returns Option[C]
+        parser.parse(args, Config()) map { config =>
+            _main(config)
+        } getOrElse {
+            // arguments are bad, error message will have been displayed
+        }
+    }
+
+
+    def _main(config:Config) {
         FeatureExprFactory.setDefault(FeatureExprFactory.bdd)
 
 
-        assert(featureModelDimacs.exists(), "feature model file does not exist")
-        assert(fileList.exists(), "file list file does not exist")
+        assert(config.featureModelDimacs.exists(), "feature model file does not exist")
+        assert(config.fileList.exists(), "file list file does not exist")
 
-        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(featureModelDimacs.getAbsolutePath) //.and(fexprParser.parseFile(new File("approx.fm")))
-        val files = io.Source.fromFile(fileList).getLines().toList
+        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(config.featureModelDimacs.getAbsolutePath) //.and(fexprParser.parseFile(new File("approx.fm")))
+        val files = io.Source.fromFile(config.fileList).getLines().toList
 
         val filesByDirectory = files.groupBy(f => f.take(f.lastIndexOf("/")))
 
         var finalInterface: CInterface = EmptyInterface
 
         for ((dir, filesInDir) <- filesByDirectory.iterator.toList.reverse
-             if dir.startsWith(prefix.getOrElse(""))
-             if dirOnly.map(_ == dir).getOrElse(true)
+             if dir.startsWith(config.prefix.getOrElse(""))
+             if config.dirOnly.map(_ == dir).getOrElse(true)
              if !(excludeDirs contains dir)) {
 
             val dirInterface = processDir(dir, filesInDir, vm)
@@ -150,19 +173,34 @@ object LinuxLinker extends com.github.paulp.optional.Application {
 }
 
 
-object LinuxDirLinker extends com.github.paulp.optional.Application {
+object LinuxDirLinker  {
     val fexprParser = new FeatureExprParser(FeatureExprFactory.bdd)
 
 
-    def main(fileList: File, featureModelDimacs: File) {
+    def main(args:Array[String]): Unit = {
+        val parser = new scopt.OptionParser[Config]("LinuxDirLinker") {
+            opt[File]("fileList") required() valueName("<file>") action { (x, c) =>
+                c.copy(fileList = x) } text("fileList is a required file property")
+            opt[File]("featureModelDimacs") required() valueName("<file>") action { (x, c) =>
+                c.copy(featureModelDimacs = x) } text("featureModelDimacs is a required file property")
+        }
+        // parser.parse returns Option[C]
+        parser.parse(args, Config()) map { config =>
+            _main(config)
+        } getOrElse {
+            // arguments are bad, error message will have been displayed
+        }
+    }
+
+    def _main(config:Config) {
         FeatureExprFactory.setDefault(FeatureExprFactory.bdd)
 
-        assert(featureModelDimacs.exists(), "feature model file does not exist")
-        assert(fileList.exists(), "file list file does not exist")
+        assert(config.featureModelDimacs.exists(), "feature model file does not exist")
+        assert(config.fileList.exists(), "file list file does not exist")
 
-        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(featureModelDimacs.getAbsolutePath).and(fexprParser.parseFile(new File("approx.fm")))
+        val vm = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(config.featureModelDimacs.getAbsolutePath).and(fexprParser.parseFile(new File("approx.fm")))
 
-        val files = io.Source.fromFile(fileList).getLines().toList
+        val files = io.Source.fromFile(config.fileList).getLines().toList
 
         val directories = files.map(f => f.take(f.lastIndexOf("/"))).toSet
 

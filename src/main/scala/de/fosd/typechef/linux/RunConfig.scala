@@ -14,9 +14,26 @@ import java.io.{FileWriter, File}
  * runs make in the "l" directory
  */
 
-object RunConfig extends com.github.paulp.optional.Application {
-    def main(rootDir: Option[File], clean: Boolean = false) {
-        val root = rootDir.getOrElse(new File("."))
+
+object RunConfig  {
+    case class Config(rootDir: Option[File]=None, clean: Boolean = false)
+
+    def main(args:Array[String]): Unit = {
+        val parser = new scopt.OptionParser[Config]("LinuxLinker") {
+            opt[File]("rootDir") valueName("<dir>") action { (x, c) =>
+                c.copy(rootDir = Some(x)) }
+            opt[Unit]("clean") action { (x, c) =>
+                c.copy(clean = true) }
+        }
+        parser.parse(args, Config()) map { config =>
+            _main(config)
+        } getOrElse {
+        }
+    }
+
+
+    def _main(config:Config) {
+        val root = config.rootDir.getOrElse(new File("."))
         val configDir = new File(root, "runconfig")
         val tasksFile = new File(configDir, "tasks")
         val linuxDir = new File(root, "l")
@@ -34,7 +51,7 @@ object RunConfig extends com.github.paulp.optional.Application {
             val file = c(2)
             val logFile = new File(configDir, id + ".log")
 
-            if (clean && logFile.exists())
+            if (config.clean && logFile.exists())
                 logFile.delete()
 
             if (!logFile.exists()) {

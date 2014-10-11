@@ -1,11 +1,13 @@
 package de.fosd.typechef.linux
 
-import scala.util.parsing.combinator._
-import scala.util.control.Breaks
 import java.io._
-import de.fosd.typechef.featureexpr.FeatureExprFactory.{False, True, createDefinedExternal}
+
 import de.fosd.typechef.featureexpr.FeatureExpr
-import io.Source
+import de.fosd.typechef.featureexpr.FeatureExprFactory.{False, True, createDefinedExternal}
+
+import scala.io.Source
+import scala.util.control.Breaks
+import scala.util.parsing.combinator._
 
 /**
  * processes thorstens file list (passed as parameter) and creates corresponding .pc files
@@ -14,18 +16,14 @@ import io.Source
  *
  * call with file created by thorsten as parameter
  */
-object ProcessFileList extends com.github.paulp.optional.Application with RegexParsers {
+object ProcessFileList extends RegexParsers {
 
-    def toFeature(name: String, isModule: Boolean) =
-    //ChK: deactivate modules for now. not interested and messes with the sat solver
-        if (isModule) False
+    def toFeature(name: String, isModule: Boolean): FeatureExpr = {
+        val cname = "CONFIG_" + (if (isModule) name + "_MODULE" else name)
+        if (openFeatures.isDefined && !(openFeatures.get contains cname)) False
         else
-            createDefinedExternal("CONFIG_" +
-                (if (isModule)
-                //name + "_2" // This is not SAT-solving, use the Linux names!
-                    name + "_MODULE"
-                else
-                    name))
+            createDefinedExternal(cname)
+    }
 
     def expr: Parser[FeatureExpr] =
         ("(" ~> (expr ~ "||" ~ expr) <~ ")") ^^ {
@@ -60,7 +58,7 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
                 case (id ~ _ ~ isModule) => toFeature(id, isModule)
             } |
             ("(" ~> (ID ~ "==" ~ stringLit) <~ ")") ^^ {
-               x=> True
+                case (id ~ _ ~ value) => println("nonboolean %s=%s not supported".format(id, value)); True
             } |
             ID ^^ (id => toFeature(id, true) or toFeature(id, false))
 
@@ -74,28 +72,43 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
     def ID = "[A-Za-z0-9_]*".r
 
     def featVal = ("\"" ~> "(y|m)".r <~ "\"") ^^ (_ == "m")
-    def stringLit = ("\"" ~> "[a-z]*".r <~ "\"") 
+
+    def stringLit = ("\"" ~> "[a-z]*".r <~ "\"")
 
 
-    def main(workingDir: Option[java.io.File], openFeatureList: Option[java.io.File], arg1: java.io.File) {
-        val pcList = arg1
+    private case class Config(workingDir: Option[java.io.File] = None, openFeatureList: Option[java.io.File] = None, inputFile: java.io.File = null)
+
+
+    def main(args: Array[String]): Unit = {
+        val parser = new scopt.OptionParser[Config]("LinuxLinker") {
+            opt[File]("workingDir") valueName ("<dir>") action { (x, c) =>
+                c.copy(workingDir = Some(x))
+            }
+            opt[File]("openFeatureList") valueName ("<dir>") action { (x, c) =>
+                c.copy(openFeatureList = Some(x))
+            } text("an open feature list can be provided to filter any features not supported in this architecture")
+            arg[File]("<file>") required() action { (x, c) =>
+                c.copy(inputFile = x)
+            }
+        }
+        parser.parse(args, Config()) map { config =>
+            _main(config)
+        } getOrElse {
+        }
+    }
+
+
+    var openFeatures: Option[Set[String]] = None
+
+    def _main(config: Config) {
+        val pcList = config.inputFile
 
         val lines = io.Source.fromFile(pcList).getLines
         val mybreaks = new Breaks
         val stderr = new PrintWriter(System.err, true)
 
-        val openFeatures: Option[Set[String]] =
-            openFeatureList map (Source.fromFile(_).getLines().toSet)
+        openFeatures = config.openFeatureList map (Source.fromFile(_).getLines().toSet)
 
-        //if a list of open expressions is given, all features not on this list are deselected
-        def filterOpenExpr(featureExpr: FeatureExpr): FeatureExpr =
-            if (!openFeatures.isDefined) featureExpr
-            else {
-                val deadFeatures = for (f <- featureExpr.collectDistinctFeatures
-                                        if !(openFeatures.get contains f)
-                ) yield f
-                deadFeatures.map(createDefinedExternal(_).not).fold(featureExpr)(_ and _)
-            }
 
         import mybreaks.{break, breakable}
         breakable {
@@ -106,14 +119,13 @@ object ProcessFileList extends com.github.paulp.optional.Application with RegexP
                     case _ => false
                 }
                 )) {
-                val fullFilenameNoExt = workingDir.map(_.getPath+"/").getOrElse("") + fullFilename.dropRight(2)
+                val fullFilenameNoExt = config.workingDir.map(_.getPath + "/").getOrElse("") + fullFilename.dropRight(2)
                 val filename = fullFilename.substring(fullFilename.lastIndexOf("/") + 1).dropRight(2)
 
                 val pcExpr = parseAll(expr, fields(1))
 
                 pcExpr match {
-                    case Success(_cond, _) =>
-                        val cond=filterOpenExpr(_cond)
+                    case Success(cond, _) =>
                         //file should be parsed
                         println(fullFilename + " " + cond)
 

@@ -10,13 +10,11 @@ libraryDependencies += "de.fosd.typechef" % "frontend_2.10" % "0.3.6"
 
 libraryDependencies += "de.fosd.typechef" % "javabdd_repackaged" % "1.0b2"
 
-libraryDependencies += "gnu.getopt" % "java-getopt" % "1.0.13"
-
 libraryDependencies += "junit" % "junit" % "4.8.2" % "test"
 
 libraryDependencies += "com.novocode" % "junit-interface" % "0.6" % "test"
 
-libraryDependencies += "com.thoughtworks.paranamer" % "paranamer" % "2.2.1"
+libraryDependencies += "com.github.scopt" %% "scopt" % "3.2.0"
 
 //generate typechef.sh file with full classpath
 TaskKey[File]("mkrun") <<= (baseDirectory, fullClasspath in Runtime, mainClass in Runtime) map {
