@@ -2,15 +2,16 @@
 # also generates file lists of all arch/x files
 
 thisdir=`pwd`
-echo $thisdir
-kbuildminerDir=../BusyboxAnalysis/KBuildMiner
+linuxdir=$thisdir/linux
+kbuildminerDir=../../KBuildMiner
 
 cd $kbuildminerDir
-for arch in x86 arm alpha  avr32   cris  h8300 m68k   microblaze  mn10300  powerpc  score  sparc    xtensa  blackfin  frv   ia64   m32r     m68knommu  mips        parisc   s390 sh     um
+for arch in x86 
 do
- mvn scala:run -q -DmainClass=gsd.buildanalysis.linux.KBuildMinerMain "-DaddArgs=--codebase|$thisdir/linux-2.6.33.3|--linuxArch|$arch|--pcOutput|$thisdir/pcs/$arch.pc"
- 
- cat $thisdir/pcs/$arch.pc | grep "^arch" | sed 's/\(.*\).[cS]:.*/\1/' > $thisdir/pcs/$arch.flist
+ cp $linuxdir/arch/$arch/Makefile $linuxdir/tmpMake
+ ./run.sh gsd.buildanalysis.linux.KBuildMinerMain --codebase $linuxdir --topFolders "tmpMake,block,crypto,drivers,firmware,fs,init,ipc,kernel,lib,mm,net,security,sound" --pcOutput $thisdir/pcs/$arch.pc
+
+ cat $thisdir/pcs/$arch.pc | grep "\.c: " | sed 's/\(.*\).[cS]:.*/\1/' > $thisdir/pcs/$arch.flist
 done
 
 cd $thisdir

@@ -7,7 +7,8 @@ version=linux-2.6.33.3
 #fi
 #tar xjf $tarball
 
-cd $version
+ln -s $version linux
+cd linux
 make allnoconfig ARCH=x86
 make prepare ARCH=x86
 # Creates include/generated/compile.h needed for init/version.o; the command
@@ -15,5 +16,9 @@ make prepare ARCH=x86
 make SUBDIRS=init ARCH=x86 &> /dev/null
 cd ..
 
+dir=`pwd`
+cd ..
 sbt mkrun
-./run.sh de.fosd.typechef.linux.ProcessFileList pcs/x86.pc --workingDir $version/ --openFeatureList pcs/x86.open
+
+cd $dir
+applyPCs.sh
