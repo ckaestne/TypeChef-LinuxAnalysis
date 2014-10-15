@@ -8,7 +8,7 @@
 ##################################################################
 #srcPath=linux-2.6.33.3
 # XXX:$PWD/ makes the path absolute, it is needed for some stupid bug!
-srcPath=$PWD/l
+srcPath=$PWD/linux
 
 ##################################################################
 # List of files to preprocess
