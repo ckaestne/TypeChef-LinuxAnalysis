@@ -67,10 +67,21 @@ The main output is the `.dbg` file that describes any found problems
 in human-readable form (see `.c.xml` for a machine-readable format).
 The `linuxTestCase.sh` script will run the analysis on all files that
 do not have a `.dbg` file yet. To rerun the analysis on a file, simply
-remove the `.dbg` file.
+remove the `.dbg` file. The `cleanLinux.sh` script removes all `.dbg` 
+files.
 
 
 If running the analysis on the `master` directory, you first need to extract
 the feature models and file presence conditions with `genPCs.sh` and
 `genFMs.sh`. The files will be placed in the `pcs` directory and used
-for the remaining analysis.
+for the remaining analysis. For `linux26333` those files are already
+checked in, but can be recreated with the corresponding scripts.
+
+## Further tools
+
+The project contains several Scala tools to automate some analysis
+or debugging tasks. 
+
+One of the most useful tools is CheckExpr (easily accessible through
+`checkexpr.sh`) which reads a formula from a file `formula`
+and checks whether it is satisfiable or a tautology.
