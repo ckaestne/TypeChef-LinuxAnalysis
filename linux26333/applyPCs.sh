@@ -3,6 +3,6 @@
 
 for arch in x86
 do
-  ../run.sh de.fosd.typechef.linux.ProcessFileList pcs/$arch.pc --openFeatureList pcs/$arch.open --workingDir linux/ 
+  ../run.sh de.fosd.typechef.linux.GeneratePCFiles pcs/$arch.pc --workingDir linux/ 
 done
 
