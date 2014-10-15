@@ -181,7 +181,7 @@ class KConfigMinerParser(openFeatures: Option[Set[String]]) extends RegexParsers
                 case (id ~ _ ~ isModule) => toFeature(id, isModule)
             } |
             ("(" ~> (ID ~ "==" ~ stringLit) <~ ")") ^^ {
-                case (id ~ _ ~ value) => println("nonboolean %s=%s not supported".format(id, value)); True
+                case (id ~ _ ~ value) => System.err.println("nonboolean %s=%s not supported".format(id, value)); True
             } |
             ID ^^ (id => toFeature(id, true) or toFeature(id, false))
 
