@@ -1,80 +1,95 @@
 package de.fosd.typechef.linux
 
-import de.fosd.typechef.featureexpr.sat.SATFeatureModel
-import featuremodel.{LinuxDimacsModel, LinuxApproxModel}
-import java.io.{FileWriter, File}
-import util.parsing.combinator._
+import java.io.{File, FileWriter}
+
 import de.fosd.typechef.featureexpr._
+import de.fosd.typechef.featureexpr.sat.SATFeatureModel
+
+import scala.util.parsing.combinator._
 
 
-object CheckFeatureExpr extends App {
-    if (args.size != 1 && !new File("formula").exists()) {
-        println("expected feature expression as parameter")
-        System.exit(0)
-    }
+object CheckFeatureExpr {
+
+    private case class Config(fms: List[(String, FeatureModel)] = List(("No FM", NoFeatureModel)),
+                              inputs: List[FeatureExpr] = Nil,
+                              undertakerModel: List[(String, File)] = Nil)
 
     val NoFeatureModel = FeatureExprFactory.default.featureModelFactory.empty
 
-    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
+    private def loadFExprFM(file: File) = FeatureExprFactory.default.featureModelFactory.create(parseFExprFile(file))
 
-    val fmApprox = new LinuxApproxModel().createFeatureModel
-    val fmDimacs = new LinuxDimacsModel().createFeatureModel
-    val fmDimacsNew = new LinuxDimacsModel().createFeatureModel2
-
-    for (fexprStr <- fexprStrs; if (!fexprStr.trim.isEmpty)) {
-
-        val fexpr = new FeatureExprParser().parse(fexprStr)
-        println("\n" + fexpr.toString.take(400) + "...")
-
-
-        def status(fexpr: FeatureExpr, fm: FeatureModel): String =
-	    if (!fexpr.isSatisfiable(fm)) "contradiction"
-	    else if (fexpr.isTautology(fm)) "tautology"
-	    else "satisfiable"
-//            (if (fexpr.isSatisfiable(fm)) "SAT" else "!SAT") + ", " + (if (fexpr.isTautology(fm)) "TAU" else "!TAU")
-
-        println("Plain: " + status(fexpr, NoFeatureModel))
-
-        println("Approx.fm: " + status(fexpr, fmApprox))
-
-        println("Dimacs.old: " + status(fexpr, fmDimacs))
-
-        println("Dimacs: " + status(fexpr, fmDimacsNew))
-
-        val undertakerFMgen = new UndertakerFMParser("x86.model")
-        val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
-        assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
-        println("Undertaker: " + status(slicedFExpr and fexpr, NoFeatureModel))
-
-//        if (fexpr.isSatisfiable(fmDimacs)) {
-//            GenConfig.genConfig(fexpr, fmDimacs)
-//            println("generated ..config")
-//        }
-        //
-        //
-        //            val features = fexpr.collectDistinctFeatures
-        //            for (f <- features) {
-        //                val expr = f
-        //
-        //                val slicedFExpr = undertakerFMgen.sliceModel(expr)
-        //
-        //                assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
-        //
-        //            }
-        //
-        //            for (ts <- features.tails; j <- ts; if (ts.head != j)) {
-        //                val expr = ts.head and j
-        //
-        //                val slicedFExpr = undertakerFMgen.sliceModel(expr)
-        //
-        //                assert(expr.isSatisfiable(fmDimacs) == (slicedFExpr implies expr).isSatisfiable(), expr + ": " + expr.isSatisfiable(fmDimacs) + " -- " + (slicedFExpr implies expr).isSatisfiable())
-        //
-        //            }
+    private def loadDimacsFM(file: File): FeatureModel = {
+        println("loading feature model...");
+        val start = System.currentTimeMillis
+        val featureModel = FeatureExprFactory.default.featureModelFactory.createFromDimacsFile(file.getAbsolutePath)
+        println("done. [" + (System.currentTimeMillis - start) + " ms]")
+        featureModel
     }
 
-    //    //    for (i<- 1 until 207)
-    //    //        new UndertakerFMParser("x86.model",i)
-    //    new UndertakerFMParser("x86.model", 25)
+    private def parseFExpr(expr: String) = new FeatureExprParser().parse(expr)
+
+    private def parseFExprFile(file: File) = new FeatureExprParser().parseFile(file)
+
+    def main(args: Array[String]): Unit = {
+        val parser = new scopt.OptionParser[Config]("CheckFeatureExpr") {
+            opt[File]("fexprFM") maxOccurs(Int.MaxValue) valueName ("<file>") action { (file, config) =>
+                assert(file.exists(), "file %s does not exist".format(file))
+                config.copy(fms = (file.getName, loadFExprFM(file)) :: config.fms)
+            } text ("feature model in the feature expression format of approx.fm")
+            opt[File]("dimacsFM") maxOccurs(Int.MaxValue) valueName ("<file>") action { (file, config) =>
+                assert(file.exists(), "file %s does not exist".format(file))
+                config.copy(fms = (file.getName, loadDimacsFM(file)) :: config.fms)
+            } text ("feature model in the dimacs format (all variable names are prefixed by CONFIG_)")
+            opt[File]("undertakerFM") maxOccurs(Int.MaxValue)  valueName ("<file>") action { (file, config) =>
+                assert(file.exists(), "file %s does not exist".format(file))
+                config.copy(undertakerModel = (file.getName, file) :: config.undertakerModel)
+            } text ("feature model in the undertaker format")
+            opt[File]("inputFile")  maxOccurs(Int.MaxValue) valueName ("<file>") action { (file, config) =>
+                assert(file.exists(), "file %s does not exist".format(file))
+                config.copy(inputs = scala.io.Source.fromFile("formula").getLines().filterNot(_.trim.isEmpty).toList.map(parseFExpr) ++ config.inputs)
+            } text ("file with the formulas to be analyzed (one formula per line)")
+            arg[String]("<formula>") optional() action { (x, c) =>
+                c.copy(inputs = parseFExpr(x) :: c.inputs)
+            } text ("the formula to be analyzed")
+        }
+        parser.parse(args, Config()) map { config =>
+            _main(config)
+        } getOrElse {
+        }
+    }
+
+    def _main(config: Config) {
+
+
+        if (config.inputs.isEmpty) {
+            println("no expression to analyze provided")
+        }
+
+
+        for (fexpr <- config.inputs.reverse) {
+
+            println("\n" + fexpr.toString.take(400) + "...")
+
+
+            def status(fexpr: FeatureExpr, fm: FeatureModel): String =
+                if (!fexpr.isSatisfiable(fm)) "contradiction"
+                else if (fexpr.isTautology(fm)) "tautology"
+                else "satisfiable"
+
+
+            for ((name, fm) <- config.fms)
+                println(name + ": " + status(fexpr, fm))
+
+
+            for ((name, file) <- config.undertakerModel) {
+                val undertakerFMgen = new UndertakerFMParser(file.getAbsolutePath)
+                val slicedFExpr = undertakerFMgen.sliceModel(fexpr)
+                assert(slicedFExpr.isSatisfiable(), "fm " + slicedFExpr + " is not satisfiable")
+                println(name + ": " + status(slicedFExpr and fexpr, NoFeatureModel))
+            }
+
+        }
+    }
 }
 
 /**
@@ -84,20 +99,20 @@ object CheckFeatureExpr extends App {
  * more accurate version of this functionality now part of kconfigreader
  */
 @Deprecated
-object GenConfig  /* extends App*/ {
-//    if (args.size != 1 && !new File("formula").exists()) {
-//        println("expected feature expression as parameter")
-//        System.exit(0)
-//    }
-//    val fmDimacs = new LinuxDimacsModel().createFeatureModel
-//
-//    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
-//    val fexpr = fexprStrs.map(s=>new FeatureExprParser().parse(s)).reduce(_ and _)
-//
-//    val allSymbols = fmDimacs
+object GenConfig /* extends App*/ {
+    //    if (args.size != 1 && !new File("formula").exists()) {
+    //        println("expected feature expression as parameter")
+    //        System.exit(0)
+    //    }
+    //    val fmDimacs = new LinuxDimacsModel().createFeatureModel
+    //
+    //    val fexprStrs = if (args.size > 0) Seq(args(0)) else scala.io.Source.fromFile("formula").getLines()
+    //    val fexpr = fexprStrs.map(s=>new FeatureExprParser().parse(s)).reduce(_ and _)
+    //
+    //    val allSymbols = fmDimacs
 
 
-    def genConfig(fexpr:FeatureExpr, fm: FeatureModel): Unit = {
+    def genConfig(fexpr: FeatureExpr, fm: FeatureModel): Unit = {
         val variables = fm.asInstanceOf[SATFeatureModel].variables.keys.filterNot(_ startsWith "CONFIG__").map(FeatureExprFactory.createDefinedExternal(_)).toSet ++ fexpr.collectDistinctFeatureObjects
         val assignment = fexpr.getSatisfiableAssignment(fm, variables, true)
         val config = satAssignmentToConfig(assignment)
@@ -143,8 +158,8 @@ object GenConfig  /* extends App*/ {
             else if (f.feature contains "=") {
                 val k = f.feature.take(f.feature.indexOf("="))
                 var v = f.feature.substring(f.feature.indexOf("=") + 1)
-//                if (fm.findItem(k)._type == StringType && v != "n")
-                    v = "\"" + v + "\""
+                //                if (fm.findItem(k)._type == StringType && v != "n")
+                v = "\"" + v + "\""
                 result += (k -> v)
             } else
                 result += (f.feature -> "y")
