@@ -40,7 +40,7 @@ outTime="$outBase.time"
 # don't ever try to touch it. It simplifies your life as a user of this program
 # though!
 echo "==Partially preprocessing $inp"
-echo $partialPreprocFlags
+echo $partialPreprocFlags "$@"
 
 bash -c "time ../../TypeChef/typechef.sh \
   $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
