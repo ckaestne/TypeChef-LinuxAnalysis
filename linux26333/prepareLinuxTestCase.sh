@@ -7,7 +7,7 @@ version=linux-2.6.33.3
 #fi
 #tar xjf $tarball
 
-ln -s $version linux
+# ln -s $version linux
 cd linux
 make allnoconfig ARCH=x86
 make prepare ARCH=x86
@@ -21,4 +21,4 @@ cd ..
 sbt mkrun
 
 cd $dir
-applyPCs.sh
+sh applyPCs.sh
