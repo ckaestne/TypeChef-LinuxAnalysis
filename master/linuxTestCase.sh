@@ -29,7 +29,7 @@ partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   -c ../$system.properties \
   --openFeat pcs/x86.open \
   --writePI --recordTiming --lexdebug --errorXML --interface \
-  --adjustLines"
+  --adjustLines --printIncludes"
 
 
 #  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
@@ -121,7 +121,7 @@ flags() {
   fi
   # XXX: again, I need to specify $PWD, for the same bug as above.
   # "-I linux-2.6.33.3/include -I linux-2.6.33.3/arch/x86/include"
-  echo "$extraFlag -I $srcPath/include -I $srcPath/arch/x86/include -D __KERNEL__ -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DKBUILD_BASENAME=\"\\\"$base\\\"\" -DKBUILD_MODNAME=\"\\\"$base\\\"\""
+  echo "$extraFlag -I $srcPath/include -I $srcPath/arch/x86/include -I $srcPath/arch/x86/include/generated -I $srcPath/arch/x86/include/uapi -I $srcPath/arch/x86/include/generated/uapi -I $srcPath/include/uapi -D __KERNEL__ -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DKBUILD_BASENAME=\"\\\"$base\\\"\" -DKBUILD_MODNAME=\"\\\"$base\\\"\" --include=$srcPath/include/linux/kconfig.h"
 }
 
 export outCSV=linux.csv

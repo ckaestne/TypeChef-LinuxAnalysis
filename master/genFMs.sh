@@ -2,7 +2,7 @@
 
 thisdir=`pwd`
 linuxDir=linux
-dumpconf=$thisdir/../../kconfigreader/binary/dumpconf
+dumpconf=$thisdir/dumpconf
 kconfigreader=$thisdir/../../kconfigreader/run.sh
 
 cd $linuxDir
