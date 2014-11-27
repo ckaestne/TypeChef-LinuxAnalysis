@@ -29,6 +29,8 @@ partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   -c ../$system.properties \
   --openFeat pcs/x86.open \
   --writePI --recordTiming --lexdebug --errorXML --interface \
+  --dumpcfg \
+  --parserstatistics \
   --adjustLines"
 
 
