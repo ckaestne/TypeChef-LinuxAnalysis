@@ -23,3 +23,4 @@
 
 #define CONFIG_X86_MINIMUM_CPU_FAMILY 5
 
+#undef ACPI_CUSTOM_DSDT //triggers invalid include otherwise
