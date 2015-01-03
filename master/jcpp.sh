@@ -39,11 +39,11 @@ outTime="$outBase.time"
 # Beware: the embedded for loop requotes the passed argument. That's dark magic,
 # don't ever try to touch it. It simplifies your life as a user of this program
 # though!
-echo "==Partially preprocessing $inp"
-echo $partialPreprocFlags "$@"
+echo "==Preprocessing $inp"
+echo $typechefFlags "$@"
 
 bash -c "time ../../TypeChef/typechef.sh \
-  $(for arg in $partialPreprocFlags "$@"; do echo -n "\"$arg\" "; done) \
+  $(for arg in $typechefFlags "$@"; do echo -n "\"$arg\" "; done) \
   '$inp' 2> '$outErr' |tee '$outDbg'" \
   2> "$outTime" || true
 
