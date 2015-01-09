@@ -14,29 +14,44 @@ object MakeIncludeAnalysis extends App {
     /**
      * finds all parameters and corresponding conditions
      */
-    def analyzeMakefile(file: File): List[(String, String)] = {
-        val in = io.Source.fromFile(file)
+    def analyzeMakefile(makefile: File): Map[File, List[(String, String)]] = {
+        val in = io.Source.fromFile(makefile)
         val lines = in.getLines().
             map(s => if (s contains "#") s.substring(0, s.indexOf("#")) else s).
             foldRight(List[String]())(
                 (s, result) => if (result.isEmpty) s :: result else if (s endsWith "\\") (s.dropRight(1) + " " + result.head) :: result.tail else s :: result
             )
 
-        lines.filter(_ startsWith "ccflags-").flatMap(s => {
+
+
+        val makeFileDir = makefile.getParentFile
+        val directoryFlags = lines.filter(_ startsWith "ccflags-").flatMap(s => {
             val parts = s.split("\\s[+:]?=\\s")
             assert(parts.length == 2)
             val condition = getCondition(parts(0).trim)
             val extraparams = parts(1).split("\\s").toList
             extraparams.map(p => (condition, p))
         })
+        val fileFlags: Map[File, List[(String, String)]] = lines.
+            filter(_ startsWith "CFLAGS_").filterNot(s => (s startsWith "CFLAGS_REMOVE_") || (s startsWith "CFLAGS_MODULE") || (s startsWith "CFLAGS_KERNEL")).
+            map(s => {
+            val parts = s.split("\\s[+:]?=\\s")
+            assert(parts.length >=1)
+            val filename = parts(0).trim.drop(7).dropRight(3)
+            val extraparams = if (parts.size<2) List() else parts(1).split("\\s").toList.
+                map(_.replace("$(src)",getRelativePath(makeFileDir)))
+            (new File(makeFileDir, filename) -> extraparams.map(p => ("", p)))
+        }).toMap
+
+        fileFlags + (makeFileDir -> directoryFlags)
     }
 
     def findMakefile(dir: File): Map[File, List[(String, String)]] = {
         val files = for (file <- dir.listFiles();
                          if file.isFile && file.getName == "Makefile") yield
-            (file -> analyzeMakefile(file))
+            analyzeMakefile(file)
         val dirs = dir.listFiles().filter(_.isDirectory).flatMap(findMakefile)
-        (files ++ dirs).toMap
+        (files.fold(Map())(_ ++ _) ++ dirs).toMap
     }
 
     def getCondition(ccflagsStr: String): String = {
@@ -67,7 +82,7 @@ object MakeIncludeAnalysis extends App {
         for ((file, flags) <- findMakefile(linuxDir);
              (cond, flag) <- flags;
              pflag <- processFlag(flag))
-        yield (getRelativePath(file.getParentFile), pflag)
+        yield (getRelativePath(file), pflag)
     output.write(
         """#!/bin/bash
           |kbuildflags() {
