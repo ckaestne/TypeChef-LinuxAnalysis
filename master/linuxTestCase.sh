@@ -30,7 +30,11 @@ typechefFlags="--bdd -x CONFIG_ --xtc \
   --adjustLines --printIncludes \
   --serializeAST"
 
-include
+if [ ! -f pcs/kbuildparam.sh ]; then
+  echo "file pcs/kbuildparam.sh not found. run genKbuild.sh first"
+  exit
+fi
+source pcs/kbuildparam.sh
 
 ##################################################################
 # Collect the required additional parameter. Then

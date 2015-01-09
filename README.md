@@ -72,8 +72,9 @@ files.
 
 
 If running the analysis on the `master` directory, you first need to extract
-the feature models and file presence conditions with `genPCs.sh` and
-`genFMs.sh`. The files will be placed in the `pcs` directory and used
+the feature models, file presence conditions, and other kbuild parameters with 
+`genPCs.sh`, `genKbuild.sh` and `genFMs.sh`. 
+The files will be placed in the `pcs` directory and used
 for the remaining analysis. For `linux26333` those files are already
 checked in, but can be recreated with the corresponding scripts.
 

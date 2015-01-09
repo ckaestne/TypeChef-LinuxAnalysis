@@ -69,7 +69,8 @@ object MakeIncludeAnalysis extends App {
              pflag <- processFlag(flag))
         yield (getRelativePath(file.getParentFile), pflag)
     output.write(
-        """flags() {
+        """#!/bin/bash
+          |kbuildflags() {
           |  name="$1"
           |  base="$(basename "$1")"
           |  extraFlag=""
