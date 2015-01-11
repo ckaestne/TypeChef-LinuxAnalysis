@@ -50,8 +50,12 @@ object MakeIncludeAnalysis extends App {
                          if file.isFile && file.getName == "Makefile") yield
             analyzeMakefile(file)
         val dirs = dir.listFiles().filter(_.isDirectory).flatMap(findMakefile)
-        (files.fold(Map())(_ ++ _) ++ dirs).toMap
+        (files.fold(Map())(mergeMaps) ++ dirs).toMap
     }
+
+    private def mergeMaps[A,B](a: Map[A, List[B]], b: Map[A, List[B]]): Map[A,List[B]] =
+        (for (key <- (a.keys ++ b.keys)) yield (key -> (a.getOrElse(key, Nil) ++ b.getOrElse(key, Nil)))).toMap
+
 
     def getCondition(ccflagsStr: String): String = {
         if (ccflagsStr == "ccflags-y") ""
@@ -78,11 +82,11 @@ object MakeIncludeAnalysis extends App {
         }
     }
 
-    val extraFlags: Map[String, String] =
-        for ((file, flags) <- findMakefile(linuxDir);
+    val extraFlags: Map[String, List[String]] =
+        (for ((file, flags) <- findMakefile(linuxDir).toList;
              (cond, flag) <- flags;
              pflag <- processFlag(flag, file))
-        yield (getRelativePath(file), pflag)
+        yield (getRelativePath(file), pflag)).groupBy(_._1).mapValues(_.map(_._2))
     output.write(
         """#!/bin/bash
           |kbuildflags() {
@@ -95,7 +99,7 @@ object MakeIncludeAnalysis extends App {
         output.write( """ if grep -q "%s" <<< "$name"; then
                         |    extraFlag="$extraFlags %s"
                         |  fi
-                        | """.stripMargin.format(path, flags))
+                        | """.stripMargin.format(path, flags.mkString(" ")))
 
     output.write(
         """ echo "$extraFlag"
