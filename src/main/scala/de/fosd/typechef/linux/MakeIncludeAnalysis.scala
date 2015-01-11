@@ -37,7 +37,7 @@ object MakeIncludeAnalysis extends App {
             map(s => {
             val parts = s.split("\\s[+:]?=\\s")
             assert(parts.length >=1)
-            val filename = parts(0).trim.drop(7).dropRight(3)
+            val filename = parts(0).trim.drop(7).dropRight(2)
             val extraparams = if (parts.size<2) List() else parts(1).split("\\s").toList
             (new File(makeFileDir, filename) -> extraparams.map(p => ("", p)))
         }).toMap
@@ -69,7 +69,7 @@ object MakeIncludeAnalysis extends App {
     def processFlag(flag: String, file: File): Option[String] = {
         if (flag.trim.isEmpty || (flag startsWith "-O")) None
         else if (flag startsWith "-I") {
-            lazy val srcDir = if (file.isFile) file.getParentFile else file
+            lazy val srcDir = if (file.isDirectory) file else file.getParentFile
             val x = flag.drop(2).replace("$(src)", getRelativePath(srcDir)).replace("$(srctree)/", "").replace("$(TOPDIR)", "")
             Some("-I $srcPath/" + x)
         } else if ((flag startsWith "-D") && !(flag contains "$(") && !(flag contains "\""))
