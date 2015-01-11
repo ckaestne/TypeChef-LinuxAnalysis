@@ -38,8 +38,7 @@ object MakeIncludeAnalysis extends App {
             val parts = s.split("\\s[+:]?=\\s")
             assert(parts.length >=1)
             val filename = parts(0).trim.drop(7).dropRight(3)
-            val extraparams = if (parts.size<2) List() else parts(1).split("\\s").toList.
-                map(_.replace("$(src)",getRelativePath(makeFileDir)))
+            val extraparams = if (parts.size<2) List() else parts(1).split("\\s").toList
             (new File(makeFileDir, filename) -> extraparams.map(p => ("", p)))
         }).toMap
 
@@ -63,10 +62,11 @@ object MakeIncludeAnalysis extends App {
     def getRelativePath(f: File): String =
         f.getAbsolutePath.replace(linuxDir.getAbsolutePath, "").replace("\\", "/").dropWhile(Set('\\', '/') contains _)
 
-    def processFlag(flag: String): Option[String] = {
+    def processFlag(flag: String, file: File): Option[String] = {
         if (flag.trim.isEmpty || (flag startsWith "-O")) None
         else if (flag startsWith "-I") {
-            val x = flag.drop(2).replace("$(src)/", "").replace("$(srctree)/", "")
+            lazy val srcDir = if (file.isFile) file.getParentFile else file
+            val x = flag.drop(2).replace("$(src)", getRelativePath(srcDir)).replace("$(srctree)/", "")
             Some("-I $srcPath/" + x)
         } else if (flag startsWith "-D")
             Some(flag)
@@ -81,7 +81,7 @@ object MakeIncludeAnalysis extends App {
     val extraFlags: Map[String, String] =
         for ((file, flags) <- findMakefile(linuxDir);
              (cond, flag) <- flags;
-             pflag <- processFlag(flag))
+             pflag <- processFlag(flag, file))
         yield (getRelativePath(file), pflag)
     output.write(
         """#!/bin/bash
