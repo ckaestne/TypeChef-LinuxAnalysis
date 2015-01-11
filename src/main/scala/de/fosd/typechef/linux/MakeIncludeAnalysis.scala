@@ -70,11 +70,11 @@ object MakeIncludeAnalysis extends App {
         if (flag.trim.isEmpty || (flag startsWith "-O")) None
         else if (flag startsWith "-I") {
             lazy val srcDir = if (file.isFile) file.getParentFile else file
-            val x = flag.drop(2).replace("$(src)", getRelativePath(srcDir)).replace("$(srctree)/", "")
+            val x = flag.drop(2).replace("$(src)", getRelativePath(srcDir)).replace("$(srctree)/", "").replace("$(TOPDIR)", "")
             Some("-I $srcPath/" + x)
-        } else if (flag startsWith "-D")
+        } else if ((flag startsWith "-D") && !(flag contains "$(") && !(flag contains "\""))
             Some(flag)
-        else if (flag startsWith "-U")
+        else if ((flag startsWith "-U") && !(flag contains "$(") && !(flag contains "\""))
             Some(flag)
         else {
             System.err.println("flag not supported: " + flag)
