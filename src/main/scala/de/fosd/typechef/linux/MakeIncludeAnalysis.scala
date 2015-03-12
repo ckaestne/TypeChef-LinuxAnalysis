@@ -5,9 +5,10 @@ import java.util.regex.Pattern
 
 object MakeIncludeAnalysis extends App {
 
-    assert(args.length >= 1 && args.length <= 2, "expected a parameter pointing to the linux root directory and an optional parameter for the output file")
+    assert(args.length >= 1 && args.length <= 3, "expected a parameter pointing to the linux root directory, an optional parameter for the output file, and an optional parameter for a file providing manually written rules")
     val path = args(0)
     val outputStream = if (args.length >= 2) new FileOutputStream(args(1)) else System.out
+    val manualRules = if (args.length >= 3) io.Source.fromFile(args(2)).getLines().toList else Nil
     val output = new OutputStreamWriter(outputStream)
     val linuxDir = new File(path)
 
@@ -115,6 +116,9 @@ object MakeIncludeAnalysis extends App {
                         |    extraFlag="$extraFlags %s"
                         |  fi
                         | """.stripMargin.format(path, flags.map(_.replace("\"", "\\\"")).mkString(" ")))
+
+
+    output.write(manualRules.mkString("", "\n", "\n"))
 
     output.write(
         """ echo "$extraFlag"
