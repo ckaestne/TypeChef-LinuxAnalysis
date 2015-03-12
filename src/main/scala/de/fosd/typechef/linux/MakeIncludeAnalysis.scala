@@ -113,7 +113,7 @@ object MakeIncludeAnalysis extends App {
 
     for ((path, flags) <- extraFlags.toList.sortBy(_._1))
         output.write( """ if grep -q "%s" <<< "$name"; then
-                        |    extraFlag="$extraFlags %s"
+                        |    extraFlag="$extraFlag %s"
                         |  fi
                         | """.stripMargin.format(path, flags.map(_.replace("\"", "\\\"")).mkString(" ")))
 
