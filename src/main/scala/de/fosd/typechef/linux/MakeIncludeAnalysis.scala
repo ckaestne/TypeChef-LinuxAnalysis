@@ -1,6 +1,7 @@
 package de.fosd.typechef.linux
 
 import java.io._
+import java.util.regex.Pattern
 
 object MakeIncludeAnalysis extends App {
 
@@ -10,6 +11,20 @@ object MakeIncludeAnalysis extends App {
     val output = new OutputStreamWriter(outputStream)
     val linuxDir = new File(path)
 
+    //    println(splitParameters("foo -DX='\"ab cd\"' -Xd=\"ab d\""))
+
+
+    /**
+     * split along whitespace, but keep strings together
+     */
+    def splitParameters(p: String): List[String] = {
+        val matcher = Pattern.compile("([^\\s']*)\"([^\"]*)\"|([^\\s\"]*)'([^']*)'|[^\\s\"']+").matcher(p)
+        var r: List[String] = Nil
+        while (matcher.find()) {
+            r ::= matcher.group()
+        }
+        r.reverse
+    }
 
     /**
      * finds all parameters and corresponding conditions
@@ -29,7 +44,7 @@ object MakeIncludeAnalysis extends App {
             val parts = s.split("\\s[+:]?=\\s")
             assert(parts.length == 2)
             val condition = getCondition(parts(0).trim)
-            val extraparams = parts(1).split("\\s").toList
+            val extraparams = splitParameters(parts(1))
             extraparams.map(p => (condition, p))
         })
         val fileFlags: Map[File, List[(String, String)]] = lines.
@@ -38,7 +53,7 @@ object MakeIncludeAnalysis extends App {
             val parts = s.split("\\s[+:]?=\\s")
             assert(parts.length >=1)
             val filename = parts(0).trim.drop(7).dropRight(2)
-            val extraparams = if (parts.size<2) List() else parts(1).split("\\s").toList
+            val extraparams = if (parts.size < 2) List() else splitParameters(parts(1))
             (new File(makeFileDir, filename) -> extraparams.map(p => ("", p)))
         }).toMap
 
@@ -72,7 +87,7 @@ object MakeIncludeAnalysis extends App {
             lazy val srcDir = if (file.isDirectory) file else file.getParentFile
             val x = flag.drop(2).replace("$(src)", getRelativePath(srcDir)).replace("$(srctree)/", "").replace("$(TOPDIR)", "")
             Some("-I $srcPath/" + x)
-        } else if ((flag startsWith "-D") && !(flag contains "$(") && !(flag contains "\""))
+        } else if ((flag startsWith "-D") && !(flag contains "$("))
             Some(flag)
         else if ((flag startsWith "-U") && !(flag contains "$(") && !(flag contains "\""))
             Some(flag)
@@ -99,7 +114,7 @@ object MakeIncludeAnalysis extends App {
         output.write( """ if grep -q "%s" <<< "$name"; then
                         |    extraFlag="$extraFlags %s"
                         |  fi
-                        | """.stripMargin.format(path, flags.mkString(" ")))
+                        | """.stripMargin.format(path, flags.map(_.replace("\"", "\\\"")).mkString(" ")))
 
     output.write(
         """ echo "$extraFlag"
@@ -108,4 +123,6 @@ object MakeIncludeAnalysis extends App {
 
 
     output.close()
+
+
 }
