@@ -21,8 +21,8 @@ filesToProcess() {
 
 system=linux-redhat
 typechefFlags="--bdd -x CONFIG_ --xtc \
-  --featureModelFExpr approx.fm \
-  --typeSystemFeatureModelDimacs=pcs/x86.dimacs \
+  --featureModelDimacs=pcs/x86.dimacs \
+  --featureModelFExpr=approx.fm \
   --include=pcs/x86.completed.h --include=pcs/x86.nonbool.h --include=partialConf.h \
   -c ../$system.properties \
   --openFeat pcs/x86.open \
