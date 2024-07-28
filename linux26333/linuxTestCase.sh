@@ -136,7 +136,7 @@ export outCSV=linux.csv
 ##################################################################
 filesToProcess|while read i; do
   if [ ! -f $srcPath/$i.dbg ]; then
-    extraFlags="$(flags "$i")"
+    extraFlags="$(flags "$i") -I /usr/lib/llvm-14/lib/clang/14.0.0/include/"
 #    echo $partialPreprocFlags
 #    echo $extraFlags
     touch $srcPath/$i.dbg
