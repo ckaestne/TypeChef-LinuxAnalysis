@@ -20,14 +20,14 @@ filesToProcess() {
 system=linux-redhat
 partialPreprocFlags="-x CONFIG_ \
   --xtc
-  --featureModelFExpr approx.arm.fm \
-  --typeSystemFeatureModelDimacs=pcs/arm.dimacs \
+  --featureModelDimacs=pcs/arm.dimacs \
+  --featureModelFExpr=approx.arm.fm \
   --include=pcs/arm.nonbool.h \
   -c $system.properties \
   --writePI --recordTiming --lexdebug --errorXML --interface"
 
 
-#  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
+#  --featureModelDimacs=2.6.33.3-2var.dimacs \
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
 # XXX: These options workaround bugs triggered by these macros.

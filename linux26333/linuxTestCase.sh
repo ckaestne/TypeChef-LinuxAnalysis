@@ -23,8 +23,8 @@ filesToProcess() {
 #partialPreprocFlags="-c linux-redhat.properties -I $(gcc -print-file-name=include) -x CONFIG_ -U __INTEL_COMPILER \
 system=linux-redhat
 partialPreprocFlags="--bdd -x CONFIG_ --xtc\
-  --featureModelFExpr approx.fm \
-  --typeSystemFeatureModelDimacs=pcs/x86.dimacs \
+  --featureModelDimacs=pcs/x86.dimacs \
+  --featureModelFExpr=approx.fm \
   --include=pcs/x86.completed.h --include=pcs/x86.nonbool.h --include=partialConf.h \
   -c ../$system.properties \
   --openFeat pcs/x86.open \
@@ -34,7 +34,7 @@ partialPreprocFlags="--bdd -x CONFIG_ --xtc\
   --adjustLines"
 
 
-#  --typeSystemFeatureModelDimacs=2.6.33.3-2var.dimacs \
+#  --featureModelDimacs=2.6.33.3-2var.dimacs \
 #  --include linux_defs.h --include $srcPath/include/generated/autoconf.h
 
 # XXX: These options workaround bugs triggered by these macros.
@@ -136,7 +136,7 @@ export outCSV=linux.csv
 ##################################################################
 filesToProcess|while read i; do
   if [ ! -f $srcPath/$i.dbg ]; then
-    extraFlags="$(flags "$i")"
+    extraFlags="$(flags "$i") -I /usr/lib/llvm-14/lib/clang/14.0.0/include/"
 #    echo $partialPreprocFlags
 #    echo $extraFlags
     touch $srcPath/$i.dbg

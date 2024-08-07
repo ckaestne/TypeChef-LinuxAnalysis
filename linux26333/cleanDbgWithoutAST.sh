@@ -1,8 +1,8 @@
 cat pcs/x86.flist | while read i; 
     do 
-        if [ ! -e "l/$i.ast" ] 
+        if [ ! -e "linux/$i.ast" ] 
         then 
-          rm l/$i.dbg
+          rm linux/$i.dbg
         fi
     done
 
